@@ -303,29 +303,29 @@ class UnorderedMaxPQ<Key extends Comparable<Key>> {
     }
 }
 
+class Structures {
+
+    public void PrintDec(int n)
+    {
+        if (n == 1)
+        {
+            System.out.println(n);
+            return;
+        }
+        System.out.print(n+" ");
+        PrintDec(n-1);
+    }
+}
+
 
 
 public class Codes {
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
-        maxSubarray ms = new maxSubarray();
+        Structures sr = new Structures();
 
-        //Sortable sp = new Sortable();
-
-        System.out.print("Enter the value of n: ");
-        int n = sc.nextInt();
-
-        int[] a = new int[n];
-
-        System.out.print("Enter the Elements of Array: ");
-        for (int i = 0; i < n; i++)
-            a[i] = sc.nextInt();
-
-        //System.out.println(sp.partition(a, 0, 6));
-        int[] res = ms.ans(a);
-        // Option 1: nice array format [s, e]
-        System.out.println(Arrays.toString(res));
+        sr.PrintDec(10);
 
 
         sc.close();
