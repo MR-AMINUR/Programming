@@ -315,6 +315,28 @@ class Structures {
         System.out.print(n+" ");
         PrintDec(n-1);
     }
+
+    public void PrintInc(int n)
+    {
+        if (n == 1)
+        {
+            System.out.print(1+" ");
+            return;
+        }
+        PrintInc(n-1);
+        System.out.print(n+" ");
+    }
+
+    public int fact(int n) {
+        if (n == 0)
+        {
+            return 1;
+        }
+        int fnm1 = fact(n-1);
+        int fn = n * fnm1;
+
+        return fn;
+    }
 }
 
 
@@ -325,7 +347,7 @@ public class Codes {
         Scanner sc = new Scanner(System.in);
         Structures sr = new Structures();
 
-        sr.PrintDec(10);
+        System.out.print(sr.fact(8) + " ");
 
 
         sc.close();
