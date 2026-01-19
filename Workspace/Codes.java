@@ -1,3 +1,4 @@
+
 import java.util.*;
 
 class codes {
@@ -342,14 +343,14 @@ class Structures {
 
 
 public class Codes {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception{
 
         Scanner sc = new Scanner(System.in);
         Structures sr = new Structures();
 
         System.out.print(sr.fact(8) + " ");
 
-
+        
         sc.close();
     }
 }
