@@ -338,6 +338,21 @@ class Structures {
 
         return fn;
     }
+
+    public int fibo(int n) {
+
+        if (n == 0 || n == 1)
+        {
+            return n;
+        }
+
+        int f1 = fibo(n-1);
+        int f2 = fibo(n-2);
+
+        int fn = f1+f2;
+
+        return fn;
+    }
 }
 
 
@@ -348,7 +363,7 @@ public class Codes {
         Scanner sc = new Scanner(System.in);
         Structures sr = new Structures();
 
-        System.out.print(sr.fact(8) + " ");
+        System.out.print(sr.fibo(3) + " ");
 
         
         sc.close();
