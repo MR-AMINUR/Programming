@@ -89,6 +89,21 @@ class Structures {
 
         return x * power(x, n-1);
     }
+
+    public int tilingProblem(int n) {
+
+        if (n == 0 || n == 1)
+        {
+            return 1;
+        }
+
+        int vertical = tilingProblem(n-1);
+        int horizontal = tilingProblem(n-2);
+
+        int totalWays = vertical + horizontal;
+
+        return totalWays;
+    }
 }
 
 
@@ -100,7 +115,7 @@ public class Codes {
         Structures sr = new Structures();
 
         
-        System.out.print(sr.power(2,10));
+        System.out.print(sr.tilingProblem(4));
 
         
         sc.close();
