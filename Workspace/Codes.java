@@ -353,6 +353,22 @@ class Structures {
 
         return fn;
     }
+
+    public int lastOccurence(int[] arr, int key, int i) {
+
+        if (i == arr.length)
+        {
+            return -1;
+        }
+
+        int isFound = lastOccurence(arr, key, i+1);
+        if (isFound == -1 && arr[i] == key)
+        {
+            return i;
+        }
+
+        return isFound;
+    }
 }
 
 
@@ -363,7 +379,15 @@ public class Codes {
         Scanner sc = new Scanner(System.in);
         Structures sr = new Structures();
 
-        System.out.print(sr.fibo(3) + " ");
+        System.out.print("ENter the size of n: ");
+        int n = sc.nextInt();
+        int[] arr = new int[n];
+        System.out.print("Enter the array elements: ");
+        for (int i = 0; i < n; i++)
+        {
+            arr[i] = sc.nextInt();
+        }
+        System.out.print(sr.lastOccurence(arr, 5, 0));
 
         
         sc.close();
