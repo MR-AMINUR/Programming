@@ -79,6 +79,16 @@ class Structures {
 
         return isFound;
     }
+
+    public int power(int x, int n) {
+
+        if (n == 0)
+        {
+            return 1;
+        }
+
+        return x * power(x, n-1);
+    }
 }
 
 
@@ -89,15 +99,8 @@ public class Codes {
         Scanner sc = new Scanner(System.in);
         Structures sr = new Structures();
 
-        System.out.print("ENter the size of n: ");
-        int n = sc.nextInt();
-        int[] arr = new int[n];
-        System.out.print("Enter the array elements: ");
-        for (int i = 0; i < n; i++)
-        {
-            arr[i] = sc.nextInt();
-        }
-        System.out.print(sr.firstOccurance(arr, 5, 0));
+        
+        System.out.print(sr.power(2,10));
 
         
         sc.close();
