@@ -142,6 +142,22 @@ class Structures {
 
         return totalWays;
     }
+
+    public void PrintBinaryStrings(int n, int lastPlace, String str) {
+
+        if (n == 0)
+        {
+            System.out.println(str);
+            return;
+
+        }
+        PrintBinaryStrings(n-1, 0, str+"0");
+
+        if (lastPlace == 0)
+        {
+            PrintBinaryStrings(n-1, 1, str+"1");
+        }
+    }
 }
 
 
@@ -153,10 +169,9 @@ public class Codes {
         Structures sr = new Structures();
 
         
-        System.out.println("Enter the value of n: ");
-        int n = sc.nextInt();
+        
 
-        System.out.print(sr.PairingFriends(n));
+        sr.PrintBinaryStrings(3,0,"");
         
         sc.close();
     }
