@@ -125,6 +125,23 @@ class Structures {
             removeDuplicates(str, idx+1, newStr.append(currChar), map);
         }
     }
+
+    public int PairingFriends(int n) {
+
+        if (n == 1 || n == 2)
+        {
+            return n;
+        }
+
+        int fnm1 = PairingFriends(n-1);
+        int fnm2 = PairingFriends(n-2);
+
+        int PairWays = (n-1) * fnm2;
+
+        int totalWays = fnm1 + PairWays;
+
+        return totalWays;
+    }
 }
 
 
@@ -136,8 +153,10 @@ public class Codes {
         Structures sr = new Structures();
 
         
-        String str = "appnnacollege";
-        sr.removeDuplicates(str, 0, new StringBuilder(""), new boolean[26]);
+        System.out.println("Enter the value of n: ");
+        int n = sc.nextInt();
+
+        System.out.print(sr.PairingFriends(n));
         
         sc.close();
     }
