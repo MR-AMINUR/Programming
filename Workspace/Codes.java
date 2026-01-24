@@ -158,6 +158,21 @@ class Structures {
             PrintBinaryStrings(n-1, 1, str+"1");
         }
     }
+
+    public void allOccurences(int[] arr, int key, int i) {
+
+        if (i == arr.length)
+        {
+            return;
+        }
+
+        if (arr[i] == key)
+        {
+            System.out.print(i+" ");
+        }
+
+        allOccurences(arr, key, i+1);
+    }
 }
 
 
@@ -168,10 +183,16 @@ public class Codes {
         Scanner sc = new Scanner(System.in);
         Structures sr = new Structures();
 
-        
+        int[] arr = {3, 2, 4, 5, 6, 2, 7, 2, 2 };
+
+        int key = 2;
+
+        sr.allOccurences(arr, key, 0);
+
+        System.out.println();
         
 
-        sr.PrintBinaryStrings(3,0,"");
+        
         
         sc.close();
     }
