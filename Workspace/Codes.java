@@ -173,6 +173,32 @@ class Structures {
 
         allOccurences(arr, key, i+1);
     }
+
+    public int BinarySearch(int[] arr, int target) {
+
+        int n = arr.length;
+        int left = 0, right = n-1;
+        int mid = (left+right)/2;
+
+        while (left <= right) {
+
+            if (arr[mid] == target)
+            {
+                return mid;
+            }
+
+            else if (arr[mid] > target)
+            {
+                right = mid-1;
+            }
+            else
+            {
+                left = mid+1;
+            }
+        }
+
+        return -1;
+    }
 }
 
 
@@ -183,13 +209,11 @@ public class Codes {
         Scanner sc = new Scanner(System.in);
         Structures sr = new Structures();
 
-        int[] arr = {3, 2, 4, 5, 6, 2, 7, 2, 2 };
+        int[] arr = {2, 3, 4, 5, 8, 10};
 
         int key = 2;
 
-        sr.allOccurences(arr, key, 0);
-
-        System.out.println();
+        System.out.println(sr.BinarySearch(arr, key));
         
 
         
