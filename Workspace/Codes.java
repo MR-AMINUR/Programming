@@ -214,12 +214,28 @@ class Structures {
 
     public int length(String str) {
 
-        if (str.length() == 0)
-        {
-            return 0;
-        }
+        
+        // if (str.length() == 0)
+        // {
+        //     return 0;
+        // }
 
-        return length(str.substring(1))+1;
+        // return length(str.substring(1))+1;
+        int i = 0;
+        try {
+
+            while (true)
+        {
+            str.charAt(i);
+            i++;
+        }
+            
+        } catch (Exception e) {
+           return i;
+        }
+        
+
+        
     }
 }
 
