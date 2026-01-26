@@ -211,6 +211,16 @@ class Structures {
         DigitToWord(number/10, digit);
         System.out.print(digit[lastDigit]+" ");
     }
+
+    public int length(String str) {
+
+        if (str.length() == 0)
+        {
+            return 0;
+        }
+
+        return length(str.substring(1))+1;
+    }
 }
 
 
@@ -221,13 +231,10 @@ public class Codes {
         Scanner sc = new Scanner(System.in);
         Structures sr = new Structures();
 
-        System.out.print("Enter the number: ");
-        int n = sc.nextInt();
+        System.out.print("Enter the String: ");
+        String str = sc.next();
 
-        String[] digits = {"zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
-
-        sr.DigitToWord(n, digits);
-        
+        System.out.println(sr.length(str));
 
         
         
