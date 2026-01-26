@@ -199,6 +199,18 @@ class Structures {
 
         return -1;
     }
+
+    public void DigitToWord(int number, String[] digit) {
+
+        if (number == 0)
+        {
+            return;
+        }
+
+        int lastDigit = number % 10;
+        DigitToWord(number/10, digit);
+        System.out.print(digit[lastDigit]+" ");
+    }
 }
 
 
@@ -209,11 +221,12 @@ public class Codes {
         Scanner sc = new Scanner(System.in);
         Structures sr = new Structures();
 
-        int[] arr = {2, 3, 4, 5, 8, 10};
+        System.out.print("Enter the number: ");
+        int n = sc.nextInt();
 
-        int key = 2;
+        String[] digits = {"zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
 
-        System.out.println(sr.BinarySearch(arr, key));
+        sr.DigitToWord(n, digits);
         
 
         
