@@ -273,6 +273,27 @@ class Structures {
 
         System.out.println(match);
     }
+
+    public int MatchSubStrings(String str, int i, int j, int n) {
+
+        if (n == 1)
+        {
+            return 1;
+        }
+        if (n <= 0)
+        {
+            return 0;
+        }
+
+        int match = MatchSubStrings(str, i+1, j, n-1) - MatchSubStrings(str, i+1, j-1, n-2) + MatchSubStrings(str, i, j-1, n-1);
+
+        if (str.charAt(i) == str.charAt(j))
+        {
+            match++;
+        }
+
+        return match;
+    }
 }
 
 
@@ -286,7 +307,9 @@ public class Codes {
         System.out.print("Enter the String: ");
         String str = sc.next();
 
-        sr.MatchStrings(str);
+        int n = str.length();
+
+        System.out.println(sr.MatchSubStrings(str, 0, n-1, n));
 
         
         
