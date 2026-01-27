@@ -252,6 +252,27 @@ class Structures {
         System.out.print(str.substring(i, j)+" ");
         printSubStrings(str, i, j+1);
     }
+
+    public void MatchStrings(String str) {
+
+        int match = 0;
+
+        for (int i = 0; i < str.length(); i++)
+        {
+            for (int j = i+1; j <= str.length(); j++)
+            {
+                char first = str.charAt(i);
+                char last = str.charAt(j-1);
+                
+                if (first == last)
+                {
+                    match++;
+                }
+            }
+        }
+
+        System.out.println(match);
+    }
 }
 
 
@@ -265,7 +286,7 @@ public class Codes {
         System.out.print("Enter the String: ");
         String str = sc.next();
 
-        sr.printSubStrings(str, 0, 1);
+        sr.MatchStrings(str);
 
         
         
