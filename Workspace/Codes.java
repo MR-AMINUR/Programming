@@ -234,8 +234,23 @@ class Structures {
            return i;
         }
         
+    }
 
-        
+    public void printSubStrings(String str, int i, int j) {
+
+        if (i == str.length())
+        {
+            return;
+        }
+
+        if (j > str.length())
+        {
+            printSubStrings(str, i+1, i+1);
+            return;
+        }
+
+        System.out.print(str.substring(i, j)+" ");
+        printSubStrings(str, i, j+1);
     }
 }
 
@@ -250,7 +265,7 @@ public class Codes {
         System.out.print("Enter the String: ");
         String str = sc.next();
 
-        System.out.println(sr.length(str));
+        sr.printSubStrings(str, 0, 1);
 
         
         
