@@ -344,6 +344,45 @@ class Structures {
 
     }
 
+    public void QuickSort(int[] arr, int si, int ei) {
+        
+
+        if (si >= ei)
+        {
+            return;
+        }
+        int pidx = Partition(arr, si, ei);
+
+        QuickSort(arr, si, pidx-1);
+        QuickSort(arr, pidx+1, ei);
+
+    }
+
+    public int Partition(int[] arr, int si, int ei) {
+
+        int i = si-1;
+        int pivot = arr[ei];
+
+        for (int j = si; j < ei; j++)
+        {
+            if (arr[j] <= pivot)
+            {
+                i++;
+                int temp = arr[j];
+                arr[j] = arr[i];
+                arr[i] = temp;
+            }
+        }
+
+        i++;
+        int temp = pivot;
+        arr[ei] = arr[i];
+        arr[i] = temp;
+        
+
+        return i;
+    }
+
     
 }
 
@@ -364,7 +403,7 @@ public class Codes {
             arr[i] = sc.nextInt();
         }
 
-        sr.MergeSort(arr, 0, n-1);
+        sr.QuickSort(arr, 0, n-1);
 
         System.out.println("The Sorted Array: ");
         for (int i = 0; i < n; i++)
