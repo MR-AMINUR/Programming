@@ -174,27 +174,27 @@ class Structures {
         allOccurences(arr, key, i+1);
     }
 
-    public int BinarySearch(int[] arr, int target) {
+    public int BinarySearch(int[] arr, int left, int right, int target) {
 
         int n = arr.length;
-        int left = 0, right = n-1;
-        int mid = (left+right)/2;
+        left = 0; right = n-1;
+        
 
         while (left <= right) {
+            int mid = right + (left - right)/2;
 
-            if (arr[mid] == target)
-            {
+           if (target == arr[mid])
+           {
                 return mid;
-            }
-
-            else if (arr[mid] > target)
-            {
-                right = mid-1;
-            }
-            else
-            {
+           }
+           else if (target > arr[mid])
+           {
                 left = mid+1;
-            }
+           }
+           else
+           {
+                right = mid -1;
+           }
         }
 
         return -1;
@@ -394,23 +394,12 @@ public class Codes {
         Scanner sc = new Scanner(System.in);
         Structures sr = new Structures();
 
-        System.out.print("Enter the size of the Array: ");
-        int n = sc.nextInt();
-        int[] arr = new int[n];
-        System.out.print("Enter the Array Elements: ");
-        for (int i = 0; i < n; i++)
-        {
-            arr[i] = sc.nextInt();
-        }
+        int[] arr = {2,3,4,5,6,7};
+        int target = 6;
 
-        sr.QuickSort(arr, 0, n-1);
+        System.out.println("The Target is at index: "+ sr.BinarySearch(arr, 0, arr.length-1, target));
 
-        System.out.println("The Sorted Array: ");
-        for (int i = 0; i < n; i++)
-        {
-            System.out.print(arr[i]+" ");
-        }
-        System.out.println();
+        
 
         
         
