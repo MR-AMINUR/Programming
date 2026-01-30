@@ -383,6 +383,26 @@ class Structures {
         return i;
     }
 
+    public void TowerofHanoi(int n, String src, String helper, String dest) {
+
+        if (n == 1) 
+        {
+            System.out.println("transfer disk "+n + " from "+ src + " to "+ dest);
+            return;
+        }
+
+        // n - 1 disks -> transfer from A to B using C
+
+        TowerofHanoi(n-1, src, dest, helper);
+
+        // n disk -> transfer from A to C
+
+        System.out.println("transfer disk "+n + " from "+ src + " to "+ dest);
+
+        // n-1 disks -> transfer from B to C using A
+
+        TowerofHanoi(n-1, helper, src, dest);
+    }
     
 }
 
@@ -394,12 +414,10 @@ public class Codes {
         Scanner sc = new Scanner(System.in);
         Structures sr = new Structures();
 
-        int[] arr = {2,3,4,5,6,7};
-        int target = 6;
+        System.out.print("Enter the number of disks: ");
+        int n = sc.nextInt();
 
-        System.out.println("The Target is at index: "+ sr.BinarySearch(arr, 0, arr.length-1, target));
-
-        
+        sr.TowerofHanoi(n, "A", "B", "C");
 
         
         
