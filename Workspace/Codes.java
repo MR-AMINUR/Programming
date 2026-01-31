@@ -470,6 +470,22 @@ class Structures {
 
         return false;
     }
+
+    public int repeatedNumber(final int[] A) {
+        int n = A.length;
+        for (int i = 0; i < n; ++i)
+        {
+            int idx = Math.abs(A[i]) - 1;
+
+            if (A[idx] < 0)
+            {
+                return idx + 1;
+            }
+            
+            A[idx] = -A[idx];
+        }
+        return -1;
+    }
     
 }
 
@@ -481,15 +497,17 @@ public class Codes {
         Scanner sc = new Scanner(System.in);
         Structures sr = new Structures();
 
-        String[] arr = {"sun", "earth", "mars", "mercury"};
+        System.out.print("Enter the size of the Array: ");
+        int n = sc.nextInt();
 
-        String[] a = sr.StringMergeSort(arr, 0, arr.length-1);
-
-        for (int i = 0; i < arr.length; i++)
+        int[] arr = new int[n];
+        System.out.print("Enter the Array elements: ");
+        for (int i = 0; i < n; i++)
         {
-            System.out.print(a[i] + " ");
+            arr[i] = sc.nextInt();
         }
-        System.out.println();
+
+        System.out.print("The majority is: " + sr.repeatedNumber(arr));
 
         
         
