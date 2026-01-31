@@ -1425,7 +1425,7 @@ public class Problem {
         PrimeNumbers pl = new PrimeNumbers();
         Scanner sc = new Scanner(System.in);
 
-        List<Integer> inputList = Arrays.asList(1, 3, 5, 5, 4);
+        List<Integer> inputList = Arrays.asList(1, 1,2,2,2,1,1);
 
         
         System.out.print(pl.RepeatDigit(inputList));
