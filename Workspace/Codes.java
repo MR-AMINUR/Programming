@@ -404,9 +404,71 @@ class Structures {
         TowerofHanoi(n-1, helper, src, dest);
     }
 
-    public void StringMergeSort(String[] arr) {
+    public String[] StringMergeSort(String[] arr, int lo, int hi) {
 
-        
+        if (lo == hi)
+        {
+            String[] A = { arr[lo]};
+            return A;
+        }
+
+        int mid = lo + (hi-lo)/2;
+
+        String[] arr1 = StringMergeSort(arr, lo, mid);
+        String[] arr2 = StringMergeSort(arr, mid+1, hi);
+        String[] arr3 = Merge(arr1, arr2);
+
+        return arr3;
+    }
+
+    public String[] Merge(String[] arr1, String[] arr2) {
+
+        int m = arr1.length;
+        int n = arr2.length;
+
+        String[] temp = new String[m+n];
+
+        int i = 0; 
+        int j = 0;
+        int k = 0; 
+
+        while (i < m && j < n)
+        {
+            if (isAlphabetticallySmaller(arr1[i], arr2[j]))
+            {
+                temp[k] = arr1[i];
+                i++;
+            }
+            else
+            {
+                temp[k] = arr2[j];
+                j++;
+            }
+
+            k++;
+        }
+
+        while (i < m)
+        {
+            temp[k++] = arr1[i++];
+        }
+
+        while (j < n)
+        {
+            temp[k++] = arr2[j++];
+        }
+
+        return temp;
+    }
+
+    public boolean isAlphabetticallySmaller(String str1, String str2) {
+
+        if (str1.compareTo(str2) < 0)
+        {
+            return true;
+        }
+
+        return false;
     }
     
 }
@@ -421,7 +483,13 @@ public class Codes {
 
         String[] arr = {"sun", "earth", "mars", "mercury"};
 
-        System.out.println(arr[0]);
+        String[] a = sr.StringMergeSort(arr, 0, arr.length-1);
+
+        for (int i = 0; i < arr.length; i++)
+        {
+            System.out.print(a[i] + " ");
+        }
+        System.out.println();
 
         
         
