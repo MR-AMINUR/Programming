@@ -403,6 +403,11 @@ class Structures {
 
         TowerofHanoi(n-1, helper, src, dest);
     }
+
+    public void StringMergeSort(String[] arr) {
+
+        
+    }
     
 }
 
@@ -414,10 +419,9 @@ public class Codes {
         Scanner sc = new Scanner(System.in);
         Structures sr = new Structures();
 
-        System.out.print("Enter the number of disks: ");
-        int n = sc.nextInt();
+        String[] arr = {"sun", "earth", "mars", "mercury"};
 
-        sr.TowerofHanoi(n, "A", "B", "C");
+        System.out.println(arr[0]);
 
         
         
