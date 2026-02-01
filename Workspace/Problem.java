@@ -1289,7 +1289,7 @@ Your algorithm should run in O(n) time and use constant space. */
     public int RepeatDigit(final List<Integer> a) {
 
         int n = a.size();
-        int fcnd = 0, scnd=0, fcnt = 0, scnt = 0;
+        int fcnd = 0, scnd=0, fcnt = 0, scnt = 0; // fcnd -> first candidate  || fcnt -> first count;
         int val=0;
         if (n == 0) return -1;
 
