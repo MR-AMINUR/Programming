@@ -492,25 +492,59 @@ class Structures {
         int n = arr.length;
         int majority = n/2;
 
+        int candidate = 0; 
+        int count = 0; 
+
         for (int i = 0; i < n; i++)
         {
-            int count = 0;
-            for (int j = 0; j < n; j++)
+            candidate = arr[i];
+
+            if (candidate == arr[i+1])
             {
-                if (arr[i] == arr[j])
-                {
-                    count++;
-                }
+                count++;
+            }
+            else
+            {
+                count--;
             }
 
-            if (count > majority)
+            if (count == 0)
+            {
+                candidate++;
+            }
+
+            if (candidate > majority)
             {
                 return arr[i];
             }
+
         }
+
+        
+
+        // for (int i = 0; i < n; i++)
+        // {
+        //     int count = 0;
+        //     for (int j = 0; j < n; j++)
+        //     {
+        //         if (arr[i] == arr[j])
+        //         {
+        //             count++;
+        //         }
+        //     }
+
+        //     if (count > majority)
+        //     {
+        //         return arr[i];
+        //     }
+        // }
+
+
 
         return -1;
     }
+
+    
     
 }
 
