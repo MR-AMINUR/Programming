@@ -546,12 +546,25 @@ class Structures {
         //         return arr[i];
         //     }
         // }
-
-
-
-       
     }
 
+    public int InversionCount(int[] arr) {
+
+        int count = 0;
+
+        for (int i = 0; i < arr.length; i++)
+        {
+            for (int j = i+1; j < arr.length; j++)
+            {
+                if (arr[i] > arr[j])
+                {
+                    count++;
+                }
+            }
+        }
+
+        return count;
+    }
     
     
 }
@@ -574,7 +587,7 @@ public class Codes {
             arr[i] = sc.nextInt();
         }
 
-        System.out.print("The majority is: " + sr.FindMajority(arr));
+        System.out.print("The Inversions are: " + sr.InversionCount(arr));
 
         
         
