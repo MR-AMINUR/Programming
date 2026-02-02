@@ -490,16 +490,20 @@ class Structures {
     public int FindMajority(int[] arr) {
 
         int n = arr.length;
-        int majority = n/2;
-
-        int candidate = 0; 
-        int count = 0; 
+        
+        int count = 0;
+        int candidate = 0;
+        int majority = 0;
 
         for (int i = 0; i < n; i++)
         {
-            candidate = arr[i];
+            
 
-            if (candidate == arr[i+1])
+            if (count == 0)
+            {
+                candidate = arr[i];
+            }
+            if (arr[i] == candidate)
             {
                 count++;
             }
@@ -507,20 +511,24 @@ class Structures {
             {
                 count--;
             }
+        }
 
-            if (count == 0)
+        for (int i = 0; i < n; i++)
+        {
+            if (arr[i] == candidate)
             {
-                candidate++;
+                majority++;
             }
 
-            if (candidate > majority)
+            if (majority > n/2)
             {
                 return arr[i];
             }
-
         }
 
+
         
+        return -1;
 
         // for (int i = 0; i < n; i++)
         // {
@@ -541,7 +549,7 @@ class Structures {
 
 
 
-        return -1;
+       
     }
 
     
