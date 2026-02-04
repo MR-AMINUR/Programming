@@ -1540,7 +1540,17 @@ Your algorithm should run in O(n) time and use constant space. */
 
    */
 
-    
+    public boolean isRectangle(int a, int b, int c, int d) {
+
+        if ((a == b && c == d) || (a == c && b == d) || (a == d && b == c))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }
 
 
@@ -1551,7 +1561,7 @@ public class Problem {
         PrimeNumbers pl = new PrimeNumbers();
         Scanner sc = new Scanner(System.in);
 
-        
+        System.out.println(pl.isRectangle(1,1,1,1));
         
         sc.close();
     }
