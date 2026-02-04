@@ -1466,79 +1466,81 @@ Your algorithm should run in O(n) time and use constant space. */
     }
     
    /*
-        Problem Description
+    Problem Description
 
-Given four positive integers A, B, C, D, determine if there’s a rectangle such that the lengths of its sides are A, B, C and D (in any order).
+    Given four positive integers A, B, C, D, determine if there’s a rectangle such that the lengths of its sides are A, B, C and D (in any order).
 
-If any such rectangle exist return 1 else return 0.
-
-
-
-Problem Constraints
-
-1 <= A, B, C, D <= 100
-
-
-Input Format
-
-First argument is an interger A.
-
-Second argument is an interger B.
-
-Third argument is an interger C.
-
-Fourth argument is an interger D.
+    If any such rectangle exist return 1 else return 0.
 
 
 
-Output Format
+    Problem Constraints
 
-If any such rectangle exist whose sides are A, B, C, D in any orde then return 1 else return 0.
+    1 <= A, B, C, D <= 100
 
 
-Example Input
+    Input Format
 
-Input 1:
+    First argument is an interger A.
 
- A = 1
- B = 1
- C = 2
- D = 2
+    Second argument is an interger B.
 
-Input 2:
+    Third argument is an interger C.
 
- A = 1
- B = 2
- C = 3
- D = 4
+    Fourth argument is an interger D.
 
 
 
-Example Output
+    Output Format
 
-Output 1:
-
- 1
-
-Output 2:
-
- 0
+    If any such rectangle exist whose sides are A, B, C, D in any orde then return 1 else return 0.
 
 
+    Example Input
 
-Example Explanation
+    Input 1:
 
-Explanation 1:
+    A = 1
+    B = 1
+    C = 2
+    D = 2
 
- 
- The rectangle drawn above is one of the rectangles that can be formed by side length of 1, 1, 2, 2 so we will return 1.
+    Input 2:
 
-Explanation 2:
+    A = 1
+    B = 2
+    C = 3
+    D = 4
 
- No such rectangle exist whose sides are 1, 2, 3, 4. So, we will return 0.
+
+
+    Example Output
+
+    Output 1:
+
+    1
+
+    Output 2:
+
+    0
+
+
+
+    Example Explanation
+
+    Explanation 1:
+
+    
+    The rectangle drawn above is one of the rectangles that can be formed by side length of 1, 1, 2, 2 so we will return 1.
+
+    Explanation 2:
+
+    No such rectangle exist whose sides are 1, 2, 3, 4. So, we will return 0.
 
 
    */
+
+    
 }
 
 
@@ -1549,17 +1551,7 @@ public class Problem {
         PrimeNumbers pl = new PrimeNumbers();
         Scanner sc = new Scanner(System.in);
 
-        System.out.print("Enter the Array length: ");
-        int n = sc.nextInt();
-
-        int[] arr = new int[n];
-        System.out.print("Enter the Array elements: ");
-        for (int i = 0; i < n; i++)
-        {
-            arr[i] = sc.nextInt();
-        }
-
-        System.out.println(pl.OptimalHammingDistance(arr));
+        
         
         sc.close();
     }
