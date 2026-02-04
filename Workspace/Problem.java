@@ -989,6 +989,124 @@ class PrimeNumbers {
 
         return count;
     }
+
+    /*  Sum of pairwise Hamming Distance
+
+Problem Description
+
+Hamming distance between two non-negative integers is defined as the number of positions at which the corresponding bits are different.
+
+Given an array A of N non-negative integers, find the sum of hamming distances of all pairs of integers in the array. Return the answer modulo 1000000007.
+
+
+Problem Constraints
+
+1 <= |A| <= 200000
+
+1 <= A[i] <= 109
+
+
+Input Format
+
+First and only argument is array A.
+
+
+Output Format
+
+Return one integer, the answer to the problem.
+
+
+Example Input
+
+Input 1:
+
+ A = [1]
+
+Input 2:
+
+ A = [2, 4, 6]
+
+
+
+Example Output
+
+Output 1:
+
+ 0
+
+Output 2:
+
+ 8
+
+
+
+Example Explanation
+
+Explanation 1:
+
+ No pairs are formed.
+
+Explanation 2:
+
+ We return, f(2, 2) + f(2, 4) + f(2, 6) + f(4, 2) + f(4, 4) + f(4, 6) + f(6, 2) + f(6, 4) + f(6, 6) = 8
+
+
+
+*/
+    public int HammingDistance(int[] arr) {
+
+        int n = arr.length;
+        int count = 0;
+        for (int i = 0; i < n; i++)
+        {
+            for (int j = i+1; j < n; j++)
+            {
+                int pairbit = arr[i] ^ arr[j];
+                 while (pairbit > 0)
+                {
+                    if ((pairbit & 1) != 0)
+                    {
+                        count++;
+                    }
+                    pairbit = pairbit >> 1;
+                }
+            }
+        }
+
+       
+
+        return 2*count;
+    }
+
+    public int OptimalHammingDistance(int[] arr) {
+
+        int n = arr.length;
+        long ans = 0;
+        int mod = 1000000007;
+
+        for (int bit = 0; bit < 31; bit++)
+        {
+            long count0 = 0;
+            long count1 = 0;
+            int bitmask = 1 << bit;
+
+            for (int i = 0; i < n; i++)
+            {
+                if ((arr[i] & bitmask) == 0)
+                {
+                    count0++;
+                }
+                else
+                {
+                    count1++;
+                }
+            }
+
+            ans =  (ans + (2 * count0 * count1) % mod) % mod;
+        }
+
+        return (int) ans;
+    }
     public int FastExponential(int a, int n) {
 
         int ans = 1;
@@ -1005,8 +1123,6 @@ class PrimeNumbers {
 
         return ans;
     }
-
-    
 
     public void Rotation(int[][] matrix) {
 
@@ -1142,9 +1258,6 @@ class PrimeNumbers {
         String result = Arrays.toString(output);
         return result;
     }
-
-    
-    
 
     /*Given an unsorted integer array, find the first missing positive integer.
 Your algorithm should run in O(n) time and use constant space. */
@@ -1352,72 +1465,10 @@ Your algorithm should run in O(n) time and use constant space. */
         }
     }
     
-    
+   
 }
 
-/*  Sum of pairwise Hamming Distance
 
-Problem Description
-
-Hamming distance between two non-negative integers is defined as the number of positions at which the corresponding bits are different.
-
-Given an array A of N non-negative integers, find the sum of hamming distances of all pairs of integers in the array. Return the answer modulo 1000000007.
-
-
-Problem Constraints
-
-1 <= |A| <= 200000
-
-1 <= A[i] <= 109
-
-
-Input Format
-
-First and only argument is array A.
-
-
-Output Format
-
-Return one integer, the answer to the problem.
-
-
-Example Input
-
-Input 1:
-
- A = [1]
-
-Input 2:
-
- A = [2, 4, 6]
-
-
-
-Example Output
-
-Output 1:
-
- 0
-
-Output 2:
-
- 8
-
-
-
-Example Explanation
-
-Explanation 1:
-
- No pairs are formed.
-
-Explanation 2:
-
- We return, f(2, 2) + f(2, 4) + f(2, 6) + f(4, 2) + f(4, 4) + f(4, 6) + f(6, 2) + f(6, 4) + f(6, 6) = 8
-
-
-
-*/
 
 public class Problem {
     public static void main(String[] args) {
@@ -1425,10 +1476,17 @@ public class Problem {
         PrimeNumbers pl = new PrimeNumbers();
         Scanner sc = new Scanner(System.in);
 
-        List<Integer> inputList = Arrays.asList(1, 1,2,2,2,1,1);
+        System.out.print("Enter the Array length: ");
+        int n = sc.nextInt();
 
-        
-        System.out.print(pl.RepeatDigit(inputList));
+        int[] arr = new int[n];
+        System.out.print("Enter the Array elements: ");
+        for (int i = 0; i < n; i++)
+        {
+            arr[i] = sc.nextInt();
+        }
+
+        System.out.println(pl.OptimalHammingDistance(arr));
         
         sc.close();
     }
