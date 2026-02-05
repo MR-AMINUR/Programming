@@ -1561,8 +1561,6 @@ In ith move you can take i steps forward or backward.
 
 Find the minimum number of moves required to reach the target.
 
-
-
 Problem Constraints
 
 -109 <= A <= 109
@@ -1616,6 +1614,28 @@ Explanation 2:
  On the third move we step from -1 to 2.
 
  */
+
+    public int findPath(int A) {
+
+        int moves = 0;
+        int sum = 0;
+        int target = Math.abs(A);
+
+        while (sum < target) 
+        {
+            moves++;
+            sum += moves;
+        }
+        
+        while (((sum - target) % 2) != 0)
+        {
+            moves++;
+            sum += moves;
+        }
+
+        return moves;
+    }
+
 }
 
 
@@ -1626,7 +1646,7 @@ public class Problem {
         PrimeNumbers pl = new PrimeNumbers();
         Scanner sc = new Scanner(System.in);
 
-        System.out.println(pl.isRectangle(1,1,1,1));
+        System.out.println(pl.findPath(2));
         
         sc.close();
     }
