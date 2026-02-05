@@ -970,7 +970,7 @@ class PrimeNumbers {
         return n & bitmask;
     }
 
-    public boolean isPower(int n) {
+    public boolean isbitPower(int n) {
 
         return (n & (n-1)) == 0;
     }
@@ -1636,6 +1636,51 @@ Explanation 2:
         return moves;
     }
 
+    /*Given a positive integer that fits in a 32-bit signed integer, find if it can be expressed as A^P where P > 1 and A > 0.
+A and P both should be integers.
+
+
+Problem Constraints
+1 <= A <= 109
+
+
+Input Format
+The first argument is an integer A.
+
+
+Output Format
+Return an integer, 1 for True, 0 for False
+
+
+Example Input
+A = 4
+
+
+Example Output
+1
+
+
+Example Explanation
+A = 4, it can be written as 2 ^ 2
+
+ */
+    public int isPower(int n) {
+
+       int val = 0;
+
+       for (int a = 2; a < Math.sqrt(n); a++)
+       {
+            val = (int) (Math.log(n)/Math.log(a));
+       }
+       if (val == Math.ceil(val))
+       {
+            return 1;
+       }
+       else
+       {
+            return 0;
+       }
+    }
 }
 
 
@@ -1646,7 +1691,7 @@ public class Problem {
         PrimeNumbers pl = new PrimeNumbers();
         Scanner sc = new Scanner(System.in);
 
-        System.out.println(pl.findPath(2));
+        System.out.println(pl.isbitPower(81));
         
         sc.close();
     }
