@@ -651,6 +651,25 @@ class Structures {
         ArrayChange(arr, i+1, value+1);
         arr[i] = arr[i] - 2;
     }
+
+    public void findSubsets(String str, int i,String ans) {
+
+        if (i == str.length())
+        {
+            if (ans.length() == 0)
+            {
+                System.out.print("null");
+            }
+            else
+            {
+                System.out.print(ans+" ");
+            }
+            return;
+        }
+
+        findSubsets(str,  i+1, ans+str.charAt(i));
+        findSubsets(str, i+1, ans);
+    }
 }
 
 
@@ -661,12 +680,10 @@ public class Codes {
         Scanner sc = new Scanner(System.in);
         Structures sr = new Structures();
 
-        System.out.print("Enter the length of the Array: ");
-        int n = sc.nextInt();
+        System.out.print("Enter your String: ");
+        String str = sc.nextLine();
 
-        int[] arr = new int[n];
-        sr.ArrayChange(arr, 0, 1);
-        sr.PrintArray(arr);
+        sr.findSubsets(str, 0, "");
 
         
         sc.close();
