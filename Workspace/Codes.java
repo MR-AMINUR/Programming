@@ -627,6 +627,30 @@ class Structures {
 
         return InverseMergeSort(arr,0,n-1);
     }
+
+    public void PrintArray(int[] arr) {
+
+        System.out.print("The Primary Array is: ");
+        for (int i = 0; i < arr.length; i++)
+        {
+            System.out.print(arr[i] + " ");
+        }
+        System.out.println();
+    }
+    
+
+    public void ArrayChange(int[] arr, int i, int value) {
+
+        if (i == arr.length)
+        {
+            PrintArray(arr);
+            return;
+        }
+
+        arr[i] = value;
+        ArrayChange(arr, i+1, value+1);
+        arr[i] = arr[i] - 2;
+    }
 }
 
 
@@ -637,19 +661,13 @@ public class Codes {
         Scanner sc = new Scanner(System.in);
         Structures sr = new Structures();
 
-        System.out.print("Enter the size of the Array: ");
+        System.out.print("Enter the length of the Array: ");
         int n = sc.nextInt();
 
         int[] arr = new int[n];
-        System.out.print("Enter the Array elements: ");
-        for (int i = 0; i < n; i++)
-        {
-            arr[i] = sc.nextInt();
-        }
+        sr.ArrayChange(arr, 0, 1);
+        sr.PrintArray(arr);
 
-        System.out.print("The Inversions are: " + sr.getInverseCount(arr));
-
-        
         
         sc.close();
     }
