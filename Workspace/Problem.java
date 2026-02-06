@@ -1665,14 +1665,7 @@ A = 4, it can be written as 2 ^ 2
 
  */
     public int isPower(int A) {
-    //   int var2 = 0;
-
-    //   for(int var3 = 2; (double)var3 < Math.sqrt((double)var1); ++var3) {
-    //      var2 = (int)(Math.log((double)var1) / Math.log((double)var3));
-    //   }
-
-    //   return (double)var2 == Math.ceil((double)var2) ? 1 : 0;
-
+    
        if (A == 1)
         {
             return 1;
@@ -1750,6 +1743,21 @@ Explanation 2:
 Note, you have to add without using arithmetic operators.
 
  */
+
+    public int pairSum(int x, int y) {
+
+        int a, b;
+
+        do
+        {
+            a = x & y;
+            b = x ^ y;
+            x = a << 1;
+            y = b;
+        } while (a != 0);
+
+        return b; 
+    }
 }
 
 
@@ -1760,7 +1768,7 @@ public class Problem {
         PrimeNumbers pl = new PrimeNumbers();
         Scanner sc = new Scanner(System.in);
 
-        System.out.println(pl.isPower(4));
+        System.out.println(pl.pairSum(10,3));
         
         sc.close();
     }
