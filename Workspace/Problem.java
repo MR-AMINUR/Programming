@@ -1664,7 +1664,7 @@ Example Explanation
 A = 4, it can be written as 2 ^ 2
 
  */
-    public int isPower(int n) {
+    public int isPower(int A) {
     //   int var2 = 0;
 
     //   for(int var3 = 2; (double)var3 < Math.sqrt((double)var1); ++var3) {
@@ -1672,21 +1672,29 @@ A = 4, it can be written as 2 ^ 2
     //   }
 
     //   return (double)var2 == Math.ceil((double)var2) ? 1 : 0;
-        int value = 0;
-        
-        for (int base = 2; base < Math.sqrt(n); base++)
-        {
-            value = base;
 
-            while (value <= n)
+       if (A == 1)
+        {
+            return 1;
+        }
+        for (int a = 2; a <= Math.sqrt(A); a++)
+        {
+            for (int p = 2; p <= 32; p++)
             {
-                if (value == n) 
+                int power = (int)Math.pow(a,p);
+                
+                if (power == A)
                 {
                     return 1;
                 }
-                value *= base;
+                if (power < A)
+                {
+                    continue;
+                }
+                break;
             }
         }
+        
         return 0;
     }
 }
@@ -1699,7 +1707,7 @@ public class Problem {
         PrimeNumbers pl = new PrimeNumbers();
         Scanner sc = new Scanner(System.in);
 
-        System.out.println(pl.isPower(80));
+        System.out.println(pl.isPower(4));
         
         sc.close();
     }
