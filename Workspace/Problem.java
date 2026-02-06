@@ -1665,21 +1665,29 @@ A = 4, it can be written as 2 ^ 2
 
  */
     public int isPower(int n) {
+    //   int var2 = 0;
 
-       int val = 0;
+    //   for(int var3 = 2; (double)var3 < Math.sqrt((double)var1); ++var3) {
+    //      var2 = (int)(Math.log((double)var1) / Math.log((double)var3));
+    //   }
 
-       for (int a = 2; a < Math.sqrt(n); a++)
-       {
-            val = (int) (Math.log(n)/Math.log(a));
-       }
-       if (val == Math.ceil(val))
-       {
-            return 1;
-       }
-       else
-       {
-            return 0;
-       }
+    //   return (double)var2 == Math.ceil((double)var2) ? 1 : 0;
+        int value = 0;
+        
+        for (int base = 2; base < Math.sqrt(n); base++)
+        {
+            value = base;
+
+            while (value <= n)
+            {
+                if (value == n) 
+                {
+                    return 1;
+                }
+                value *= base;
+            }
+        }
+        return 0;
     }
 }
 
@@ -1691,7 +1699,7 @@ public class Problem {
         PrimeNumbers pl = new PrimeNumbers();
         Scanner sc = new Scanner(System.in);
 
-        System.out.println(pl.isbitPower(81));
+        System.out.println(pl.isPower(80));
         
         sc.close();
     }
