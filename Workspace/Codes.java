@@ -682,7 +682,7 @@ public class Codes {
 
         System.out.print("Enter your String: ");
         String str = sc.nextLine();
-
+        
         sr.findSubsets(str, 0, "");
 
         
