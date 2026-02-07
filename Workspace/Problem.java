@@ -1821,6 +1821,9 @@ Explanation 2:
 
  The given number is the largest possible number with given set of digits so we will return -1.
  */
+
+
+    
 }
 
 
@@ -1831,7 +1834,7 @@ public class Problem {
         PrimeNumbers pl = new PrimeNumbers();
         Scanner sc = new Scanner(System.in);
 
-        System.out.println(pl.pairSum(10,3));
+        
         
         sc.close();
     }
