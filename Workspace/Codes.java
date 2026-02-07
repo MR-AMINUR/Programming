@@ -670,6 +670,24 @@ class Structures {
         findSubsets(str,  i+1, ans+str.charAt(i));
         findSubsets(str, i+1, ans);
     }
+
+    public void printPermutation(String str, String ans) {
+
+        if (str.length() == 0)
+        {
+            System.out.print(ans+" ");
+            return;
+        }
+
+        for (int i = 0; i < str.length(); i++)
+        {
+            char curr = str.charAt(i);
+
+            String newStr = str.substring(0, i) + str.substring(i+1);
+
+            printPermutation(newStr, ans+curr);
+        }
+    }
 }
 
 
@@ -683,7 +701,7 @@ public class Codes {
         System.out.print("Enter your String: ");
         String str = sc.nextLine();
         
-        sr.findSubsets(str, 0, "");
+        sr.printPermutation(str,  "");
 
         
         sc.close();
