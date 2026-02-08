@@ -690,7 +690,7 @@ class Structures {
     }
 
     public void printBoard(char[][] board) {
-
+        System.out.println("---------Chess Board --------");
         for (int i = 0; i < board.length; i++)
         {
             for (int j = 0; j < board.length; j++)
@@ -699,6 +699,41 @@ class Structures {
             }
             System.out.println();
         }
+    }
+
+    public boolean isSafe(char[][] board, int row, int col) {
+
+        // Vertical Up.
+
+        for (int i = row - 1; i >= 0; i--)
+        {
+            if (board[i][col] == 'Q')
+            {
+                return false;
+            }
+        }
+
+        // left diagonal up.
+
+        for (int i = row-1, j = col-1; i >= 0 &&j >= 0; i--,j--)
+        {
+            if (board[i][j] == 'Q')
+            {
+                return false;
+            }
+        }
+
+        // right diagonal up.
+
+        for (int i = row -1, j = col+1; i >= 0 && j < board.length; i--,j++)
+        {
+            if (board[i][j] == 'Q')
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     public void nQueens(char[][] board, int i) {
@@ -711,9 +746,12 @@ class Structures {
 
         for (int j = 0; j < board.length; j++)
         {
-            board[i][j] = 'Q';
-            nQueens(board, i+1);
-            board[i][j] = '.';
+            if (isSafe(board, i, j))
+            {
+                board[i][j] = 'Q';
+                nQueens(board, i+1);
+                board[i][j] = 'x';
+            }
         }
     }
 }
@@ -735,7 +773,7 @@ public class Codes {
        {
             for (int j = 0; j < n; j++)
             {
-                board[i][j] = '.';
+                board[i][j] = 'x';
             }
        }
         
