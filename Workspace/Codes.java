@@ -688,6 +688,34 @@ class Structures {
             printPermutation(newStr, ans+curr);
         }
     }
+
+    public void printBoard(char[][] board) {
+
+        for (int i = 0; i < board.length; i++)
+        {
+            for (int j = 0; j < board.length; j++)
+            {
+                System.out.print(board[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    public void nQueens(char[][] board, int i) {
+
+        if (i == board.length)
+        {
+            printBoard(board);
+            return;
+        }
+
+        for (int j = 0; j < board.length; j++)
+        {
+            board[i][j] = 'Q';
+            nQueens(board, i+1);
+            board[i][j] = '.';
+        }
+    }
 }
 
 
@@ -698,10 +726,20 @@ public class Codes {
         Scanner sc = new Scanner(System.in);
         Structures sr = new Structures();
 
-        System.out.print("Enter your String: ");
-        String str = sc.nextLine();
+       System.out.print("Enter the size of the board: ");
+       int n = sc.nextInt();
+
+       char[][] board = new char[n][n];
+
+       for (int i = 0; i < n; i++) 
+       {
+            for (int j = 0; j < n; j++)
+            {
+                board[i][j] = '.';
+            }
+       }
         
-        sr.printPermutation(str,  "");
+        sr.nQueens(board,  0);
 
         
         sc.close();
