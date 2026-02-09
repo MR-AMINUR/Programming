@@ -1823,7 +1823,32 @@ Explanation 2:
  */
 
 
-    
+    public String SwapSort(String str) {
+
+        char swap = str.charAt(1);
+        char min = str.charAt(2);
+        
+        for (int i = 3; i < str.length(); i++)
+        {
+            char curr = str.charAt(i);
+
+            if (min > curr)
+            {
+                min = curr;
+            }
+            char temp = swap;
+            swap = min;
+            min = temp;
+        }
+
+        
+
+        char[] arr = str.toCharArray();
+        Arrays.sort(arr, 2, str.length());
+        String result = new String(arr);
+
+        return result;
+    }
 }
 
 
@@ -1834,7 +1859,7 @@ public class Problem {
         PrimeNumbers pl = new PrimeNumbers();
         Scanner sc = new Scanner(System.in);
 
-        
+        System.out.println(pl.SwapSort("218765"));
         
         sc.close();
     }
