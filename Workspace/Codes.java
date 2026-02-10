@@ -754,6 +754,23 @@ class Structures {
             }
         }
     }
+
+    public int gridWays(int i, int j, int n, int m) {
+
+        if (i == n-1 && j == m-1)
+        {
+            return 1;
+        }
+        else if (i == n || j == m)
+        {
+            return 0;
+        }
+
+        int w1 = gridWays(i+1, j, n, m);
+        int w2 = gridWays(i, j+1, n, m);
+
+        return w1+w2;
+    }
 }
 
 
@@ -764,20 +781,7 @@ public class Codes {
         Scanner sc = new Scanner(System.in);
         Structures sr = new Structures();
 
-       System.out.print("Enter the size of the board: ");
-       int n = sc.nextInt();
-
-       char[][] board = new char[n][n];
-
-       for (int i = 0; i < n; i++) 
-       {
-            for (int j = 0; j < n; j++)
-            {
-                board[i][j] = 'x';
-            }
-       }
-        
-        sr.nQueens(board,  0);
+       System.out.println(sr.gridWays(0, 0, 4, 3));
 
         
         sc.close();
