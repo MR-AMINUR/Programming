@@ -1841,6 +1841,52 @@ Explanation 2:
         }
         return new String(arr);
     }
+
+    public String solve(String A) {
+        if (A == null || A.length() <= 1) {
+            return "-1";
+        }
+        
+        char[] arr = A.toCharArray();
+        int n = arr.length;
+        
+        // Step 1: Find the first character from the right that is smaller than its next character
+        int i = n - 2;
+        while (i >= 0 && arr[i] >= arr[i + 1]) {
+            i--;
+        }
+        
+        // If no such character is found, return "-1"
+        if (i < 0) {
+            return "-1";
+        }
+        
+        // Step 2: Find the smallest character to the right of arr[i] that is greater than arr[i]
+        int j = n - 1;
+        while (j > i && arr[j] <= arr[i]) {
+            j--;
+        }
+        
+        // Step 3: Swap arr[i] and arr[j]
+        char temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+        
+        // Step 4: Reverse the suffix starting from i+1
+        reverse(arr, i + 1, n - 1);
+        
+        return new String(arr);
+    }
+    
+    private void reverse(char[] arr, int start, int end) {
+        while (start < end) {
+            char temp = arr[start];
+            arr[start] = arr[end];
+            arr[end] = temp;
+            start++;
+            end--;
+        }
+    }
 }
 
 
