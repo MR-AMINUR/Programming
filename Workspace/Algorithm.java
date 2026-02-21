@@ -133,27 +133,6 @@ class Obstacle {
     }
 }
 
-class SlidingWindow {
-
-    public int Sum(int k) {
-
-        int[] arr = {1, 2, 3, 4, 5};
-        //int size = arr.length;
-        int sum = 0;
-        
-        //int left = arr[0];
-        for(int i = 0; i < k; i++)
-        {
-            sum += arr[i];
-            arr[0]++;
-            for(int j = 0; j < k; j++) {
-                sum +=  arr[j];
-            }
-        }
-        return sum;
-    }
-
-}
 
 class NobleInteger {
 
