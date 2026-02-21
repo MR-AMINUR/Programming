@@ -774,24 +774,15 @@ class Structures {
 
     // Arraylist Implementations 
 
-    public void arrayList() {
+    public void arrayList(ArrayList<Integer> list, int idx1, int idx2) {
 
-        ArrayList<Integer> list = new ArrayList<>();
+    
+        int temp = list.get(idx1);
+        list.set(idx1, list.get(idx2));
+        list.set(idx2, temp);
 
-        list.add(1);
-        list.add(2);
-        list.add(3);
-        list.add(4);
-        list.add(5);
+        
 
-        int max = Integer.MIN_VALUE;
-
-        for (int i = 0; i < list.size(); i++)
-        {
-            max = Math.max(max, list.get(i));
-        }
-
-        System.out.print("The largest element = " + max);
     }
 }
 
@@ -803,7 +794,21 @@ public class Codes {
         Scanner sc = new Scanner(System.in);
         Structures sr = new Structures();
 
-       sr.arrayList();
+       System.out.print("Enter the 1st swapping index: ");
+       int idx1 = sc.nextInt();
+       System.out.print("Enter the 2nd swapping index: ");
+       int idx2 = sc.nextInt();
+
+       ArrayList<Integer> list = new ArrayList<>();
+       list.add(1);
+       list.add(5);
+       list.add(8);
+       list.add(6);
+       list.add(2);
+
+       System.out.println(list);
+       sr.arrayList(list, idx1, idx2);
+       System.out.println(list);
 
         
         sc.close();
