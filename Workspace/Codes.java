@@ -771,6 +771,28 @@ class Structures {
 
         return w1+w2;
     }
+
+    // Arraylist Implementations 
+
+    public void arrayList() {
+
+        ArrayList<Integer> list = new ArrayList<>();
+
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        list.add(4);
+        list.add(5);
+
+        int max = Integer.MIN_VALUE;
+
+        for (int i = 0; i < list.size(); i++)
+        {
+            max = Math.max(max, list.get(i));
+        }
+
+        System.out.print("The largest element = " + max);
+    }
 }
 
 
@@ -781,7 +803,7 @@ public class Codes {
         Scanner sc = new Scanner(System.in);
         Structures sr = new Structures();
 
-       System.out.println(sr.gridWays(0, 0, 4, 3));
+       sr.arrayList();
 
         
         sc.close();
