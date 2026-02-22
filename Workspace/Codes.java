@@ -826,6 +826,33 @@ class Structures {
 
         return windowSum;
     }
+
+    public int optimalStoreWater(ArrayList<Integer>height) {
+
+        int maxWater = 0;
+        int lp = 0;
+        int rp = height.size()-1;
+
+        while (lp <= rp)
+        {
+            int ht = Math.min(height.get(lp), height.get(rp));
+            int wdth = rp-lp;
+            int currWater = ht * wdth;
+            maxWater = Math.max(maxWater, currWater);
+
+            if (lp < rp)
+            {
+                lp++;
+            }
+            else
+            {
+                rp--;
+            }
+            
+        }
+
+        return maxWater;
+    }
 }
 
 
@@ -849,7 +876,7 @@ public class Codes {
        list.add(3);
        list.add(7);
 
-       System.out.println(sr.sum(1));
+       System.out.println(sr.optimalStoreWater(list));
 
         
         sc.close();
