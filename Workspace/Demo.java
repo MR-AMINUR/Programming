@@ -130,6 +130,8 @@ public class Demo {
 
     public static  void main(String a[]) {
 
+        System.out.println("Good Night!");
+
         /* 
         Collection<Integer> studs = new TreeSet<Integer>();
         studs.add(6);
@@ -197,16 +199,16 @@ public class Demo {
             */
 
 
-        List<Integer> nums = Arrays.asList(4,5,7,3,2,6);
+        // List<Integer> nums = Arrays.asList(4,5,7,3,2,6);
 
 
-        Stream<Integer> sortedValues = nums.stream()
-                            .filter(n ->n%2==0)
-                            .sorted();
-        //                 .map(n -> n*2)
-        //                 .reduce(0, (c,e) -> c+e);
+        // Stream<Integer> sortedValues = nums.stream()
+        //                     .filter(n ->n%2==0)
+        //                     .sorted();
+        // //                 .map(n -> n*2)
+        // //                 .reduce(0, (c,e) -> c+e);
 
-        sortedValues.forEach(n -> System.out.println(n));
+        // sortedValues.forEach(n -> System.out.println(n));
 
         // System.out.println(result);
 
