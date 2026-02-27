@@ -927,6 +927,35 @@ class Structures {
 
         return false;
     }
+
+    public boolean gridWays(int[][] maze, int i, int j) {
+
+        int n = maze.length;
+        int m = maze[0].length;
+        while (i <= n-1 && j <= m-1)
+        {
+            if (maze[i][j+1] == 1)
+            {
+                i++;
+            }
+            else if (maze[i+1][j] == 1)
+            {
+                j++;
+            }
+            else if (maze[i+1][j+1] == 1)
+            {
+                i++;
+                j++;
+            }
+            else 
+            {
+                i--;
+                j--;
+            }
+        }
+        
+        return false;
+    }
 }
 
 
@@ -939,16 +968,13 @@ public class Codes {
 
        
 
-       ArrayList<Integer> list = new ArrayList<>();
-       list.add(11);
-       list.add(15);
-       list.add(6);
-       list.add(8);
-       list.add(9);
-       list.add(10);
+       int[][] maze = {{1, 0, 0, 0},
+                        {1, 1, 0, 1},
+                        {0, 1, 0, 0},
+                        {1, 1, 1, 1}};
        
 
-       System.out.println(sr.pairSum1(list, 21));
+       System.out.println(sr.gridWays(maze, 0, 0));
 
         
         sc.close();
