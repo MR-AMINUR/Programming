@@ -932,11 +932,12 @@ class Structures {
 
         int n = maze.length;
         int m = maze[0].length;
+        int[][] ans = new int[n][m];
         while (i <= n-1 && j <= m-1)
         {
             if (maze[i][j+1] == 1)
             {
-                i++;
+                ans[i][j] = maze[i][j+1];
             }
             else if (maze[i+1][j] == 1)
             {
