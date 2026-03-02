@@ -1032,6 +1032,26 @@ class Structures {
         newNode.next = temp.next;
         temp.next = newNode;
     }
+
+    public int remove() {
+        if (size == 0)
+        {
+            System.out.println("The list is empty to remove anything.");
+            return Integer.MIN_VALUE;
+        }
+        else if (size == 1)
+        {
+            int value = head.data;
+            head = tail = null;
+            size = 0;
+            return value;
+        }
+        int value = head.data;
+        head = head.next;
+        size--;
+
+        return value;
+    }
 }
 
 class Node {
@@ -1065,7 +1085,9 @@ public class Codes {
         sr.add(2,5);
         sr.print();
         System.out.println(sr.size);
-
+        sr.remove();
+        sr.print();
+        System.out.println(sr.size);
         
         sc.close();
     }
