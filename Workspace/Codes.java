@@ -1007,6 +1007,27 @@ class Structures {
         }
         System.out.println("null");
     }
+
+    public void add(int index, int data) {
+        if (index == 0)
+        {
+            addFirst(data);
+            return;
+        }
+
+        Node newNode = new Node(data);
+        Node temp = head;
+        int i = 0;
+
+        while (i < index-1)
+        {
+            temp = temp.next;
+            i++;
+        }
+
+        newNode.next = temp.next;
+        temp.next = newNode;
+    }
 }
 
 class Node {
@@ -1029,14 +1050,15 @@ public class Codes {
         Scanner sc = new Scanner(System.in);
         Structures sr = new Structures();
 
-        sr.print();
+        
         sr.addFirst(1);
-        sr.print();
+        
         sr.addFirst(2);
-        sr.print();
+        
         sr.addLast(3);
-        sr.print();
+        
         sr.addFirst(4);
+        sr.add(2,5);
         sr.print();
 
         
