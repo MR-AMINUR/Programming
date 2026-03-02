@@ -957,6 +957,56 @@ class Structures {
         
         return false;
     }
+
+    public Node head;
+    public Node tail;
+
+    public void addFirst(int data) {
+
+        Node newNode = new Node(data);
+
+        if (head == null)
+        {
+            head = tail = newNode;
+            return;
+        }
+
+        newNode.next = head;
+
+        head = newNode;
+    }
+
+    public void addLast(int data) {
+        
+        Node newNode = new Node(data);
+
+        if (head == null)
+        {
+            head = tail = newNode;
+            return;
+        }
+
+        tail.next = newNode;
+        tail = newNode;
+    }
+
+    public void print() {
+
+        Node temp = head;
+
+        if (head == null)
+        {
+            System.out.println("Linked List is empty.");
+            return;
+        }
+
+        while (temp != null)
+        {
+            System.out.print(temp.data + "->");
+            temp = temp.next;
+        }
+        System.out.println();
+    }
 }
 
 class Node {
@@ -979,15 +1029,15 @@ public class Codes {
         Scanner sc = new Scanner(System.in);
         Structures sr = new Structures();
 
-       
-
-       int[][] maze = {{1, 0, 0, 0},
-                        {1, 1, 0, 1},
-                        {0, 1, 0, 0},
-                        {1, 1, 1, 1}};
-       
-
-       System.out.println(sr.gridWays(maze, 0, 0));
+        sr.print();
+        sr.addFirst(1);
+        sr.print();
+        sr.addFirst(2);
+        sr.print();
+        sr.addLast(3);
+        sr.print();
+        sr.addFirst(4);
+        sr.print();
 
         
         sc.close();
