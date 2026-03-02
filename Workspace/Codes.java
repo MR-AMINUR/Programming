@@ -1005,7 +1005,7 @@ class Structures {
             System.out.print(temp.data + "->");
             temp = temp.next;
         }
-        System.out.println();
+        System.out.println("null");
     }
 }
 
