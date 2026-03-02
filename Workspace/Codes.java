@@ -960,10 +960,12 @@ class Structures {
 
     public Node head;
     public Node tail;
+    public int size;
 
     public void addFirst(int data) {
 
         Node newNode = new Node(data);
+        size++;
 
         if (head == null)
         {
@@ -979,6 +981,7 @@ class Structures {
     public void addLast(int data) {
         
         Node newNode = new Node(data);
+        size++;
 
         if (head == null)
         {
@@ -1016,6 +1019,7 @@ class Structures {
         }
 
         Node newNode = new Node(data);
+        size++;
         Node temp = head;
         int i = 0;
 
@@ -1060,6 +1064,7 @@ public class Codes {
         sr.addFirst(4);
         sr.add(2,5);
         sr.print();
+        System.out.println(sr.size);
 
         
         sc.close();
