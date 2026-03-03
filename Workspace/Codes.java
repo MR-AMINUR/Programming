@@ -1073,6 +1073,32 @@ class Structures {
 
         return -1;
     }
+
+    public int assist(Node head, int target) {
+
+        if (head == null)
+        {
+            return -1;
+        }
+        if (head.data == target)
+        {
+            return 0;
+        }
+
+        int index = assist(head.next, target);
+        
+        if (index == -1)
+        {
+            return -1;
+        }
+
+        return index+1;
+
+    }
+
+    public int recSearchkey(int target) {
+        return assist(head, target);
+    }
 }
 
 class Node {
@@ -1105,7 +1131,7 @@ public class Codes {
         sr.addFirst(4);
         sr.add(2,5);
         sr.print();
-        System.out.println("The target is at index: "+sr.searchKey(3));
+        System.out.println("The target is at index: "+sr.recSearchkey(5));
         
         
         sc.close();
