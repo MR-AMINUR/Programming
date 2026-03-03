@@ -958,6 +958,8 @@ class Structures {
         return false;
     }
 
+    /*----------------------------------Linked List------------------------------------*/
+
     public Node head;
     public Node tail;
     public int size;
@@ -1052,6 +1054,25 @@ class Structures {
 
         return value;
     }
+
+    public int searchKey(int target) {
+
+        Node temp = head;
+        int i = 0;
+
+        while (temp != null)
+        {
+            if (temp.data == target)
+            {
+                return i;
+            }
+
+            temp = temp.next;
+            i++;
+        }
+
+        return -1;
+    }
 }
 
 class Node {
@@ -1084,10 +1105,8 @@ public class Codes {
         sr.addFirst(4);
         sr.add(2,5);
         sr.print();
-        System.out.println(sr.size);
-        sr.remove();
-        sr.print();
-        System.out.println(sr.size);
+        System.out.println("The target is at index: "+sr.searchKey(3));
+        
         
         sc.close();
     }
