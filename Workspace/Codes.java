@@ -1099,6 +1099,22 @@ class Structures {
     public int recSearchkey(int target) {
         return assist(head, target);
     }
+
+    public void reverse() {
+
+        Node prev = null;
+        Node curr = tail = head;
+        Node next;
+
+        while (curr != null)
+        {
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+        head = prev;
+    }
 }
 
 class Node {
@@ -1128,11 +1144,12 @@ public class Codes {
         
         sr.addLast(3);
         
-        sr.addFirst(4);
-        sr.add(2,5);
+        sr.addLast(4);
+        sr.addLast(5);
+
         sr.print();
-        System.out.println("The target is at index: "+sr.recSearchkey(5));
-        
+        sr.reverse();
+        sr.print();
         
         sc.close();
     }
