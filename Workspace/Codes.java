@@ -1115,6 +1115,36 @@ class Structures {
         }
         head = prev;
     }
+
+    public void removeNthfromEnd(int n) {
+
+        int size = 0;
+        Node temp = head;
+        
+        while (temp != null)
+        {
+            temp = temp.next;
+            size++;
+        }
+
+        if (n == size)
+        {
+            head = head.next;
+            return;
+        }
+
+        int i = 1;
+        int j = size - n;
+        Node prev = head;
+
+        while (i < j)
+        {
+            prev = prev.next;
+            i++;
+        }
+        prev.next = prev.next.next;
+        return;
+    }
 }
 
 class Node {
@@ -1148,7 +1178,7 @@ public class Codes {
         sr.addLast(5);
 
         sr.print();
-        sr.reverse();
+        sr.removeNthfromEnd(3);
         sr.print();
         
         sc.close();
