@@ -1145,6 +1145,63 @@ class Structures {
         prev.next = prev.next.next;
         return;
     }
+
+    public Node findMid(Node head) {
+
+        Node slow = head;
+        Node fast = head;
+
+        while (fast != null && fast.next != null)
+        {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+
+        return slow;
+    }
+
+
+    public boolean checkPalindrome() {
+
+        // Edge case
+        if (head == null || head.next == null)
+        {
+            return true;
+        }
+
+        // find the middle Node
+
+        Node midNode = findMid(head);
+
+        // Reverse the 2nd half
+
+        Node prev = null;
+        Node curr = midNode;
+        Node next;
+
+        while (curr != null)
+        {
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+
+        Node left = head;
+        Node right = prev;
+
+        while (right != null)
+        {
+            if (left.data != right.data)
+            {
+                return false;
+            }
+            left = left.next;
+            right = right.next;
+        }
+
+        return true;
+    }
 }
 
 class Node {
@@ -1157,6 +1214,7 @@ class Node {
         this.data = data;
         this.next = null;
     }
+
 }
 
 
@@ -1168,18 +1226,18 @@ public class Codes {
         Structures sr = new Structures();
 
         
-        sr.addFirst(1);
+        sr.addLast(1);
         
-        sr.addFirst(2);
+        sr.addLast(2);
         
-        sr.addLast(3);
+        sr.addLast(2);
         
-        sr.addLast(4);
-        sr.addLast(5);
+        sr.addLast(1);
+        
 
         sr.print();
-        sr.removeNthfromEnd(3);
-        sr.print();
+        
+        System.out.println(sr.checkPalindrome());
         
         sc.close();
     }
