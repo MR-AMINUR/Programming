@@ -1203,7 +1203,16 @@ class Structures {
         return true;
     }
 
+    public void setHead(Node head) {
+        this.head = head;
+    }
+
     public boolean detectLLCycle() {
+
+        if (head == null)
+        {
+            return false;
+        }
 
         Node slow = head;
         Node fast = head;
@@ -1250,7 +1259,7 @@ public class Codes {
         head.next.next = new Node(3);
         head.next.next.next = head;
         
-
+        sr.setHead(head);
         sr.print();
         
         System.out.println(sr.detectLLCycle());
