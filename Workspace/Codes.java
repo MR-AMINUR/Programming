@@ -1202,6 +1202,25 @@ class Structures {
 
         return true;
     }
+
+    public boolean detectLLCycle() {
+
+        Node slow = head;
+        Node fast = head;
+
+        while (fast != null && fast.next != null)
+        {
+            slow = slow.next;
+            fast = fast.next.next;
+
+            if (slow == fast)
+                {
+                    return true; // Loop exists.
+                }        
+        }
+
+        return false;
+    }
 }
 
 class Node {
@@ -1225,19 +1244,16 @@ public class Codes {
         Scanner sc = new Scanner(System.in);
         Structures sr = new Structures();
 
-        
-        sr.addLast(1);
-        
-        sr.addLast(2);
-        
-        sr.addLast(2);
-        
-        sr.addLast(1);
+        Node head = null;
+        head = new Node(1);
+        head.next = new Node(2);
+        head.next.next = new Node(3);
+        head.next.next.next = head;
         
 
         sr.print();
         
-        System.out.println(sr.checkPalindrome());
+        System.out.println(sr.detectLLCycle());
         
         sc.close();
     }
