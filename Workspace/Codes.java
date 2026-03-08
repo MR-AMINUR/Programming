@@ -1207,7 +1207,7 @@ class Structures {
         this.head = head;
     }
 
-    public boolean detectLLCycle() {
+    public boolean detectLLCycle(Node head) {
 
         if (head == null)
         {
@@ -1257,12 +1257,13 @@ public class Codes {
         head = new Node(1);
         head.next = new Node(2);
         head.next.next = new Node(3);
-        head.next.next.next = head;
+        //head.next.next.next = head;
         
-        sr.setHead(head);
-        sr.print();
+        boolean isCycle = sr.detectLLCycle(head);
+
+        System.out.println(isCycle);
+
         
-        System.out.println(sr.detectLLCycle());
         
         sc.close();
     }
