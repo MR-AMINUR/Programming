@@ -1230,6 +1230,49 @@ class Structures {
 
         return false;
     }
+
+    public void removeCycle(Node head) {
+
+        // Detection of Cycle
+        if (head == null)
+        {
+            System.out.println("Linked list is empty");
+            return;
+        }
+        Node slow = head;
+        Node fast = head;
+        boolean cycle = false;
+
+        while (fast != null && fast.next != null)
+        {
+            slow = slow.next;
+            fast = fast.next.next;
+
+            if (slow == fast) 
+            {
+                cycle = true;
+                break;
+            }
+        }
+        if (cycle == false)
+        {
+            return;
+        }
+
+        // find meeting point
+
+        slow = head;
+        Node prev = null;
+
+        while (slow != fast) 
+        {
+            prev = fast;
+            fast = fast.next;
+            slow = slow.next;
+        }
+
+        prev.next = null;
+    }
 }
 
 class Node {
@@ -1255,15 +1298,14 @@ public class Codes {
 
         Node head = null;
         head = new Node(1);
-        head.next = new Node(2);
+        Node temp = new Node(2);
+        head.next = temp;
         head.next.next = new Node(3);
-        //head.next.next.next = head;
+        head.next.next.next = temp;
         
-        boolean isCycle = sr.detectLLCycle(head);
-
-        System.out.println(isCycle);
-
-        
+        System.out.println(sr.detectLLCycle(head));
+        sr.removeCycle(head);
+        System.out.println(sr.detectLLCycle(head));
         
         sc.close();
     }
