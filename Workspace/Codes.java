@@ -1273,6 +1273,77 @@ class Structures {
 
         prev.next = null;
     }
+
+    private Node getMid(Node head) {
+
+        Node slow = head;
+        Node fast = head;
+
+        while (fast.next != null && fast.next.next != null)
+        {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+
+        return slow;
+    }
+
+    private Node merge(Node left, Node right) {
+
+        Node mergedLL = new Node(-1);
+        Node temp = mergedLL;
+
+        while (left != null && right != null)
+        {
+            if (left.data <= right.data)
+            {
+                temp.next = left;
+                left = left.next;
+                temp = temp.next;
+            }
+            else 
+            {
+                temp.next = right;
+                right = right.next;
+                temp = temp.next;
+            }
+        }
+
+        while (left != null)
+        {
+            temp.next = left;
+            left = left.next;
+            temp = temp.next;
+        }
+
+        while (right != null)
+        {
+            temp.next = right;
+            right = right.next;
+            temp = temp.next;
+        }
+
+        return mergedLL.next;
+    }
+
+    public Node MergeSort(Node head) {
+
+        if (head == null || head.next == null)
+        {
+            return head;
+        }
+        // mid 
+        Node mid = getMid(head);
+        // Left and Right Mergesort
+        Node righthead = mid.next;
+        mid.next = null;
+
+        Node newLeft = MergeSort(head);
+        Node newRight = MergeSort(righthead);
+        // merge sorted left and right halves
+
+        return merge(newLeft, newRight);
+    }
 }
 
 class Node {
@@ -1296,16 +1367,17 @@ public class Codes {
         Scanner sc = new Scanner(System.in);
         Structures sr = new Structures();
 
-        Node head = null;
-        head = new Node(1);
-        Node temp = new Node(2);
-        head.next = temp;
-        head.next.next = new Node(3);
-        head.next.next.next = temp;
+        sr.addFirst(1);
+        sr.addLast(3);
+        sr.addFirst(4);
+        sr.addFirst(6);
+        sr.addLast(7);
+        sr.addFirst(9);
+
+        sr.print();
+        sr.head = sr.MergeSort(sr.head);
+        sr.print();
         
-        System.out.println(sr.detectLLCycle(head));
-        sr.removeCycle(head);
-        System.out.println(sr.detectLLCycle(head));
         
         sc.close();
     }
