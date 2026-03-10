@@ -68,7 +68,6 @@ class MaxStack {
 }
 class Sorting {
 
-    @SuppressWarnings("unchecked")
     private boolean less(@SuppressWarnings("rawtypes") Comparable v, @SuppressWarnings("rawtypes") Comparable w) {
 
         return v.compareTo(w) < 0;
