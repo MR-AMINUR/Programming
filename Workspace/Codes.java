@@ -1344,6 +1344,54 @@ class Structures {
 
         return merge(newLeft, newRight);
     }
+
+    public void ZigzagLL() {
+
+        // find mid node
+        Node slow = head;
+        Node fast = head.next;
+
+        while (fast != null && fast.next != null)
+        {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+
+        Node mid = slow;
+        // Reverse the second half
+        Node curr = mid.next;
+        mid.next = null;
+        Node prev = null;
+        Node next;
+
+        while (curr != null)
+        {
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+
+        Node left = head;
+        Node right = prev;
+        Node nextLeft, nextRight;
+        // Alternate merge
+        while (left != null && right != null)
+        {
+            nextLeft = left.next;
+            left.next = right;
+            nextRight = right.next;
+            right.next = nextLeft;
+
+            // Update
+
+            right = nextRight;
+            left = nextLeft;
+        }
+
+        
+
+    }
 }
 
 class Node {
@@ -1367,15 +1415,18 @@ public class Codes {
         Scanner sc = new Scanner(System.in);
         Structures sr = new Structures();
 
-        sr.addFirst(1);
-        sr.addLast(3);
-        sr.addFirst(4);
+        
+        sr.addFirst(7);
         sr.addFirst(6);
-        sr.addLast(7);
-        sr.addFirst(9);
+        sr.addFirst(5);
+        sr.addFirst(4);
+        sr.addFirst(3);
+        sr.addFirst(2);
+        sr.addFirst(1);
+       
 
         sr.print();
-        sr.head = sr.MergeSort(sr.head);
+        sr.ZigzagLL();
         sr.print();
         
         
