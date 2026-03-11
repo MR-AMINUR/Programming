@@ -100,7 +100,6 @@ class Sorting {
 
 class InSorting {
 
-    @SuppressWarnings("unchecked")
     private boolean less(@SuppressWarnings("rawtypes") Comparable v, @SuppressWarnings("rawtypes") Comparable w ) {
 
         return v.compareTo(w) < 0;
@@ -165,7 +164,6 @@ class ShellSort {
         }
     }
 
-    @SuppressWarnings("unchecked")
     private boolean less(@SuppressWarnings("rawtypes") Comparable v, @SuppressWarnings("rawtypes") Comparable w) {
 
         return v.compareTo(w) < 0;
