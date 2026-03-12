@@ -136,7 +136,20 @@ class Student implements Comparable<Student>{
         }
     }
 
-    
+    public int ArrayElement(Integer[] a, Integer[] b) {
+
+        int size = a.length;
+        int count = 0;
+
+        for (int i = 0; i < size; i++)
+        {
+            for (int j = 0; j < size; j++)
+                if (a[i] == b[j])
+                    count++;
+        }
+
+        return count;
+    }
     
 }
 
