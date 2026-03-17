@@ -1007,7 +1007,7 @@ class Structures {
 
         while (temp != null)
         {
-            System.out.print(temp.data + "->");
+            System.out.print(temp.data + "<->");
             temp = temp.next;
         }
         System.out.println("null");
@@ -1389,6 +1389,33 @@ class Structures {
             left = nextLeft;
         }
     }
+
+    public void Addfirst(int data) {
+
+        Node newNode = new Node(data);
+        size++;
+
+        if (head == null)
+        {
+            head = tail = newNode;
+            return;
+        }
+
+        newNode.next = head;
+        head.prev = newNode;
+        head = newNode;
+    }
+
+    public void Addlast(int data) {
+
+        Node newNode = new Node(data);
+
+        if (head == null)
+        {
+            head = tail = newNode;
+            return;
+        }
+    }
 }
 
 class Node {
@@ -1414,20 +1441,11 @@ public class Codes {
         Scanner sc = new Scanner(System.in);
         Structures sr = new Structures();
 
-        
-        sr.addFirst(7);
-        sr.addFirst(6);
-        sr.addFirst(5);
-        sr.addFirst(4);
-        sr.addFirst(3);
-        sr.addFirst(2);
-        sr.addFirst(1);
-       
+        sr.Addfirst(3);
+        sr.Addfirst(2);
+        sr.Addfirst(1);
 
         sr.print();
-        sr.ZigzagLL();
-        sr.print();
-        
         
         sc.close();
     }
