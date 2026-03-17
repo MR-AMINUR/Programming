@@ -1406,15 +1406,27 @@ class Structures {
         head = newNode;
     }
 
-    public void Addlast(int data) {
-
-        Node newNode = new Node(data);
+    public int RemoveFirst() {
 
         if (head == null)
         {
-            head = tail = newNode;
-            return;
+            System.out.println("The Doubly Linked List is empty.");
+            return Integer.MIN_VALUE;
         }
+
+        if (size == 1)
+        {
+            int value = head.data;
+            head = tail = null;
+            size--;
+            return value;
+        }
+
+        int value = head.data;
+        head = head.next;
+        head.prev = null;
+        size--;
+        return value;
     }
 }
 
@@ -1441,12 +1453,14 @@ public class Codes {
         Scanner sc = new Scanner(System.in);
         Structures sr = new Structures();
 
+        sr.Addfirst(4);
         sr.Addfirst(3);
         sr.Addfirst(2);
         sr.Addfirst(1);
-
         sr.print();
-        
+
+        sr.RemoveFirst();
+        sr.print();
         sc.close();
     }
 }
