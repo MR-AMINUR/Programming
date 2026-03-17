@@ -1428,6 +1428,24 @@ class Structures {
         size--;
         return value;
     }
+
+    public void Reverse() {
+
+        Node curr = head;
+        Node prev = null;
+        Node next;
+
+        while (curr != null)
+        {
+            next = curr.next;
+            curr.next = prev;
+            curr.prev = next;
+            prev = curr;
+            curr = next;
+        }
+
+        head = prev;
+    }
 }
 
 class Node {
@@ -1458,8 +1476,7 @@ public class Codes {
         sr.Addfirst(2);
         sr.Addfirst(1);
         sr.print();
-
-        sr.RemoveFirst();
+        sr.Reverse();
         sr.print();
         sc.close();
     }
