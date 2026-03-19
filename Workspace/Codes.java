@@ -1446,6 +1446,33 @@ class Structures {
 
         head = prev;
     }
+
+    public Node getIntrsectionNode(Node head1, Node head2) {
+
+        Node tempA = head1;
+        Node tempB = head2;
+
+        while (tempA != tempB)
+        {
+            if (tempA == null)
+            {
+                tempA = head2;
+            }
+            else
+            {
+                tempA = tempA.next;
+            }
+            if (tempB == null)
+            {
+                tempB = head1;
+            }
+            else 
+            {
+                tempB = tempB.next;
+            }
+        }
+        return tempA;
+    }
 }
 
 class Node {
@@ -1471,13 +1498,36 @@ public class Codes {
         Scanner sc = new Scanner(System.in);
         Structures sr = new Structures();
 
-        sr.Addfirst(4);
-        sr.Addfirst(3);
-        sr.Addfirst(2);
-        sr.Addfirst(1);
-        sr.print();
-        sr.Reverse();
-        sr.print();
+        Node head1, head2;
+        head1 = new Node(10);
+        head2 = new Node(3);
+
+        Node newNode = new Node(6);
+        head2.next = newNode;
+
+        newNode = new Node(9);
+        head2.next.next = newNode;
+
+        newNode = new Node(15);
+        head1.next = newNode;
+        head2.next.next.next = newNode;
+        newNode = new Node(30);
+        head1.next.next = newNode;
+
+        head1.next.next.next = null;
+
+        Node intersectionPoint = sr.getIntrsectionNode(head1, head2);
+
+        if (intersectionPoint == null)
+        {
+            System.out.print("No Inteersection Point\n");
+        }
+        else
+        {
+            System.out.print("Intersection Point: " + intersectionPoint.data);
+        }
+
+
         sc.close();
     }
 }
