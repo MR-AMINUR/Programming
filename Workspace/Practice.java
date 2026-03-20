@@ -141,6 +141,96 @@ class C implements Runnable {
     }
 }
 
+class Node {
+
+    int data;
+    Node next;
+    Node prev;
+
+    public Node(int data)
+    {
+        this.data = data;
+        this.next = next;
+        this.prev = prev;
+    }
+}
+
+class Revisit {
+
+    public Node head;
+    public Node tail;
+    public int size;
+
+    public void print() {
+
+        Node temp = head;
+
+        if (head == null)
+        {
+            System.out.println("The linked List is empty");
+            return;
+        }
+
+        while (temp != null)
+        {
+            System.out.print(temp.data + "->");
+            temp = temp.next;
+        }
+        System.out.println("null");
+    }
+
+    public void addFirst(int data) {
+
+        Node newNode = new Node(data);
+        size++;
+
+        if (head == null)
+        {
+            head = tail = newNode;
+            return;
+        }
+        newNode.next = head;
+        head = newNode;
+    }
+
+    public void addLast(int data) {
+
+        Node newNode = new Node(data);
+        size++;
+
+        if (head == null)
+        {
+            head = tail = newNode;
+            return;
+        }
+        tail.next = newNode;
+        tail = newNode;
+    }
+
+    public void add(int index, int data) {
+        if (index == 0)
+        {
+            addFirst(data);
+            return;
+        }
+
+        Node newNode = new Node(data);
+        size++;
+        Node temp = head;
+        int i = 0;
+
+        while (i < index-1)
+        {
+            temp = temp.next;
+            i++;
+        }
+
+        newNode.next = temp.next;
+        temp.next = newNode;
+    }
+
+}
+
 public class Practice {
 
     public static void main(String[] args) throws ClassNotFoundException {
@@ -255,6 +345,16 @@ public class Practice {
     //pt.ArrayElement(a, b);
         */
 
+    Revisit rv = new Revisit();
+
+    rv.addFirst(4);
+    rv.addFirst(3);
+    rv.addFirst(2);
+    rv.addFirst(1);
+    rv.addLast(5);
+    rv.addLast(6);
+
+    rv.print();
         
     sc.close();
 
