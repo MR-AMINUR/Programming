@@ -31,21 +31,21 @@ class Counter {
 //             }
 //     }
 // }
-// class B implements Runnable {
+class B implements Runnable {
 
-//     public void run() {
+    public void run() {
 
-//         for(int i = 1; i <= 5; i++)
-//             System.out.println("Hello");
+        for(int i = 1; i <= 5; i++)
+            System.out.println("Hello");
 
-//             try {
-//                 Thread.sleep(10);
-//             } catch (InterruptedException e) {
+            try {
+                Thread.sleep(10);
+            } catch (InterruptedException e) {
                 
-//                 e.printStackTrace();
-//             }
-//     }
-// }*/
+                e.printStackTrace();
+            }
+    }
+}
 
 /* 
 public class Demo {
@@ -149,6 +149,28 @@ class Student implements Comparable<Student>{
         }
 
         return count;
+    }
+
+    public Node head;
+    public Node tail;
+    public int size;
+
+    public void print() {
+
+        Node temp = head;
+
+        if (head == null)
+        {
+            System.out.println("The linked List is empty");
+            return;
+        }
+
+        while (temp != null)
+        {
+            System.out.print(temp.data + "->");
+            temp = temp.next;
+        }
+        System.out.println("null");
     }
     
 }
