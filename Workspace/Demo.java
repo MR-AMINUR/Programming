@@ -216,6 +216,39 @@ class Student implements Comparable<Student>{
             }
         }
     }
+
+
+    public void diagonal(int[][] table) {
+        int n = table.length;
+
+        for (int col = 0; col < n; col++)
+        {
+            int startcol = col, startrow = 0;
+
+            while (startcol >= 0 && startrow < n)
+            {
+                System.out.print(table[startrow][startcol] + " ");
+
+                startcol--;
+                startrow++;
+            }
+            System.out.println();
+        }
+
+        for (int row = 1; row < n; row++)
+        {
+            int startrow = row, startcol = n-1;
+
+            while (startrow < n && startcol >= 0)
+            {
+                System.out.print(table[startrow][startcol] + " ");
+
+                startcol--;
+                startrow++;
+            }
+            System.out.println();
+        }
+    }
     
 }
 
