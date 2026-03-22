@@ -200,6 +200,22 @@ class Student implements Comparable<Student>{
         tail.next = newNode;
         tail = newNode;
     }
+
+    public void solve(int[][] matrix) {
+
+        int n = matrix.length;
+
+        for (int i = 0; i < n; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                if (i == j)
+                {
+                    System.out.print(matrix[i][j] + " ");
+                }
+            }
+        }
+    }
     
 }
 
