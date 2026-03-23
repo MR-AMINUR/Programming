@@ -285,6 +285,19 @@ class Student implements Comparable<Student>{
             System.out.println();
         }
     }
+
+    public int bishop(int r, int c) {
+
+        int topleft = Math.min(r, c)-1;
+
+        int bottomright = 8 - Math.max(r, c);
+
+        int topright = Math.min(r, 9-c)-1;
+
+        int bottomleft = 8 - Math.max(r, 9-c);
+
+        return (topleft+bottomright+topright+bottomleft);
+    }
     
 }
 
