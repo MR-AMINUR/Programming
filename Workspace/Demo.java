@@ -298,6 +298,22 @@ class Student implements Comparable<Student>{
 
         return (topleft+bottomright+topright+bottomleft);
     }
+
+    public int sum(int n) {
+
+        if (n <= 1) return -1;
+
+        int Prime = 0;
+        for (int i = 2; i <= Math.sqrt(n); i++)
+        {
+            if (n % i != 0)
+            {
+                Prime = Prime + i;
+            }
+        }
+
+        return Prime;
+    }
     
 }
 
