@@ -150,8 +150,8 @@ class Node {
     public Node(int data)
     {
         this.data = data;
-        this.next = next;
-        this.prev = prev;
+        //this.next = next;
+        //this.prev = prev;
     }
 }
 
