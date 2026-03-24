@@ -1476,6 +1476,8 @@ class Structures {
 
     /*------------------------------------------Stack--------------------------------------- */
 
+    // ArrayList Implementation of Stack
+
     ArrayList<Object> list = new ArrayList<>();
 
     public boolean isEmpty() {
@@ -1499,6 +1501,47 @@ class Structures {
     public int peek() {
 
         return (int) list.get(list.size() - 1);
+    }
+
+    // Linked List Implementation of Stack
+
+    public boolean isempty() {
+
+        return head == null;
+    }
+
+    public void Poos(int data) {
+        Node newNode = new Node(data);
+
+        if (isempty())
+        {
+            head = newNode;
+            return;
+        }
+
+        newNode.next = head;
+        head = newNode;
+    }
+
+    public int Poop() {
+
+        if (isempty())
+        {
+            return -1;
+        }
+
+        int top = head.data;
+        head = head.next;
+        return top;
+    }
+
+    public int Peek() {
+        if (isempty()) 
+        {
+            return -1;
+        }
+
+        return head.data;
     }
 }
 
@@ -1525,15 +1568,15 @@ public class Codes {
         Scanner sc = new Scanner(System.in);
         Structures sr = new Structures();
 
-        sr.push(1);
-        sr.push(2);
-        sr.push(3);
-        sr.push(4);
+        sr.Poos(1);
+        sr.Poos(2);
+        sr.Poos(3);
+        sr.Poos(4);
 
-        while (! sr.isEmpty())
+        while (! sr.isempty())
         {
-            System.out.println(sr.peek());
-            sr.pop();
+            System.out.print(sr.Peek()+" ");
+            sr.Poop();
         }
 
         sc.close();
