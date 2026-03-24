@@ -1543,6 +1543,19 @@ class Structures {
 
         return head.data;
     }
+
+    public void pushAtBottom(Stack<Integer> s, int data) {
+
+        if (s.isEmpty())
+        {
+            s.push(data);
+            return;
+        }
+
+        int top = s.pop();
+        pushAtBottom(s, data);
+        s.push(top);
+    }
 }
 
 class Node {
@@ -1567,16 +1580,18 @@ public class Codes {
 
         Scanner sc = new Scanner(System.in);
         Structures sr = new Structures();
+        Stack<Integer> s = new Stack<>();
 
-        sr.Poos(1);
-        sr.Poos(2);
-        sr.Poos(3);
-        sr.Poos(4);
+        s.push(1);
+        s.push(2);
+        s.push(3);
+        
+        sr.pushAtBottom(s, 4);
 
-        while (! sr.isempty())
+        while (! s.isEmpty())
         {
-            System.out.print(sr.Peek()+" ");
-            sr.Poop();
+            System.out.println(s.pop());
+            
         }
 
         sc.close();
