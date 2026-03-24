@@ -1578,6 +1578,26 @@ class Structures {
 
         return sb.toString();
     }
+
+    public void reverseStack(Stack<Integer> s) {
+
+        if (s.isEmpty())
+        {
+            //System.out.println("Stack is empty");
+            return;
+        }
+        int top = s.pop();
+        reverseStack(s);
+        pushAtBottom(s, top);
+    }
+
+    public void printStack(Stack<Integer> s) {
+
+        while (! s.isEmpty())
+        {
+            System.out.println(s.pop());
+        }
+    }
 }
 
 class Node {
@@ -1602,12 +1622,15 @@ public class Codes {
 
         Scanner sc = new Scanner(System.in);
         Structures sr = new Structures();
-        
-        System.out.print("Enter the String to reverse: ");
-        String str = sc.nextLine();
+        Stack<Integer> s = new Stack<>();
 
-        String result = sr.revString(str);
-        System.out.print("The reversed String is: "+result);
+        s.push(1);
+        s.push(2);
+        s.push(3);
+
+        //sr.printStack(s);
+        sr.reverseStack(s);
+        sr.printStack(s);
 
         sc.close();
     }
