@@ -1556,6 +1556,28 @@ class Structures {
         pushAtBottom(s, data);
         s.push(top);
     }
+
+    public String revString(String str) {
+
+        Stack<Character> s = new Stack<>();
+        int index = 0;
+
+        while (index < str.length())
+        {
+            s.push(str.charAt(index));
+            index++;
+        }
+
+        StringBuilder sb = new StringBuilder("");
+
+        while (! s.isEmpty())
+        {
+            char curr = s.pop();
+            sb.append(curr);
+        }
+
+        return sb.toString();
+    }
 }
 
 class Node {
@@ -1580,19 +1602,12 @@ public class Codes {
 
         Scanner sc = new Scanner(System.in);
         Structures sr = new Structures();
-        Stack<Integer> s = new Stack<>();
-
-        s.push(1);
-        s.push(2);
-        s.push(3);
         
-        sr.pushAtBottom(s, 4);
+        System.out.print("Enter the String to reverse: ");
+        String str = sc.nextLine();
 
-        while (! s.isEmpty())
-        {
-            System.out.println(s.pop());
-            
-        }
+        String result = sr.revString(str);
+        System.out.print("The reversed String is: "+result);
 
         sc.close();
     }
