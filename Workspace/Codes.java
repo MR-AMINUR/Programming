@@ -1474,7 +1474,32 @@ class Structures {
         return tempA;
     }
 
-    
+    /*------------------------------------------Stack--------------------------------------- */
+
+    ArrayList<Object> list = new ArrayList<>();
+
+    public boolean isEmpty() {
+
+        return list.size() == 0;
+    }
+
+    public void push(int data) {
+
+        list.add(data);
+    }
+
+    public int pop() {
+
+        int top = (int) list.get(list.size() - 1);
+        list.remove(list.size()-1);
+
+        return top;
+    }
+
+    public int peek() {
+
+        return (int) list.get(list.size() - 1);
+    }
 }
 
 class Node {
@@ -1500,35 +1525,16 @@ public class Codes {
         Scanner sc = new Scanner(System.in);
         Structures sr = new Structures();
 
-        Node head1, head2;
-        head1 = new Node(10);
-        head2 = new Node(3);
+        sr.push(1);
+        sr.push(2);
+        sr.push(3);
+        sr.push(4);
 
-        Node newNode = new Node(6);
-        head2.next = newNode;
-
-        newNode = new Node(9);
-        head2.next.next = newNode;
-
-        newNode = new Node(15);
-        head1.next = newNode;
-        head2.next.next.next = newNode;
-        newNode = new Node(30);
-        head1.next.next = newNode;
-
-        head1.next.next.next = null;
-
-        Node intersectionPoint = sr.getIntrsectionNode(head1, head2);
-
-        if (intersectionPoint == null)
+        while (! sr.isEmpty())
         {
-            System.out.print("No Inteersection Point\n");
+            System.out.println(sr.peek());
+            sr.pop();
         }
-        else
-        {
-            System.out.print("Intersection Point: " + intersectionPoint.data);
-        }
-
 
         sc.close();
     }
