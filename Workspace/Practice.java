@@ -249,132 +249,121 @@ class Revisit {
         return value;
     }
 
+
+    /*---------------Stack Implementation------------------- */
+
+    ArrayList<Integer> list = new ArrayList<>();
+
+    public boolean isEmpty() {
+
+        return head == null;
+    }
+
+    public void push(int data) {
+        
+        Node newNode = new Node(data);
+
+        if (isEmpty()) {
+
+            head = newNode;
+            return;
+        }
+        newNode.next = head;
+        head = newNode;
+    }
+
+    public int pop() {
+
+        if (isEmpty()) {
+
+            return -1;
+        }
+        int top = head.data;
+        head = head.next;
+        return top;
+    }
+
+    public int peek() {
+        if (isEmpty())
+        {
+            return -1;
+        }
+        return head.data;
+    }
+
+    public void pushAtBottom(Stack<Integer> s, int data) {
+
+        if (s.isEmpty())
+        {
+            s.push(data);
+            return;
+        }
+        int top = s.pop();
+        pushAtBottom(s, data);
+        s.push(top);
+    }
+
+    public void printStack(Stack<Integer> s) {
+
+        while (! s.isEmpty())
+        {
+            System.out.println(s.pop());
+        }
+    }
+
+    public String revString(String str) {
+
+        Stack<Character> s = new Stack<>();
+        int index = 0;
+
+        while (index < str.length())
+        {
+            s.push(str.charAt(index));
+            index++;
+        }
+
+        StringBuilder sb = new StringBuilder("");
+
+        while (!s.isEmpty())
+        {
+            char curr = s.pop();
+            sb.append(curr);
+        }
+
+        return sb.toString();
+    }
+
+    public void reverseStack(Stack<Integer> s) {
+
+        if (s.isEmpty())
+        {
+            return;
+        }
+        int top = s.pop();
+        reverseStack(s);
+        pushAtBottom(s, top);
+    }
+
 }
 
 public class Practice {
 
     public static void main(String[] args) throws ClassNotFoundException {
      
-    /* 
-       // Computer cpu = new Computer();
-        //cpu.playNasheed();
-    /* 
-       int nums[] = new int[4];
-
-        nums[0] = 4;
-        nums[1] = 8;
-        nums[2] = 65;
-        nums[3] = 9;
-
-        for(int i = 0; i < 4; i++)
-            System.out.print(nums[i] + " ");
-        
-        int nums[][] = new int[3][];
-
-        nums[0] = new int[3];
-        nums[1] = new int[4];
-        nums[2] = new int[2];
-
-        for(int i = 0; i < nums.length; i++) {
-            for(int j = 0; j < nums[i].length; j++) {
-               nums[i][j] = (int)(Math.random()*10);
-            }
-            
-        }
-
-        for(int n[] : nums) {
-            for(int m : n) {
-                System.out.print(m + " ");
-            }
-            System.out.println();
-        }
-            */
-    
-    /*       
-    String name = "Aminur";
-    name = name + " Rahaman";
-    System.out.println("Assalamualaikum " + name);
-        
-
-    StringBuffer sb = new StringBuffer("Aminur");
-    sb.append(" Imrana");
-    sb.insert(6, " adores");
-    
-    System.out.println(sb);
-    
-    
-    Class.forName("Mobile");
-
-    Mobile obj1 = new Mobile();
-    obj1.brand = "Apple";
-    obj1.price = 1500;
-    Mobile.name = "Smartphone";
-
-    Mobile obj2 = new Mobile();
-   */
-
-    /* 
-    Human being = new Human();
-    // being.age = 23;
-    // being.name = "Aminur";
-
-    being.setAge(23);
-    being.setName("Precious");
-
-    System.out.println(being.getName() + " : " + being.getAge());
-        
-   
-    A a = new A();
-    a.show();
-    a.config();
-        
-
-    Laptop pc = new Laptop();
-    pc.model = "Lenovo Ideapad";
-    pc.price = 1000;
-
-    Laptop ps = new Laptop();
-    ps.model = "Lenovo Ideapad";
-    ps.price = 100;
-
-    boolean result = pc.equals(ps);
-
-    System.out.println(result);
-
-        */
-    
-    Scanner sc = new Scanner(System.in); 
-
-    /* 
-    //Permutation pt = new Permutation();
-    
-    System.out.print("Enter the size of Arrays: ");
-    int size = sc.nextInt();
-
-    Integer[] a = new Integer[size];
-    Integer[] b = new Integer[size];
-
-    System.out.println("Enter the 1st Array Elements: ");
-    for (int i = 0; i < size; i++)
-        a[i] = sc.nextInt();
-
-    System.out.println("Enter the 2nd Array Elements: ");
-    for (int i = 0; i < size; i++)
-        b[i] = sc.nextInt();
-
-    //pt.ArrayElement(a, b);
-        */
-
+    Scanner sc = new Scanner(System.in);
+    Stack<Integer> s = new Stack<>();
     Revisit rv = new Revisit();
 
-    rv.addFirst(4);
-    rv.addFirst(3);
-    rv.addFirst(2);
-    rv.addFirst(1);
-    rv.addLast(5);
-    rv.addLast(6);
+    s.push(1);
+    s.push(2);
+    s.push(3);
+    s.push(4);
 
-    rv.print();
+    
+    rv.reverseStack(s);
+    rv.printStack(s);
+
+    
         
     sc.close();
 
