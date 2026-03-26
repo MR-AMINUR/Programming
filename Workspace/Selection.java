@@ -298,6 +298,34 @@ class ArrayMath {
         result[0] = 1;
         return result;
     }
+
+    public void sol(int[] arr) {
+
+        int low = 0,  high = 0;
+        int n = arr.length;
+        int start = 0, end = n-1;
+
+        for (int i =0; i <= end;)
+        {
+            if (arr[i] < low)
+            {
+                int temp = arr[start];
+                arr[start] = arr[i];
+                arr[i] = temp;
+                start++;
+                i++;
+            }
+            else if (arr[i] > high)
+            {
+                int temp = arr[end];
+                arr[end] = arr[i];
+                arr[i] = temp;
+                end--;
+            }
+            else 
+                i++;
+        }
+    }
 }
 
 class ArrayPartition {
