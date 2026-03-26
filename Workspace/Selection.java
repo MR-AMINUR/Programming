@@ -227,6 +227,25 @@ class Permutation {
         a[i] = a[j];
         a[j] = temp;
     }
+
+    public Integer[] solve(Integer[] a) {
+
+        int n = a.length;
+        
+        for (int i = n-1; i >= 0; --i)
+        {
+            if (a[i] < 9)
+            {
+                a[i]++;
+                return a;
+            }
+            a[i] = 0;
+        }
+        
+        Integer[] result = new Integer[n+1];
+        result[0] = 1;
+        return result;
+    }
     
 }
 
