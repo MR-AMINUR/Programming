@@ -672,6 +672,26 @@ class MoveElements {
         
     }  
 
+    public void color(Integer[] a) {
+        int n = a.length;
+        int low = 0;
+        int mid = 0;
+        int high = n - 1;
+
+        while (mid <= high) {
+            if (a[mid] == 0) {
+                swap(a, low, mid);  
+                low++;
+                mid++;
+            } else if (a[mid] == 1) {  
+                mid++;
+            } else {  
+                swap(a, mid, high);
+                high--;
+            }
+        }
+    }
+
     private void swap(Integer[] a, int i, int j) {
         int temp = a[i];
         a[i] = a[j];
