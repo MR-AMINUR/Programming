@@ -326,6 +326,23 @@ class ArrayMath {
                 i++;
         }
     }
+
+    public void ans(int[] a) {
+
+        int n = a.length;
+        int k = 0;
+        for (int i = 0; i < n; i++)
+        {
+            if (a[i] != 1)
+            {
+                int temp = a[i];
+                a[i] = a[k];
+                a[k] = temp;
+                k++;
+            }
+        }
+        
+    }  
 }
 
 class ArrayPartition {
