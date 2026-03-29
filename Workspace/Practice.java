@@ -344,6 +344,19 @@ class Revisit {
         pushAtBottom(s, top);
     }
 
+    public void printSOlution(int[][] sol) {
+
+        for (int i = 0; i < sol.length; i++)
+        {
+            for (int j = 0; j < sol.length; j++)
+            {
+                System.out.print(" " + sol[i][j] + " ");
+            }
+
+            System.out.println();
+        }
+    }
+
 }
 
 public class Practice {
