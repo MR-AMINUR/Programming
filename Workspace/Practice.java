@@ -357,6 +357,11 @@ class Revisit {
         }
     }
 
+    public boolean isSafe(int[][] maze, int x, int y) {
+
+        return (x >= 0 && x < maze.length && y >= 0 && y < maze.length && maze[x][y] == 1);
+    }
+
 }
 
 public class Practice {
