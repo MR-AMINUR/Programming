@@ -1753,7 +1753,7 @@ public class Codes {
         }
 
         sr.nextGreater(arr);
-         
+        
 
         sc.close();
     }
