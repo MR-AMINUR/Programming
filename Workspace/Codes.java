@@ -1662,7 +1662,32 @@ class Structures {
         }
     }
 
+    public void StockSpan(int[] stock, int[] span) {
 
+        Stack<Integer> s = new Stack<>();
+        span[0] = 1;
+        s.push(0);
+
+        for (int i = 1; i < stock.length; i++)
+        {
+            int currPrice = stock[i];
+
+            while (!s.isEmpty() && currPrice > stock[s.peek()])
+            {
+                s.pop();
+            }
+            if (s.isEmpty())
+            {
+                span[i] = i+1;
+            }
+            else 
+            {
+                int prevHigh = s.peek();
+                span[i] = i - prevHigh;
+                s.push(i);
+            }
+        }
+    }
 }
 
 class Node {
@@ -1687,13 +1712,24 @@ public class Codes {
 
         Scanner sc = new Scanner(System.in);
         Structures sr = new Structures();
-        
-        int[][] maze = {{1, 0, 0, 0},
-                        {1, 1, 0, 1},
-                        {0, 1, 0, 0},
-                        {1, 1, 1, 1}};
-        
-        sr.solveMaze(maze);
+        System.out.print("Enter the value of n: ");
+        int n = sc.nextInt();
+        int[] stock = new int[n];
+        int[] span = new int[stock.length];
+
+        System.out.print("Enter the stock prices: ");
+        for (int i = 0; i < n; i++)
+        {
+            stock[i] = sc.nextInt();
+        }
+
+        sr.StockSpan(stock, span);
+
+        System.out.print("The Span of the given Stocks are: ");
+        for (int i = 0; i < span.length; i++)
+        {
+            System.out.print(span[i] + " ");
+        }
 
         sc.close();
     }
