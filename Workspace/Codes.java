@@ -1688,6 +1688,37 @@ class Structures {
             }
         }
     }
+
+    public void nextGreater(int[] arr) {
+
+        Stack<Integer> s = new Stack<>();
+
+        int[] nxtGreater = new int[arr.length];
+
+        for (int i = arr.length-1; i >= 0; i--)
+        {
+            while (!s.isEmpty() && arr[s.peek()] <= arr[i])
+            {
+                s.pop();
+            }
+            if (s.isEmpty())
+            {
+                nxtGreater[i] = -1;
+            }
+            else
+            {
+                nxtGreater[i] = arr[s.peek()];
+            }
+
+            s.push(i);
+        }
+
+        for (int i = 0; i < nxtGreater.length; i++)
+        {
+            System.out.print(nxtGreater[i]+ " ");
+        }
+        System.out.println();
+    } 
 }
 
 class Node {
@@ -1714,22 +1745,15 @@ public class Codes {
         Structures sr = new Structures();
         System.out.print("Enter the value of n: ");
         int n = sc.nextInt();
-        int[] stock = new int[n];
-        int[] span = new int[stock.length];
-
-        System.out.print("Enter the stock prices: ");
+        int[] arr = new int[n];
+        System.out.print("Enter the elements of array: ");
         for (int i = 0; i < n; i++)
         {
-            stock[i] = sc.nextInt();
+            arr[i] = sc.nextInt();
         }
 
-        sr.StockSpan(stock, span);
-
-        System.out.print("The Span of the given Stocks are: ");
-        for (int i = 0; i < span.length; i++)
-        {
-            System.out.print(span[i] + " ");
-        }
+        sr.nextGreater(arr);
+         
 
         sc.close();
     }
