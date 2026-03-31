@@ -1718,7 +1718,40 @@ class Structures {
             System.out.print(nxtGreater[i]+ " ");
         }
         System.out.println();
-    } 
+    }
+
+    public boolean isValid(String str) {
+
+        Stack<Character> s = new Stack<>();
+
+        for (int i = 0; i < str.length(); i++)
+        {
+            char ch = str.charAt(i);
+
+            if (ch == '(' || ch == '{' || ch == '[')
+            {
+                s.push(ch);
+            }   else {
+
+                if (s.isEmpty())
+                {
+                    return false;
+                }
+                if ((s.peek() == '(' && ch == ')') || (s.peek() == '{' && ch == '}') || (s.peek() == '[' && ch == ']'))
+                {
+                    s.pop();
+                } else {
+                    return false;
+                }
+            }
+        }
+        if (s.isEmpty())
+        {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
 
 class Node {
@@ -1743,16 +1776,11 @@ public class Codes {
 
         Scanner sc = new Scanner(System.in);
         Structures sr = new Structures();
-        System.out.print("Enter the value of n: ");
-        int n = sc.nextInt();
-        int[] arr = new int[n];
-        System.out.print("Enter the elements of array: ");
-        for (int i = 0; i < n; i++)
-        {
-            arr[i] = sc.nextInt();
-        }
+        
+        System.out.print("Enter the parenthesis String: ");
+        String str = sc.nextLine();
 
-        sr.nextGreater(arr);
+        System.out.print("The given String is: " + sr.isValid(str));
         
 
         sc.close();
