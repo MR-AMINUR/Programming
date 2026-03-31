@@ -1752,6 +1752,38 @@ class Structures {
             return false;
         }
     }
+
+    public boolean isDuplicate(String str) {
+
+        Stack<Character> s = new Stack<>();
+
+        for (int i = 0; i < str.length(); i++)
+        {
+            char ch = str.charAt(i);
+
+            if (ch == ')')
+            {
+                int count = 0;
+                while (s.peek() != '(')
+                {
+                    s.pop();
+                    count++;
+                }
+                if (count < 1)
+                {
+                    return true;
+                }   else {
+                    s.pop();
+                }
+            }
+            else 
+            {
+                s.push(ch);
+            }
+        }
+
+        return false;
+    }
 }
 
 class Node {
@@ -1780,7 +1812,7 @@ public class Codes {
         System.out.print("Enter the parenthesis String: ");
         String str = sc.nextLine();
 
-        System.out.print("The given String is: " + sr.isValid(str));
+        System.out.print(sr.isDuplicate(str) + "! String is Duplicate");
         
 
         sc.close();
