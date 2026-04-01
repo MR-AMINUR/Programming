@@ -344,6 +344,33 @@ class Revisit {
         pushAtBottom(s, top);
     }
 
+    public void StockSpan(int[] stock, int[] span) {
+
+        Stack<Integer> s = new Stack<>();
+        span[0] = 1;
+        s.push(0);
+
+        for (int i = 1; i < stock.length; i++)
+        {
+            int currPrice = stock[i];
+
+            while (!s.isEmpty() && currPrice > stock[s.peek()])
+            {
+                s.pop();
+            }
+            if (s.isEmpty())
+            {
+                span[i] =  i+1;
+            }
+            else 
+            {
+                int prevHigh = s.peek();
+                span[i] = i - prevHigh;
+                s.push(i);
+            }
+        }
+    }
+
     public void printSOlution(int[][] sol) {
 
         for (int i = 0; i < sol.length; i++)
@@ -399,19 +426,29 @@ public class Practice {
     public static void main(String[] args) throws ClassNotFoundException {
      
     Scanner sc = new Scanner(System.in);
-    Stack<Integer> s = new Stack<>();
+    
     Revisit rv = new Revisit();
 
-    s.push(1);
-    s.push(2);
-    s.push(3);
-    s.push(4);
+    System.out.print("Enter the size of stock: ");
+    int n = sc.nextInt();
 
-    
-    rv.reverseStack(s);
-    rv.printStack(s);
+    int[] stock = new int[n];
+    int[] span = new int[stock.length];
 
-    
+    System.out.print("Enter the stock amounts: ");
+    for (int i = 0; i < stock.length; i++)
+    {
+        stock[i] = sc.nextInt();
+    }
+
+    rv.StockSpan(stock, span);
+
+    System.out.println("The spans are: ");
+    for (int i = 0; i < span.length; i++)
+    {
+        System.out.print(span[i]+ " ");
+    }
+    System.out.println();
         
     sc.close();
 
