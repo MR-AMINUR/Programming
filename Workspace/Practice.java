@@ -449,6 +449,39 @@ class Revisit {
         }
         System.out.println();
     }
+
+    public boolean isDuplicate(String str) {
+        Stack<Character> s = new Stack<>();
+
+        for (int i = 0; i < str.length(); i++)
+        {
+            char ch = str.charAt(i);
+
+            if (ch == ')')
+            {
+                int count = 0; 
+                while (s.peek() != '(')
+                {
+                    s.pop();
+                    count++;
+                }
+                if (count < 1)
+                {
+                    return true;
+                }
+                else
+                {
+                    s.pop();
+                }
+            }
+            else
+            {
+                s.push(ch);
+            }
+        }
+
+        return false;
+    }
 }
 
 public class Practice {
@@ -459,19 +492,14 @@ public class Practice {
     
     Revisit rv = new Revisit();
 
-    System.out.print("Enter the size: ");
-    int n = sc.nextInt();
+    System.out.print("Enter the String: ");
+    String str = sc.nextLine();
 
-    int[] arr = new int[n];
+    for (int i = 0; i < str.length(); i++)
+        {
+                System.out.print(rv.isDuplicate(str)+"! The String contains more than one extra parentheses");
 
-    System.out.print("Enter the Array elements: ");
-    for (int i = 0; i < n; i++)
-    {
-        arr[i] = sc.nextInt();
-    }
-
-    rv.nextGreater(arr);
-        
+        }        
     sc.close();
 
     }
