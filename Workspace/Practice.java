@@ -419,6 +419,36 @@ class Revisit {
         return false;
     }
 
+    public void nextGreater(int[] arr) {
+
+        Stack<Integer> s = new Stack<>();
+
+        int[] nextgtr = new int[arr.length];
+
+        for (int i = arr.length - 1; i >= 0; i--)
+        {
+            while (!s.isEmpty() && arr[s.peek()] <= arr[i])
+            {
+                s.pop();
+            }
+            if (s.isEmpty())
+            {
+                nextgtr[i] = -1;
+            }
+            else
+            {
+                nextgtr[i] = arr[s.peek()];
+            }
+
+            s.push(i);
+        }
+
+        for (int i = 0; i < nextgtr.length; i++)
+        {
+            System.out.print(nextgtr[i]+ " ");
+        }
+        System.out.println();
+    }
 }
 
 public class Practice {
@@ -429,26 +459,18 @@ public class Practice {
     
     Revisit rv = new Revisit();
 
-    System.out.print("Enter the size of stock: ");
+    System.out.print("Enter the size: ");
     int n = sc.nextInt();
 
-    int[] stock = new int[n];
-    int[] span = new int[stock.length];
+    int[] arr = new int[n];
 
-    System.out.print("Enter the stock amounts: ");
-    for (int i = 0; i < stock.length; i++)
+    System.out.print("Enter the Array elements: ");
+    for (int i = 0; i < n; i++)
     {
-        stock[i] = sc.nextInt();
+        arr[i] = sc.nextInt();
     }
 
-    rv.StockSpan(stock, span);
-
-    System.out.println("The spans are: ");
-    for (int i = 0; i < span.length; i++)
-    {
-        System.out.print(span[i]+ " ");
-    }
-    System.out.println();
+    rv.nextGreater(arr);
         
     sc.close();
 
