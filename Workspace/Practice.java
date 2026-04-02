@@ -371,18 +371,7 @@ class Revisit {
         }
     }
 
-    public void printSOlution(int[][] sol) {
-
-        for (int i = 0; i < sol.length; i++)
-        {
-            for (int j = 0; j < sol.length; j++)
-            {
-                System.out.print(" " + sol[i][j] + " ");
-            }
-
-            System.out.println();
-        }
-    }
+    
 
     public boolean isSafe(int[][] maze, int x, int y) {
 
@@ -482,6 +471,87 @@ class Revisit {
 
         return false;
     }
+
+    static int N = 8;
+
+    public boolean isSafe(int x, int y, int[][] sol) {
+
+        return (x >= 0 && x < N && y >= 0 && y < N && sol[x][y] == -1);
+    }
+
+    public void printSolution(int[][] sol) {
+
+        for (int i = 0; i < N; i++)
+        {
+            for (int j = 0; j < N; j++)
+            {
+                System.out.print(sol[i][j] + " ");
+            }
+
+            System.out.println();
+        }
+    }
+
+    public boolean solveKT() {
+        int[][] sol = new int[8][8];
+
+        for (int i = 0; i < N; i++)
+        {
+            for (int j = 0; j < N; j++)
+            {
+                sol[i][j] = -1;
+            }
+        }
+
+        int[] iMove = {2, 1, -1, -2, -2, -1, 1, 2};
+        int[] jMove = {1, 2, 2, 1, -1, -2, -2, -1};
+
+        sol[0][0] = 0;
+
+        if (!solveKTUtil(0, 0, 1, sol, iMove, jMove))
+        {
+            System.out.println("Solution doesn't exist");
+            return false;
+        }
+        else
+        {
+            printSolution(sol);
+        }
+
+        return true;
+    }
+
+    public boolean solveKTUtil(int x, int y, int movei, int[][] sol, int[] xMove, int[] yMove) {
+
+        int k, next_x, next_y;
+
+        if (movei == N * N)
+        {
+            return true;
+        }
+
+        for (k = 0; k < 8; k++)
+        {
+            next_x = x + xMove[k];
+            next_y = y + yMove[k];
+
+            if (isSafe(next_x, next_y, sol))
+            {
+                sol[next_x][next_y] = movei;
+
+                if (solveKTUtil(next_x, next_y, movei + 1, sol, xMove, yMove))
+                {
+                    return true;
+                }
+                else
+                {
+                    sol[next_x][next_y] = -1;
+                }
+            }
+        }
+
+        return false;
+    }
 }
 
 public class Practice {
@@ -492,14 +562,7 @@ public class Practice {
     
     Revisit rv = new Revisit();
 
-    System.out.print("Enter the String: ");
-    String str = sc.nextLine();
-
-    for (int i = 0; i < str.length(); i++)
-        {
-                System.out.print(rv.isDuplicate(str)+"! The String contains more than one extra parentheses");
-
-        }        
+    System.out.print(rv.solveKT()); 
     sc.close();
 
     }
