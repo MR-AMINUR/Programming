@@ -1921,7 +1921,7 @@ Explanation 2:
 		
 		for (int i = 0; i < a.size(); i++)
 		{
-			a.set(i, a.get(i) + (a.get(a.get(i)) % a.size()) * a.size());
+			a.set(i, (a.get(i) + (a.get(a.get(i)) % a.size()) * a.size())); // set(index, value)
 		}
 		for (int i = 0; i < a.size(); i++)
 		{
@@ -1930,6 +1930,65 @@ Explanation 2:
 		
 		return;
 	}
+
+    /*Given a column title A as appears in an Excel sheet, return its corresponding column number.
+
+
+    Problem Constraints
+
+    1 <= |A| <= 100
+
+
+    Input Format
+
+    First and only argument is string A.
+
+
+    Output Format
+
+    Return an integer
+
+
+    Example Input
+
+    Input 1:
+
+    "A"
+
+    Input 2:
+
+    "AB"
+
+
+
+    Example Output
+
+    Output 1:
+
+    1
+
+    Output 2:
+
+    28
+
+
+
+    Example Explanation
+
+    Explanation 1:
+
+    A -> 1
+
+    Explanation 2:
+
+    A  -> 1
+    B -> 2
+    C -> 3
+    ...
+    Z -> 26
+    AA -> 27
+    AB -> 28 
+    */
 }
 
 
@@ -1948,6 +2007,7 @@ public class Problem {
         for (int i = 0; i < n; i++)
         {
             arr.add(sc.nextInt());
+            
         }
 
         pl.arrange(arr);
