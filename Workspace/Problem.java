@@ -1889,33 +1889,47 @@ Explanation 2:
     }
 
     /*Given an array A of size N. Rearrange the given array so that A[i] becomes A[A[i]] with O(1) extra space.
-Lets say N = size of the array. Then, following holds true :
+    Lets say N = size of the array. Then, following holds true :
 
-    All elements in the array are in the range [0, N-1]
-    N * N does not overflow for a signed integer
+        All elements in the array are in the range [0, N-1]
+        N * N does not overflow for a signed integer
 
 
-Constraints:
+    Constraints:
 
-1 <= N <= 5×104
+    1 <= N <= 5×104
 
-0 <= A[i] <= N - 1
+    0 <= A[i] <= N - 1
 
-The elements of A are distinct 
+    The elements of A are distinct 
 
-Input Format
+    Input Format
 
-The argument A is an array of integers
+    The argument A is an array of integers
 
-Example 1:
+    Example 1:
 
-Input : [1, 0]
-Return : [0, 1]
+    Input : [1, 0]
+    Return : [0, 1]
 
-Example 2:
+    Example 2:
 
-Input : [0, 2, 1, 3]
-Return : [0, 1, 2, 3] */
+    Input : [0, 2, 1, 3]
+    Return : [0, 1, 2, 3] */
+
+    public void arrange(ArrayList<Integer> a) {
+		
+		for (int i = 0; i < a.size(); i++)
+		{
+			a.set(i, a.get(i) + (a.get(a.get(i)) % a.size()) * a.size());
+		}
+		for (int i = 0; i < a.size(); i++)
+		{
+			a.set(i, a.get(i)/a.size());
+		}
+		
+		return;
+	}
 }
 
 
@@ -1929,22 +1943,17 @@ public class Problem {
         System.out.print("Enter the size: ");
         int n = sc.nextInt();
 
-        int[] arr = new int[n];
+        ArrayList<Integer> arr = new ArrayList<>();
         System.out.print("Enter the Array elements: ");
         for (int i = 0; i < n; i++)
         {
-            arr[i] = sc.nextInt();
+            arr.add(sc.nextInt());
         }
 
-        Arrays.sort(arr);
+        pl.arrange(arr);
 
-        System.out.print("The rearranged Array is: ");
-        for (int i = 0; i < n; i++)
-        {
-            System.out.print(arr[i]+" ");
-        }
-        System.out.println();
-
+        System.out.print("The ReArranged Array is: "+ arr);
+        
         
         sc.close();
     }
