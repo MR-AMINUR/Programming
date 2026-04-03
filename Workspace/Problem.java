@@ -1926,7 +1926,25 @@ public class Problem {
         PrimeNumbers pl = new PrimeNumbers();
         Scanner sc = new Scanner(System.in);
 
-        System.out.println(pl.solve("329643"));
+        System.out.print("Enter the size: ");
+        int n = sc.nextInt();
+
+        int[] arr = new int[n];
+        System.out.print("Enter the Array elements: ");
+        for (int i = 0; i < n; i++)
+        {
+            arr[i] = sc.nextInt();
+        }
+
+        Arrays.sort(arr);
+
+        System.out.print("The rearranged Array is: ");
+        for (int i = 0; i < n; i++)
+        {
+            System.out.print(arr[i]+" ");
+        }
+        System.out.println();
+
         
         sc.close();
     }
