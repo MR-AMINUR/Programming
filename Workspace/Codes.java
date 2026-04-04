@@ -1874,6 +1874,65 @@ class Structures {
 
         return flag;
     }
+
+    public String SimplifyPath(String str) {
+
+        Stack<String> s = new Stack<>();
+        String res = "";
+        res += "/";
+
+        for (int i = 0; i < str.length(); i++)
+        {
+            String dir = "";
+            while (i < str.length() && str.charAt(i) == '/')
+            {
+                i++;
+            }
+
+            while (i < str.length() && str.charAt(i) != '/')
+            {
+                dir += str.charAt(i);
+                i++;
+            }
+
+
+            if (dir.equals("..") == true)
+            {
+                if (!s.isEmpty())
+                {
+                    s.pop();
+                }
+            }
+            else if (dir.equals(".") == true)
+            {
+                continue;
+            }
+            else if (dir.length() != 0)
+            {
+                s.push(dir);
+            }
+        }
+
+        Stack<String> st = new Stack<>();
+        while (!s.isEmpty())
+        {
+            st.push(s.pop());
+        }
+
+        while (!st.isEmpty())
+        {
+            if (st.size() != 1)
+            {
+                res += (st.pop()+"/");
+            }
+            else
+            {
+                res += st.pop();
+            }
+        }
+
+        return res;
+    }
 }
 
 class Node {
@@ -1899,20 +1958,10 @@ public class Codes {
         Scanner sc = new Scanner(System.in);
         Structures sr = new Structures();
         
-        Node one = new Node(1);
-        Node two = new Node(2);
-        Node three = new Node(3);
-        Node four = new Node(2);
-        Node five = new Node(1);
-        
+        System.out.print("Enter the Path Directory: ");
+        String str = sc.nextLine();
 
-        one.next = two;
-        two.next = three;
-        three.next = four;
-        four.next = five;
-        
-        
-        System.out.print("The linked list is palindrome: "+ sr.stackPalindromecheck(one));
+        System.out.print("The Simplified Path directory is: "+ sr.SimplifyPath(str));
 
         
 
