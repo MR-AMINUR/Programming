@@ -1842,6 +1842,38 @@ class Structures {
 
         System.out.print("The maximum are for the given histogram is: "+maxArea+" unit");
     }
+
+    public boolean stackPalindromecheck(Node head) {
+
+        Node slow = head;
+        boolean flag = true;
+
+        Stack<Integer> s = new Stack<>();
+
+        while (slow != null)
+        {
+            s.push(slow.data);
+            slow = slow.next;
+        }
+
+        while (head != null)
+        {
+            int check = s.pop();
+
+            if (head.data == check) 
+            {
+                flag = true;
+            }
+            else 
+            {
+                flag = false;
+                break;
+            }
+            head = head.next;
+        }
+
+        return flag;
+    }
 }
 
 class Node {
@@ -1867,19 +1899,24 @@ public class Codes {
         Scanner sc = new Scanner(System.in);
         Structures sr = new Structures();
         
-        System.out.print("Enter the size: ");
-        int n = sc.nextInt();
+        Node one = new Node(1);
+        Node two = new Node(2);
+        Node three = new Node(3);
+        Node four = new Node(2);
+        Node five = new Node(1);
+        
 
-        int[] arr = new int[n];
-        System.out.print("Enter the elements: ");
-        for (int i = 0; i < n; i++)
-        {
-            arr[i] = sc.nextInt();
-        }
+        one.next = two;
+        two.next = three;
+        three.next = four;
+        four.next = five;
+        
+        
+        System.out.print("The linked list is palindrome: "+ sr.stackPalindromecheck(one));
 
-        sr.maxHistogramArea(arr);
         
 
         sc.close();
     }
 }
+ 
