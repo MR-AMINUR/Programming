@@ -584,6 +584,65 @@ class Revisit {
         return flag;
     }
 
+        public String SimplifyPath(String str) {
+
+        Stack<String> s = new Stack<>();
+        String res = "";
+        res += "/";
+
+        for (int i = 0; i < str.length(); i++)
+        {
+            String dir = "";
+            while (i < str.length() && str.charAt(i) == '/')
+            {
+                i++;
+            }
+
+            while (i < str.length() && str.charAt(i) != '/')
+            {
+                dir += str.charAt(i);
+                i++;
+            }
+
+
+            if (dir.equals("..") == true)
+            {
+                if (!s.isEmpty())
+                {
+                    s.pop();
+                }
+            }
+            else if (dir.equals(".") == true)
+            {
+                continue;
+            }
+            else if (dir.length() != 0)
+            {
+                s.push(dir);
+            }
+        }
+
+        Stack<String> st = new Stack<>();
+        while (!s.isEmpty())
+        {
+            st.push(s.pop());
+        }
+
+        while (!st.isEmpty())
+        {
+            if (st.size() != 1)
+            {
+                res += (st.pop()+"/");
+            }
+            else
+            {
+                res += st.pop();
+            }
+        }
+
+        return res;
+    }
+
 }
 
 public class Practice {
