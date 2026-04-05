@@ -552,6 +552,38 @@ class Revisit {
 
         return false;
     }
+    public boolean stackPalindromecheck(Node head) {
+
+        Node slow = head;
+        boolean flag = true;
+
+        Stack<Integer> s = new Stack<>();
+
+        while (slow != null)
+        {
+            s.push(slow.data);
+            slow = slow.next;
+        }
+
+        while (head != null)
+        {
+            int check = s.pop();
+
+            if (head.data == check) 
+            {
+                flag = true;
+            }
+            else 
+            {
+                flag = false;
+                break;
+            }
+            head = head.next;
+        }
+
+        return flag;
+    }
+
 }
 
 public class Practice {
