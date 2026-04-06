@@ -2005,6 +2005,28 @@ Explanation 2:
 
         return result;
     }
+
+    public String DigitToString(int n) {
+
+        String result = "";
+
+        while ( n > 0) {
+
+            n = n-1;
+
+            int rem = n % 26;
+
+            char letter = (char) (rem + 'A');
+
+            result = letter + result;
+
+            n = n / 26;
+        }
+
+        return result;
+    }
+
+    
 }
 
 
@@ -2015,10 +2037,10 @@ public class Problem {
         PrimeNumbers pl = new PrimeNumbers();
         Scanner sc = new Scanner(System.in);
 
-        System.out.print("Enter the input String: ");
-        String input = sc.nextLine();
+        System.out.print("Enter the number: ");
+        int n = sc.nextInt();
 
-        System.out.print(pl.StringtoDigit(input));
+        System.out.print(pl.DigitToString(n));
         
         
         sc.close();
