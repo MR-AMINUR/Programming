@@ -1989,6 +1989,22 @@ Explanation 2:
     AA -> 27
     AB -> 28 
     */
+
+    public int StringtoDigit(String input) {
+
+        int result = 0;
+
+        for (int i = 0; i < input.length(); i++)
+        {
+            char ch = input.charAt(i);
+
+            int digit = ch - 'A' + 1;
+
+            result = result * 26 + digit;
+        }
+
+        return result;
+    }
 }
 
 
@@ -1999,20 +2015,10 @@ public class Problem {
         PrimeNumbers pl = new PrimeNumbers();
         Scanner sc = new Scanner(System.in);
 
-        System.out.print("Enter the size: ");
-        int n = sc.nextInt();
+        System.out.print("Enter the input String: ");
+        String input = sc.nextLine();
 
-        ArrayList<Integer> arr = new ArrayList<>();
-        System.out.print("Enter the Array elements: ");
-        for (int i = 0; i < n; i++)
-        {
-            arr.add(sc.nextInt());
-            
-        }
-
-        pl.arrange(arr);
-
-        System.out.print("The ReArranged Array is: "+ arr);
+        System.out.print(pl.StringtoDigit(input));
         
         
         sc.close();
