@@ -2104,16 +2104,82 @@ Explanation 2:
         return 0;
     }
 
-    // public boolean isPalindrome(int n) {
+    /*Problem Description
 
-    //     int rnum = DigitAccess(n);
+    Given a numeric string A representing a large number you need to find the next smallest palindrome greater than this number.
 
-    //     if (rnum != n) 
-    //     {
-    //         return false;
-    //     }
-    //     return true;
-    // }
+
+    Problem Constraints
+
+    1 <= |A| <= 100
+
+    A doesn't start with zeroes and always contain digits from 0-9.
+
+
+
+    Input Format
+
+    First and only argument is an string A.
+
+
+    Output Format
+
+    Return a numeric string denoting the next smallest palindrome greater than A.
+
+
+    Example Input
+
+    Input 1:
+
+    A = "23545"
+
+    Input 2:
+
+    A = "999"
+
+
+
+    Example Output
+
+    Output 1:
+
+    "23632"
+
+    Output 2:
+
+    "1001"
+
+    public String solve(String A) {
+        }
+    */
+
+    public String smallestPalindrome(String num) {
+
+        if (num.charAt(0) == '0')
+        {
+            return "-1";
+        }
+        int n = 0;
+        for (int i = 0; i < num.length(); i++)
+        {
+            char ch = num.charAt(i);
+
+            if (ch == '9')
+            {
+                n = Integer.parseInt(num);
+                n += 2;
+            }
+        }
+
+        String result = String.valueOf(n);
+
+        return result;
+
+    }
+
+    
+
+ 
 }
 
 
@@ -2124,10 +2190,9 @@ public class Problem {
         PrimeNumbers pl = new PrimeNumbers();
         Scanner sc = new Scanner(System.in);
 
-        System.out.print("Enter the number: ");
-        int n = sc.nextInt();
+        String s = "9999";
 
-        System.out.print(pl.PalindromeCheck(n));
+        System.out.println(pl.smallestPalindrome(s));
         
         
         sc.close();
