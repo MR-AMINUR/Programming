@@ -2177,7 +2177,32 @@ Explanation 2:
 
     }
 
-    
+    public String makePalindrome(String input) {
+        int n = input.length();
+
+        String str = "";
+
+        for (int i = 0; i < n/2; i++)
+        {
+            str += input.charAt(i);
+        }
+        for (int i = (n-1)/2; i >= 0; i--)
+        {
+            str += input.charAt(i);
+        }
+
+        int inp = Integer.parseInt(input);
+        int out = Integer.parseInt(str);
+        String result = "";
+        if (out <= inp) 
+        {
+            StringBuilder sb = new StringBuilder(str);
+            sb.setCharAt(1, (char)(sb.charAt(1)+1));
+            result = sb.toString();
+        }
+
+        return result;
+    }
 
  
 }
@@ -2190,9 +2215,11 @@ public class Problem {
         PrimeNumbers pl = new PrimeNumbers();
         Scanner sc = new Scanner(System.in);
 
-        String s = "9999";
+        System.out.print("Enter the String: ");
+        String input = sc.nextLine();
 
-        System.out.println(pl.smallestPalindrome(s));
+        System.out.print(pl.makePalindrome(input));
+        
         
         
         sc.close();
