@@ -2194,10 +2194,18 @@ Explanation 2:
         int inp = Integer.parseInt(input);
         int out = Integer.parseInt(str);
         String result = "";
-        if (out <= inp) 
+        if (out < inp) 
         {
             StringBuilder sb = new StringBuilder(str);
-            sb.setCharAt(1, (char)(sb.charAt(1)+1));
+            
+            if (sb.length() % 2 == 0)
+            {
+                sb.setCharAt(1, (char)(sb.charAt(1)+1));
+            }
+            else 
+            {
+                sb.setCharAt(2, (char)(sb.charAt(2)+1));
+            }
             result = sb.toString();
         }
 
