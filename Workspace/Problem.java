@@ -2200,11 +2200,11 @@ Explanation 2:
             
             if (sb.length() % 2 == 0)
             {
-                sb.setCharAt(1, (char)(sb.charAt(1)+1));
+                sb.setCharAt(((sb.length()-1)/2), (char)(sb.charAt(((sb.length()-1)/2))+1));
             }
             else 
             {
-                sb.setCharAt(2, (char)(sb.charAt(2)+1));
+                sb.setCharAt(((sb.length())/2), (char)(sb.charAt(((sb.length())/2))+1));
             }
             result = sb.toString();
         }
@@ -2212,7 +2212,6 @@ Explanation 2:
         return result;
     }
 
- 
 }
 
 
@@ -2223,10 +2222,16 @@ public class Problem {
         PrimeNumbers pl = new PrimeNumbers();
         Scanner sc = new Scanner(System.in);
 
-        System.out.print("Enter the String: ");
-        String input = sc.nextLine();
+        String str = "12345";
+        int n = str.length();
+        StringBuilder sb = new StringBuilder(str);
 
-        System.out.print(pl.makePalindrome(input));
+        for (int i = 0; i < n/2; i++)
+        {
+            sb.setCharAt(n-i-1, sb.charAt(i));
+        }
+
+        System.out.print(sb);
         
         
         

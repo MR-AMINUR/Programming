@@ -1949,6 +1949,62 @@ class Structures {
         }
     }
 
+    public String SmallestnextPalindrome(String input) {
+
+        int l = input.length();
+
+        // check invalid input
+        if (input.charAt(0) == '0')
+        {
+            return "-1";
+        }
+        // check all 9's -> return special case
+        if (input.matches("9+"))
+        {
+            int n = Integer.parseInt(input);
+            n += 2;
+
+            return String.valueOf(n);
+        }
+        // Build palindrome 
+        String str = "";
+
+        for (int i = 0; i < l/2; i++)
+        {
+            str += input.charAt(i);
+        }
+        for (int i = (l-1)/2; i >= 0; i--)
+        {
+            str += input.charAt(i);
+        }
+        // COmpare with input
+        int inp = Integer.parseInt(input);
+        int out = Integer.parseInt(str);
+        String result = "";
+        if (out >= inp) 
+        {
+            return str;
+        }
+        if (out < inp) 
+        {
+            StringBuilder sb = new StringBuilder(str);
+            int s = sb.length();
+
+            if (s % 2 == 0)
+            {
+                sb.setCharAt((s-1)/2, (char)(sb.charAt((s-1)/2)+1));
+                sb.setCharAt((s)/2, (char)(sb.charAt((s)/2)+1));
+            }
+            else 
+            {
+                sb.setCharAt(s/2, (char)(sb.charAt((s/2))+1));
+            }
+            result = sb.toString();
+        }
+        
+        return result;
+    }
+
 }
 
 class Node {
@@ -1974,11 +2030,10 @@ public class Codes {
         Scanner sc = new Scanner(System.in);
         Structures sr = new Structures();
         
-        System.out.print("Enter the Path Directory: ");
+        System.out.print("Enter the String: ");
         String str = sc.nextLine();
 
-        System.out.print("The Simplified Path directory is: "+ sr.SimplifyPath(str));
-
+        System.out.print(sr.SmallestnextPalindrome(str));
         
 
         sc.close();
