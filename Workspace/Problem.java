@@ -2177,40 +2177,67 @@ Explanation 2:
 
     }
 
-    public String makePalindrome(String input) {
-        int n = input.length();
+    public String SmallestnextPalindrome(String input) {
+        int l = input.length(); // input String length
 
-        String str = "";
+        // edge cases
 
-        for (int i = 0; i < n/2; i++)
+        if (input.charAt(0) == '0')
         {
-            str += input.charAt(i);
+            return "-1";
         }
-        for (int i = (n-1)/2; i >= 0; i--)
+        if (input.matches("9+"))
         {
-            str += input.charAt(i);
+            return "1" + "0".repeat(l-1) + "1";
         }
 
-        int inp = Integer.parseInt(input);
-        int out = Integer.parseInt(str);
-        String result = "";
-        if (out < inp) 
+        // Palindrome (mirror of left half)
+
+        StringBuilder sb = new StringBuilder(input);
+
+        for (int i = 0; i < l/2; i++)
         {
-            StringBuilder sb = new StringBuilder(str);
-            
-            if (sb.length() % 2 == 0)
+            sb.setCharAt(l-i-1, sb.charAt(i));
+        }
+
+        // Palindrome Comparison
+
+        if ((sb.toString()).compareTo(input) > 0)
+        {
+            return sb.toString();
+        }
+        else 
+        {
+            int s = sb.length();
+            int c = 1;
+            int idx;
+
+            if (s % 2 == 0)
             {
-                sb.setCharAt(((sb.length()-1)/2), (char)(sb.charAt(((sb.length()-1)/2))+1));
+                idx = (s/2) -1;
             }
             else 
             {
-                sb.setCharAt(((sb.length())/2), (char)(sb.charAt(((sb.length())/2))+1));
+                idx = s/2;
             }
-            result = sb.toString();
-        }
+            
+            while (idx >= 0 && c > 0)
+            {
+                int digit = (sb.charAt(idx)-'0' + c);
+                c = digit / 10;
+                digit = digit % 10;
 
-        return result;
-    }
+                sb.setCharAt(idx, (char)(digit + '0'));
+                idx--;
+            }
+
+            for (int i = 0; i < s/2; i++)
+            {
+                sb.setCharAt(s-i-1, sb.charAt(i));
+            }
+        }
+        return sb.toString();
+    }    
 
 }
 
@@ -2221,17 +2248,11 @@ public class Problem {
         
         PrimeNumbers pl = new PrimeNumbers();
         Scanner sc = new Scanner(System.in);
+        
+        System.out.print("Enter the number String: ");
+        String str = sc.nextLine();
 
-        String str = "12345";
-        int n = str.length();
-        StringBuilder sb = new StringBuilder(str);
-
-        for (int i = 0; i < n/2; i++)
-        {
-            sb.setCharAt(n-i-1, sb.charAt(i));
-        }
-
-        System.out.print(sb);
+        System.out.print(pl.SmallestnextPalindrome(str));
         
         
         
