@@ -1977,7 +1977,7 @@ class Structures {
         {
             str += input.charAt(i);
         }
-        // COmpare with input
+        // Compare with input
         int inp = Integer.parseInt(input);
         int out = Integer.parseInt(str);
         String result = "";
