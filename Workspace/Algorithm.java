@@ -131,6 +131,70 @@ class Obstacle {
         }
         return size;
     }
+
+    
+    public String SmallestnextPalindrome(String input) {
+        int l = input.length(); // input String length
+
+        // edge cases
+
+        if (input.charAt(0) == '0')
+        {
+            return "-1";
+        }
+        if (input.matches("9+"))
+        {
+            return "1" + "0".repeat(l-1) + "1";
+        }
+
+        // Palindrome (mirror of left half)
+
+        StringBuilder sb = new StringBuilder(input);
+
+        for (int i = 0; i < l/2; i++)
+        {
+            sb.setCharAt(l-i-1, sb.charAt(i));
+        }
+
+        // Palindrome Comparison
+
+        if ((sb.toString()).compareTo(input) > 0)
+        {
+            return sb.toString();
+        }
+        else 
+        {
+            int s = sb.length();
+            int c = 1;
+            int idx;
+
+            if (s % 2 == 0)
+            {
+                idx = (s/2) -1;
+            }
+            else 
+            {
+                idx = s/2;
+            }
+            
+            while (idx >= 0 && c > 0)
+            {
+                int digit = (sb.charAt(idx)-'0' + c);
+                c = digit / 10;
+                digit = digit % 10;
+
+                sb.setCharAt(idx, (char)(digit + '0'));
+                idx--;
+            }
+
+            for (int i = 0; i < s/2; i++)
+            {
+                sb.setCharAt(s-i-1, sb.charAt(i));
+            }
+        }
+        return sb.toString();
+    }    
+
 }
 
 
