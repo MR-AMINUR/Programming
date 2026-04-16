@@ -132,6 +132,22 @@ class Obstacle {
         return size;
     }
 
+    public void run() {
+
+        for (int i = 1; i <= 5; i++)
+        {
+            System.out.print("Hi");
+
+            try {
+                Thread.sleep(10);
+            } catch (InterruptedException e) {
+
+                e.printStackTrace();
+            }
+        }
+    }
+
+
     
     public String SmallestnextPalindrome(String input) {
         int l = input.length(); // input String length
