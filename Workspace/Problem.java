@@ -2287,6 +2287,18 @@ Explanation 2:
     }
 
     */
+
+    public int gcd(int a, int b) {
+
+        if (b == 0)
+        {
+            return a;
+        }
+        else 
+        {
+            return gcd(b, a % b);
+        }
+    }
 }
 
 
@@ -2297,10 +2309,12 @@ public class Problem {
         PrimeNumbers pl = new PrimeNumbers();
         Scanner sc = new Scanner(System.in);
         
-        System.out.print("Enter the number String: ");
-        String str = sc.nextLine();
+        System.out.print("Enter a: ");
+        int a = sc.nextInt();
+        System.out.print("Enter b: ");
+        int b = sc.nextInt();
 
-        System.out.print(pl.SmallestnextPalindrome(str));
+        System.out.print(pl.gcd(a, b));
         
         
         
