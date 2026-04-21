@@ -367,12 +367,6 @@ class BucketPebble {
                 i++;
         }
     }
-}
-
-class ArrayMath {
-
-    
-    
 
     public void ans(int[] a) {
 
@@ -390,6 +384,14 @@ class ArrayMath {
         }
         
     }  
+}
+
+class ArrayMath {
+
+    
+    
+
+    
 }
 
 class ArrayPartition {
