@@ -320,6 +320,25 @@ class BucketPebble {
         a[i] = a[j];
         a[j] = temp;
     }
+
+    public Integer[] solve(Integer[] a) {
+
+        int n = a.length;
+        
+        for (int i = n-1; i >= 0; --i)
+        {
+            if (a[i] < 9)
+            {
+                a[i]++;
+                return a;
+            }
+            a[i] = 0;
+        }
+        
+        Integer[] result = new Integer[n+1];
+        result[0] = 1;
+        return result;
+    }
 }
 
 class ArrayMath {
@@ -420,66 +439,7 @@ class ArrayPartition {
     }
 }
 
-class contiguousArray {
-
-    /* 
-    public int binarySearch(Vector<Integer> v, int x) {
-
-        int low = 0, high = v.size() - 1;
-
-        while (low <= high)
-        {
-            int mid = (low + high)/2;
-
-            if (v.get(mid) <= x)
-                low = mid+1;
-            else if (v.get(mid) > x && v.get(mid) <= x)
-                return mid;
-            else if (v.get(mid) > x && mid == x)
-                return mid;
-            else 
-                high = mid-1;
-        }
-        return -1;
-    }
-
-    public int solution(int[] B, int A) {
-
-        int count = 0;
-
-        int[] prefix = new int[A];
-        prefix[0] = B[0];
-        for (int i = 1; i < A; i++)
-            prefix[i] = prefix[i-1] + B[i];
-        
-        int sum = prefix[A-1];
-
-        if (sum % 3 != 0)
-            return 0;
-
-        int[] suffix = new int[A];
-        suffix[A-1] = B[A-1];
-        for (int i = 1; i < A; i++)
-            suffix[i] = suffix[i+1] + B[i];
-        
-        Vector<Integer> v = new Vector<>();
-        for (int i = 0; i < A; i++)
-            if (suffix[i] == sum/3)
-                v.add(i);
-
-        for (int i = 0; i < A; i++)
-        {
-            if (prefix[i] == sum/3)
-            {
-                int result = binarySearch(v, i+1);
-
-                if (result != -1)
-                    count += v.size() - result;
-            }
-        }
-
-        return count;
-    }*/
+{
 
     public int solve(int A, int[] B) {
 
