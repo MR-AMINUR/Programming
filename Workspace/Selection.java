@@ -105,12 +105,6 @@ class MaxStack {
         a[i] = a[j];
         a[j] = swap;
     }
-}
-class Sorting {
-
-    
-
-    
 
     public void sort(@SuppressWarnings("rawtypes") Comparable[] a) {
 
