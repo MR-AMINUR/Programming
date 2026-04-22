@@ -97,10 +97,6 @@ class MaxStack {
 
         return v.compareTo(w) < 0;
     }
-}
-class Sorting {
-
-    
 
     private void exch(@SuppressWarnings("rawtypes") Comparable[] a, int i, int j) {
 
@@ -109,6 +105,12 @@ class Sorting {
         a[i] = a[j];
         a[j] = swap;
     }
+}
+class Sorting {
+
+    
+
+    
 
     public void sort(@SuppressWarnings("rawtypes") Comparable[] a) {
 
