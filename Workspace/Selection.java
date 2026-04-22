@@ -92,13 +92,15 @@ class MaxStack {
 
         return mainStack.isEmpty();
     }
-}
-class Sorting {
 
     private boolean less(@SuppressWarnings("rawtypes") Comparable v, @SuppressWarnings("rawtypes") Comparable w) {
 
         return v.compareTo(w) < 0;
     }
+}
+class Sorting {
+
+    
 
     private void exch(@SuppressWarnings("rawtypes") Comparable[] a, int i, int j) {
 
