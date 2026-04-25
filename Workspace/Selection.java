@@ -180,10 +180,6 @@ class MaxStack {
 }
 
 
-class sQuadratic {
-
-    
-}
 
 class ShellSort {
 
