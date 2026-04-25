@@ -162,14 +162,6 @@ class MaxStack {
                 else break;
         }
     }
-}
-
-class InSorting {
-
-    
-}
-
-class sQuadratic {
 
     public int ArrayElement(Integer[] a, Integer[] b) {
 
@@ -185,6 +177,12 @@ class sQuadratic {
             }
         return count;
     }
+}
+
+
+class sQuadratic {
+
+    
 }
 
 class ShellSort {
