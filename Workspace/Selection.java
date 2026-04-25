@@ -1,9 +1,5 @@
 import java.util.*;
 
-class QueueOfStacks {
-    
-    
-}
 
 class MaxStack {
 
@@ -140,9 +136,6 @@ class MaxStack {
         }
         
     }  
-}
-
-class InSorting {
 
     private boolean less(@SuppressWarnings("rawtypes") Comparable v, @SuppressWarnings("rawtypes") Comparable w ) {
 
@@ -169,6 +162,11 @@ class InSorting {
                 else break;
         }
     }
+}
+
+class InSorting {
+
+    
 }
 
 class sQuadratic {
