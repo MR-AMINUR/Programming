@@ -2,6 +2,11 @@ import java.util.*;
 
 class QueueOfStacks {
     
+    
+}
+
+class MaxStack {
+
     private Stack<String> inStack = new Stack<>();
     private Stack<String> outStack = new Stack<>();
 
@@ -27,9 +32,6 @@ class QueueOfStacks {
         if (outStack.isEmpty()) throw new RuntimeException();
         return outStack.pop();
     }
-}
-
-class MaxStack {
 
     private Stack<Double> mainStack;
     private Stack<Double> maxStack;
