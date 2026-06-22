@@ -62,6 +62,18 @@ class Churning {
 
         return sb.toString();
     }
+
+    public void reverseStack(Stack<Integer> s) {
+
+        if (s.isEmpty())
+        {
+            return;
+        }
+
+        int top = s.pop();
+        reverseStack(s);
+        PushAtBottom(s, top);
+    }
 }
 
 public class Revisit {
@@ -70,8 +82,16 @@ public class Revisit {
 
         Churning ch = new Churning();
 
-        String input = "abcdefghijklmnopqrstuvwxyz";
-        System.out.println(ch.ReverseString(input));
+        Stack<Integer> s = new Stack<>();
+        s.push(1);
+        s.push(2);
+        s.push(3);
+
+        ch.reverseStack(s);
+        while (!s.isEmpty())
+        {
+            System.out.println(s.pop());
+        }
 
     }
 }
