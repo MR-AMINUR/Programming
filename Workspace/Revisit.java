@@ -42,6 +42,26 @@ class Churning {
         PushAtBottom(s, data);
         s.push(top);
     }
+
+    public String ReverseString(String str) {
+        Stack<Character> s = new Stack<>();
+        int index = 0;
+
+        while (index < str.length())
+        {
+            s.push(str.charAt(index));
+            index++;
+        }
+
+        StringBuilder sb = new StringBuilder("");
+        while (!s.isEmpty())
+        {
+            char curr = s.pop();
+            sb.append(curr);
+        }
+
+        return sb.toString();
+    }
 }
 
 public class Revisit {
@@ -50,17 +70,8 @@ public class Revisit {
 
         Churning ch = new Churning();
 
-        Stack<Integer> s = new Stack<>();
-        s.push(1);
-        s.push(2);
-        s.push(3);
-
-        ch.PushAtBottom(s, 4);
-
-        while(!s.isEmpty())
-        {
-            System.out.println(s.pop());
-        }
+        String input = "abcdefghijklmnopqrstuvwxyz";
+        System.out.println(ch.ReverseString(input));
 
     }
 }
