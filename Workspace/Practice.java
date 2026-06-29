@@ -668,7 +668,23 @@ class Revisit {
             }
         }
     }
+    public int[] nextGreater(int[] arr) {
+        int[] nextgtr = new int[arr.length];
 
+        for (int i = 0; i < arr.length; i++)
+        {
+            for (int j = i+1; j < arr.length; j++)
+            {
+                if (arr[j] > arr[i])
+                {
+                    nxtgtr[i]  = arr[j];
+                    continue;
+                }
+            }
+        }
+
+        return nextgtr;
+    }
     
 
 }
@@ -681,7 +697,10 @@ public class Practice {
     
     Revisit rv = new Revisit();
 
-    System.out.print(rv.solveKT()); 
+    int[] a = {6, 8, 0, 1, 3};
+
+    System.out.println(rv.nextGreater(a));
+
     sc.close();
 
     }
