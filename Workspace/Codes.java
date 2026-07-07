@@ -2081,9 +2081,37 @@ class Structures {
         }
         System.out.println();
 
-
     }
 
+    public void fractionalKnapSack(int[] value, int[] weight, int capacity) {
+
+        double[][] ratio = new double[value.length][2];
+
+        for (int i = 0; i < value.length; i++)
+        {
+            ratio[i][0] = i;
+            ratio[i][1] = value[i]/(double)weight[i];
+        }
+
+        Arrays.sort(ratio, Comparator.comparingDouble(o -> o[1]));
+        int profit = 0;
+        for (int i = ratio.length-1; i >= 0; i--)
+        {
+            int index = (int)ratio[i][0];
+            if (capacity >= weight[index])
+            {
+                profit += value[index];
+                capacity -= weight[index];
+            }
+            else
+            {
+                profit += (ratio[i][1] * capacity);
+                break;
+            }
+        }
+
+        System.out.println(profit);
+    }
 }
 
 class Queue {
@@ -2163,10 +2191,10 @@ public class Codes {
 
         Scanner sc = new Scanner(System.in);
         Structures sr = new Structures();
-        int[] start = {5, 1, 3, 0, 8, 5};
-        int[] end = {7, 2, 4, 6, 9, 9};
+        int[] value = {4, 2, 1, 2, 10};
+        int[] weight = {12, 1, 1, 2, 4};
 
-        sr.ActivitySelection(start, end);
+        sr.fractionalKnapSack(value, weight, 15);
 
         sc.close();
     }

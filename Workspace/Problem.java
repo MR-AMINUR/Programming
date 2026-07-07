@@ -2436,23 +2436,58 @@ Explanation 2:
 
     */
     
+    public void swap(int[] arr, int a, int b) {
+        
+        int temp = arr[a];
+        arr[a] = arr[b];
+        arr[b] = temp;
+    }
+
+    public int convertArrayToNumber(int[] arr) {
+        int num = 0;
+        for (int digit : arr) {
+            num = (num * 10) + digit;
+        }
+
+        return num;
+    }
+
+    public void sortCombination(int[] arr, int start, ArrayList<Integer> result) {
+
+        if (start == arr.length)
+        {
+            if (arr[0] == 0)
+            {
+                return;
+            }
+
+            result.add(convertArrayToNumber(arr));
+            return;
+        }
+        for (int i = start; i < arr.length; i++)
+        {
+            swap(arr, start, i);
+            sortCombination(arr, start+1, result);
+            swap(arr, start, i);
+        }   
+    }
+
     public int divisible60(int[] arr) {
+        //Set<Integer> res = new LinkedHashSet<>();
+        ArrayList<Integer> res = new ArrayList<>();
 
-        int number = 0;
+        sortCombination(arr, 0, res);
 
-        for (int i = 0; i < arr.length; i++)
-        {
-            number = (number * 10) + i;
-        }
+        System.out.println(res);
 
-        if (number % 60 == 1)
+        for (int i = 0; i < res.size(); i++)
         {
-            return 1;
+            if (res.get(i) % 60 == 0)
+            {
+                return 1;
+            }
         }
-        else 
-        {
-            return 0;
-        }
+        return 0;
     }
 }
 
@@ -2462,12 +2497,9 @@ public class Problem {
     public static void main(String[] args) {
         
         PrimeNumbers pl = new PrimeNumbers();
-        Scanner sc = new Scanner(System.in);
-        
-        int[] arr = {0, 1, 2};
-        System.out.println(pl.divisible60(arr));
-        
-        
-        sc.close();
+        int[] elements = {0, 6};
+        int result = pl.divisible60(elements);
+
+        System.out.println(result);
     }
 }
