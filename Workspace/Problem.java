@@ -2497,7 +2497,7 @@ public class Problem {
     public static void main(String[] args) {
         
         PrimeNumbers pl = new PrimeNumbers();
-        int[] elements = {0, 6};
+        int[] elements = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
         int result = pl.divisible60(elements);
 
         System.out.println(result);

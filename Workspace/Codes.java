@@ -2112,6 +2112,39 @@ class Structures {
 
         System.out.println(profit);
     }
+
+    public void minAbsoluteDifference(int[] A, int[] B) {
+
+        Arrays.sort(A);
+        Arrays.sort(B);
+
+        int minAbsDiff = 0;
+        for (int i = 0; i < A.length; i++)
+        {
+            minAbsDiff += Math.abs(A[i] - B[i]);
+        }
+
+        System.out.println(minAbsDiff);
+    }
+
+    public void maxLengthChainofPairs(int[][] input) {
+
+        Arrays.sort(input, Comparator.comparingDouble(o -> o[1]));
+
+        int chainLength = 1;
+        int PairEnd = input[0][1];
+
+        for (int i = 1; i < input.length; i++)
+        {
+            if (input[i][0] > PairEnd)
+            {
+                chainLength++;
+                PairEnd = input[i][1];
+            }
+        }
+
+        System.out.println(chainLength);
+    }
 }
 
 class Queue {
@@ -2188,15 +2221,13 @@ class Node {
 
 public class Codes {
     public static void main(String[] args) throws Exception{
+        Structures ss = new Structures();
 
-        Scanner sc = new Scanner(System.in);
-        Structures sr = new Structures();
-        int[] value = {4, 2, 1, 2, 10};
-        int[] weight = {12, 1, 1, 2, 4};
+        int[][] sort = {{5, 24}, {39, 60}, {5, 28}, {27, 40}, {50, 90}};
 
-        sr.fractionalKnapSack(value, weight, 15);
+        ss.maxLengthChainofPairs(sort);
 
-        sc.close();
+        
     }
 }
  
