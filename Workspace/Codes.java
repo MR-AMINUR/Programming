@@ -2145,6 +2145,35 @@ class Structures {
 
         System.out.println(chainLength);
     }
+
+    public void IndianCoin(Integer[] coins, int amount) {
+        ArrayList<Integer> ans = new ArrayList<>();
+
+        Arrays.sort(coins, Comparator.reverseOrder());
+
+        int minCoin = 0;
+
+        for (int i = 0;i < coins.length; i++)
+        {
+            if (coins[i] <= amount)
+            {
+                while (coins[i] <= amount)
+                {
+                    minCoin++;
+                    ans.add(coins[i]);
+                    amount -= coins[i];
+                }
+            }
+        }
+
+        System.out.println("The total minimum number of coin is: "+ minCoin);
+
+        for (int i = 0; i < ans.size(); i++)
+        {
+            System.out.print(ans.get(i) + " ");
+        }
+        System.out.println();
+    }
 }
 
 class Queue {
@@ -2223,9 +2252,10 @@ public class Codes {
     public static void main(String[] args) throws Exception{
         Structures ss = new Structures();
 
-        int[][] sort = {{5, 24}, {39, 60}, {5, 28}, {27, 40}, {50, 90}};
+        Integer[] sort = {1, 2, 5, 10, 20, 50, 100, 200, 500};
+        int amount = 226550;
 
-        ss.maxLengthChainofPairs(sort);
+        ss.IndianCoin(sort, amount);
 
         
     }
