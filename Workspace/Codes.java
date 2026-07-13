@@ -1023,589 +1023,589 @@ class Structures {
 
     /*----------------------------------Linked List------------------------------------*/
 
-    public Node head;
-    public Node tail;
-    public int size;
+    // public Node head;
+    // public Node tail;
+    // public int size;
 
-    public void addFirst(int data) {
+    // public void addFirst(int data) {
 
-        Node newNode = new Node(data);
-        size++;
+    //     Node newNode = new Node(data);
+    //     size++;
 
-        if (head == null)
-        {
-            head = tail = newNode;
-            return;
-        }
+    //     if (head == null)
+    //     {
+    //         head = tail = newNode;
+    //         return;
+    //     }
 
-        newNode.next = head;
+    //     newNode.next = head;
 
-        head = newNode;
-    }
+    //     head = newNode;
+    // }
 
-    public void addLast(int data) {
+    // public void addLast(int data) {
         
-        Node newNode = new Node(data);
-        size++;
+    //     Node newNode = new Node(data);
+    //     size++;
 
-        if (head == null)
-        {
-            head = tail = newNode;
-            return;
-        }
+    //     if (head == null)
+    //     {
+    //         head = tail = newNode;
+    //         return;
+    //     }
 
-        tail.next = newNode;
-        tail = newNode;
-    }
+    //     tail.next = newNode;
+    //     tail = newNode;
+    // }
 
-    public void print() {
+    // public void print() {
 
-        Node temp = head;
+    //     Node temp = head;
 
-        if (head == null)
-        {
-            System.out.println("Linked List is empty.");
-            return;
-        }
+    //     if (head == null)
+    //     {
+    //         System.out.println("Linked List is empty.");
+    //         return;
+    //     }
 
-        while (temp != null)
-        {
-            System.out.print(temp.data + "<->");
-            temp = temp.next;
-        }
-        System.out.println("null");
-    }
+    //     while (temp != null)
+    //     {
+    //         System.out.print(temp.data + "<->");
+    //         temp = temp.next;
+    //     }
+    //     System.out.println("null");
+    // }
 
-    public void add(int index, int data) {
-        if (index == 0)
-        {
-            addFirst(data);
-            return;
-        }
+    // public void add(int index, int data) {
+    //     if (index == 0)
+    //     {
+    //         addFirst(data);
+    //         return;
+    //     }
 
-        Node newNode = new Node(data);
-        size++;
-        Node temp = head;
-        int i = 0;
+    //     Node newNode = new Node(data);
+    //     size++;
+    //     Node temp = head;
+    //     int i = 0;
 
-        while (i < index-1)
-        {
-            temp = temp.next;
-            i++;
-        }
+    //     while (i < index-1)
+    //     {
+    //         temp = temp.next;
+    //         i++;
+    //     }
 
-        newNode.next = temp.next;
-        temp.next = newNode;
-    }
+    //     newNode.next = temp.next;
+    //     temp.next = newNode;
+    // }
 
-    public int remove() {
-        if (size == 0)
-        {
-            System.out.println("The list is empty to remove anything.");
-            return Integer.MIN_VALUE;
-        }
-        else if (size == 1)
-        {
-            int value = head.data;
-            head = tail = null;
-            size = 0;
-            return value;
-        }
-        int value = head.data;
-        head = head.next;
-        size--;
+    // public int remove() {
+    //     if (size == 0)
+    //     {
+    //         System.out.println("The list is empty to remove anything.");
+    //         return Integer.MIN_VALUE;
+    //     }
+    //     else if (size == 1)
+    //     {
+    //         int value = head.data;
+    //         head = tail = null;
+    //         size = 0;
+    //         return value;
+    //     }
+    //     int value = head.data;
+    //     head = head.next;
+    //     size--;
 
-        return value;
-    }
+    //     return value;
+    // }
 
-    public int searchKey(int target) {
+    // public int searchKey(int target) {
 
-        Node temp = head;
-        int i = 0;
+    //     Node temp = head;
+    //     int i = 0;
 
-        while (temp != null)
-        {
-            if (temp.data == target)
-            {
-                return i;
-            }
+    //     while (temp != null)
+    //     {
+    //         if (temp.data == target)
+    //         {
+    //             return i;
+    //         }
 
-            temp = temp.next;
-            i++;
-        }
+    //         temp = temp.next;
+    //         i++;
+    //     }
 
-        return -1;
-    }
+    //     return -1;
+    // }
 
-    public int assist(Node head, int target) {
+    // public int assist(Node head, int target) {
 
-        if (head == null)
-        {
-            return -1;
-        }
-        if (head.data == target)
-        {
-            return 0;
-        }
+    //     if (head == null)
+    //     {
+    //         return -1;
+    //     }
+    //     if (head.data == target)
+    //     {
+    //         return 0;
+    //     }
 
-        int index = assist(head.next, target);
+    //     int index = assist(head.next, target);
         
-        if (index == -1)
-        {
-            return -1;
-        }
+    //     if (index == -1)
+    //     {
+    //         return -1;
+    //     }
 
-        return index+1;
+    //     return index+1;
 
-    }
+    // }
 
-    public int recSearchkey(int target) {
-        return assist(head, target);
-    }
+    // public int recSearchkey(int target) {
+    //     return assist(head, target);
+    // }
 
-    public void reverse() {
+    // public void reverse() {
 
-        Node prev = null;
-        Node curr = tail = head;
-        Node next;
+    //     Node prev = null;
+    //     Node curr = tail = head;
+    //     Node next;
 
-        while (curr != null)
-        {
-            next = curr.next;
-            curr.next = prev;
-            prev = curr;
-            curr = next;
-        }
-        head = prev;
-    }
+    //     while (curr != null)
+    //     {
+    //         next = curr.next;
+    //         curr.next = prev;
+    //         prev = curr;
+    //         curr = next;
+    //     }
+    //     head = prev;
+    // }
 
-    public void removeNthfromEnd(int n) {
+    // public void removeNthfromEnd(int n) {
 
-        int size = 0;
-        Node temp = head;
+    //     int size = 0;
+    //     Node temp = head;
         
-        while (temp != null)
-        {
-            temp = temp.next;
-            size++;
-        }
-
-        if (n == size)
-        {
-            head = head.next;
-            return;
-        }
-
-        int i = 1;
-        int j = size - n;
-        Node prev = head;
-
-        while (i < j)
-        {
-            prev = prev.next;
-            i++;
-        }
-        prev.next = prev.next.next;
-        return;
-    }
-
-    public Node findMid(Node head) {
-
-        Node slow = head;
-        Node fast = head;
-
-        while (fast != null && fast.next != null)
-        {
-            slow = slow.next;
-            fast = fast.next.next;
-        }
-
-        return slow;
-    }
-
-
-    public boolean checkPalindrome() {
-
-        // Edge case
-        if (head == null || head.next == null)
-        {
-            return true;
-        }
-
-        // find the middle Node
-
-        Node midNode = findMid(head);
-
-        // Reverse the 2nd half
-
-        Node prev = null;
-        Node curr = midNode;
-        Node next;
-
-        while (curr != null)
-        {
-            next = curr.next;
-            curr.next = prev;
-            prev = curr;
-            curr = next;
-        }
-
-        Node left = head;
-        Node right = prev;
-
-        while (right != null)
-        {
-            if (left.data != right.data)
-            {
-                return false;
-            }
-            left = left.next;
-            right = right.next;
-        }
-
-        return true;
-    }
-
-    public void setHead(Node head) {
-        this.head = head;
-    }
-
-    public boolean detectLLCycle(Node head) {
-
-        if (head == null)
-        {
-            return false;
-        }
-
-        Node slow = head;
-        Node fast = head;
-
-        while (fast != null && fast.next != null)
-        {
-            slow = slow.next;
-            fast = fast.next.next;
-
-            if (slow == fast)
-                {
-                    return true; // Loop exists.
-                }        
-        }
-
-        return false;
-    }
-
-    public void removeCycle(Node head) {
-
-        // Detection of Cycle
-        if (head == null)
-        {
-            System.out.println("Linked list is empty");
-            return;
-        }
-        Node slow = head;
-        Node fast = head;
-        boolean cycle = false;
-
-        while (fast != null && fast.next != null)
-        {
-            slow = slow.next;
-            fast = fast.next.next;
-
-            if (slow == fast) 
-            {
-                cycle = true;
-                break;
-            }
-        }
-        if (cycle == false)
-        {
-            return;
-        }
-
-        // find meeting point
-
-        slow = head;
-        Node prev = null;
-
-        while (slow != fast) 
-        {
-            prev = fast;
-            fast = fast.next;
-            slow = slow.next;
-        }
-
-        prev.next = null;
-    }
-
-    private Node getMid(Node head) {
-
-        Node slow = head;
-        Node fast = head;
-
-        while (fast.next != null && fast.next.next != null)
-        {
-            slow = slow.next;
-            fast = fast.next.next;
-        }
-
-        return slow;
-    }
-
-    private Node merge(Node left, Node right) {
-
-        Node mergedLL = new Node(-1);
-        Node temp = mergedLL;
-
-        while (left != null && right != null)
-        {
-            if (left.data <= right.data)
-            {
-                temp.next = left;
-                left = left.next;
-                temp = temp.next;
-            }
-            else 
-            {
-                temp.next = right;
-                right = right.next;
-                temp = temp.next;
-            }
-        }
-
-        while (left != null)
-        {
-            temp.next = left;
-            left = left.next;
-            temp = temp.next;
-        }
-
-        while (right != null)
-        {
-            temp.next = right;
-            right = right.next;
-            temp = temp.next;
-        }
-
-        return mergedLL.next;
-    }
-
-    public Node MergeSort(Node head) {
-
-        if (head == null || head.next == null)
-        {
-            return head;
-        }
-        // mid 
-        Node mid = getMid(head);
-        // Left and Right Mergesort
-        Node righthead = mid.next;
-        mid.next = null;
-
-        Node newLeft = MergeSort(head);
-        Node newRight = MergeSort(righthead);
-        // merge sorted left and right halves
-
-        return merge(newLeft, newRight);
-    }
-
-    public void ZigzagLL() {
-
-        // find mid node
-        Node slow = head;
-        Node fast = head.next;
-
-        while (fast != null && fast.next != null)
-        {
-            slow = slow.next;
-            fast = fast.next.next;
-        }
-
-        Node mid = slow;
-        // Reverse the second half
-        Node curr = mid.next;
-        mid.next = null;
-        Node prev = null;
-        Node next;
-
-        while (curr != null)
-        {
-            next = curr.next;
-            curr.next = prev;
-            prev = curr;
-            curr = next;
-        }
-
-        Node left = head;
-        Node right = prev;
-        Node nextLeft, nextRight;
-        // Alternate merge
-        while (left != null && right != null)
-        {
-            nextLeft = left.next;
-            left.next = right;
-            nextRight = right.next;
-            right.next = nextLeft;
-
-            // Update
-
-            right = nextRight;
-            left = nextLeft;
-        }
-    }
-
-    public void Addfirst(int data) {
-
-        Node newNode = new Node(data);
-        size++;
-
-        if (head == null)
-        {
-            head = tail = newNode;
-            return;
-        }
-
-        newNode.next = head;
-        head.prev = newNode;
-        head = newNode;
-    }
-
-    public int RemoveFirst() {
-
-        if (head == null)
-        {
-            System.out.println("The Doubly Linked List is empty.");
-            return Integer.MIN_VALUE;
-        }
-
-        if (size == 1)
-        {
-            int value = head.data;
-            head = tail = null;
-            size--;
-            return value;
-        }
-
-        int value = head.data;
-        head = head.next;
-        head.prev = null;
-        size--;
-        return value;
-    }
-
-    public void Reverse() {
-
-        Node curr = head;
-        Node prev = null;
-        Node next;
-
-        while (curr != null)
-        {
-            next = curr.next;
-            curr.next = prev;
-            curr.prev = next;
-            prev = curr;
-            curr = next;
-        }
-
-        head = prev;
-    }
-
-    public Node getIntrsectionNode(Node head1, Node head2) {
-
-        Node tempA = head1;
-        Node tempB = head2;
-
-        while (tempA != tempB)
-        {
-            if (tempA == null)
-            {
-                tempA = head2;
-            }
-            else
-            {
-                tempA = tempA.next;
-            }
-            if (tempB == null)
-            {
-                tempB = head1;
-            }
-            else 
-            {
-                tempB = tempB.next;
-            }
-        }
-        return tempA;
-    }
-
-    /*------------------------------------------Stack--------------------------------------- */
-
-    // ArrayList Implementation of Stack
-
-    ArrayList<Object> list = new ArrayList<>();
-
-    public boolean isEmpty() {
-
-        return list.size() == 0;
-    }
-
-    public void push(int data) {
-
-        list.add(data);
-    }
-
-    public int pop() {
-
-        int top = (int) list.get(list.size() - 1);
-        list.remove(list.size()-1);
-
-        return top;
-    }
-
-    public int peek() {
-
-        return (int) list.get(list.size() - 1);
-    }
-
-    // Linked List Implementation of Stack
-
-    public boolean isempty() {
-
-        return head == null;
-    }
-
-    public void Poos(int data) {
-        Node newNode = new Node(data);
-
-        if (isempty())
-        {
-            head = newNode;
-            return;
-        }
-
-        newNode.next = head;
-        head = newNode;
-    }
-
-    public int Poop() {
-
-        if (isempty())
-        {
-            return -1;
-        }
-
-        int top = head.data;
-        head = head.next;
-        return top;
-    }
-
-    public int Peek() {
-        if (isempty()) 
-        {
-            return -1;
-        }
-
-        return head.data;
-    }
+    //     while (temp != null)
+    //     {
+    //         temp = temp.next;
+    //         size++;
+    //     }
+
+    //     if (n == size)
+    //     {
+    //         head = head.next;
+    //         return;
+    //     }
+
+    //     int i = 1;
+    //     int j = size - n;
+    //     Node prev = head;
+
+    //     while (i < j)
+    //     {
+    //         prev = prev.next;
+    //         i++;
+    //     }
+    //     prev.next = prev.next.next;
+    //     return;
+    // }
+
+    // public Node findMid(Node head) {
+
+    //     Node slow = head;
+    //     Node fast = head;
+
+    //     while (fast != null && fast.next != null)
+    //     {
+    //         slow = slow.next;
+    //         fast = fast.next.next;
+    //     }
+
+    //     return slow;
+    // }
+
+
+    // public boolean checkPalindrome() {
+
+    //     // Edge case
+    //     if (head == null || head.next == null)
+    //     {
+    //         return true;
+    //     }
+
+    //     // find the middle Node
+
+    //     Node midNode = findMid(head);
+
+    //     // Reverse the 2nd half
+
+    //     Node prev = null;
+    //     Node curr = midNode;
+    //     Node next;
+
+    //     while (curr != null)
+    //     {
+    //         next = curr.next;
+    //         curr.next = prev;
+    //         prev = curr;
+    //         curr = next;
+    //     }
+
+    //     Node left = head;
+    //     Node right = prev;
+
+    //     while (right != null)
+    //     {
+    //         if (left.data != right.data)
+    //         {
+    //             return false;
+    //         }
+    //         left = left.next;
+    //         right = right.next;
+    //     }
+
+    //     return true;
+    // }
+
+    // public void setHead(Node head) {
+    //     this.head = head;
+    // }
+
+    // public boolean detectLLCycle(Node head) {
+
+    //     if (head == null)
+    //     {
+    //         return false;
+    //     }
+
+    //     Node slow = head;
+    //     Node fast = head;
+
+    //     while (fast != null && fast.next != null)
+    //     {
+    //         slow = slow.next;
+    //         fast = fast.next.next;
+
+    //         if (slow == fast)
+    //             {
+    //                 return true; // Loop exists.
+    //             }        
+    //     }
+
+    //     return false;
+    // }
+
+    // public void removeCycle(Node head) {
+
+    //     // Detection of Cycle
+    //     if (head == null)
+    //     {
+    //         System.out.println("Linked list is empty");
+    //         return;
+    //     }
+    //     Node slow = head;
+    //     Node fast = head;
+    //     boolean cycle = false;
+
+    //     while (fast != null && fast.next != null)
+    //     {
+    //         slow = slow.next;
+    //         fast = fast.next.next;
+
+    //         if (slow == fast) 
+    //         {
+    //             cycle = true;
+    //             break;
+    //         }
+    //     }
+    //     if (cycle == false)
+    //     {
+    //         return;
+    //     }
+
+    //     // find meeting point
+
+    //     slow = head;
+    //     Node prev = null;
+
+    //     while (slow != fast) 
+    //     {
+    //         prev = fast;
+    //         fast = fast.next;
+    //         slow = slow.next;
+    //     }
+
+    //     prev.next = null;
+    // }
+
+    // private Node getMid(Node head) {
+
+    //     Node slow = head;
+    //     Node fast = head;
+
+    //     while (fast.next != null && fast.next.next != null)
+    //     {
+    //         slow = slow.next;
+    //         fast = fast.next.next;
+    //     }
+
+    //     return slow;
+    // }
+
+    // private Node merge(Node left, Node right) {
+
+    //     Node mergedLL = new Node(-1);
+    //     Node temp = mergedLL;
+
+    //     while (left != null && right != null)
+    //     {
+    //         if (left.data <= right.data)
+    //         {
+    //             temp.next = left;
+    //             left = left.next;
+    //             temp = temp.next;
+    //         }
+    //         else 
+    //         {
+    //             temp.next = right;
+    //             right = right.next;
+    //             temp = temp.next;
+    //         }
+    //     }
+
+    //     while (left != null)
+    //     {
+    //         temp.next = left;
+    //         left = left.next;
+    //         temp = temp.next;
+    //     }
+
+    //     while (right != null)
+    //     {
+    //         temp.next = right;
+    //         right = right.next;
+    //         temp = temp.next;
+    //     }
+
+    //     return mergedLL.next;
+    // }
+
+    // public Node MergeSort(Node head) {
+
+    //     if (head == null || head.next == null)
+    //     {
+    //         return head;
+    //     }
+    //     // mid 
+    //     Node mid = getMid(head);
+    //     // Left and Right Mergesort
+    //     Node righthead = mid.next;
+    //     mid.next = null;
+
+    //     Node newLeft = MergeSort(head);
+    //     Node newRight = MergeSort(righthead);
+    //     // merge sorted left and right halves
+
+    //     return merge(newLeft, newRight);
+    // }
+
+    // public void ZigzagLL() {
+
+    //     // find mid node
+    //     Node slow = head;
+    //     Node fast = head.next;
+
+    //     while (fast != null && fast.next != null)
+    //     {
+    //         slow = slow.next;
+    //         fast = fast.next.next;
+    //     }
+
+    //     Node mid = slow;
+    //     // Reverse the second half
+    //     Node curr = mid.next;
+    //     mid.next = null;
+    //     Node prev = null;
+    //     Node next;
+
+    //     while (curr != null)
+    //     {
+    //         next = curr.next;
+    //         curr.next = prev;
+    //         prev = curr;
+    //         curr = next;
+    //     }
+
+    //     Node left = head;
+    //     Node right = prev;
+    //     Node nextLeft, nextRight;
+    //     // Alternate merge
+    //     while (left != null && right != null)
+    //     {
+    //         nextLeft = left.next;
+    //         left.next = right;
+    //         nextRight = right.next;
+    //         right.next = nextLeft;
+
+    //         // Update
+
+    //         right = nextRight;
+    //         left = nextLeft;
+    //     }
+    // }
+
+    // public void Addfirst(int data) {
+
+    //     Node newNode = new Node(data);
+    //     size++;
+
+    //     if (head == null)
+    //     {
+    //         head = tail = newNode;
+    //         return;
+    //     }
+
+    //     newNode.next = head;
+    //     head.prev = newNode;
+    //     head = newNode;
+    // }
+
+    // public int RemoveFirst() {
+
+    //     if (head == null)
+    //     {
+    //         System.out.println("The Doubly Linked List is empty.");
+    //         return Integer.MIN_VALUE;
+    //     }
+
+    //     if (size == 1)
+    //     {
+    //         int value = head.data;
+    //         head = tail = null;
+    //         size--;
+    //         return value;
+    //     }
+
+    //     int value = head.data;
+    //     head = head.next;
+    //     head.prev = null;
+    //     size--;
+    //     return value;
+    // }
+
+    // public void Reverse() {
+
+    //     Node curr = head;
+    //     Node prev = null;
+    //     Node next;
+
+    //     while (curr != null)
+    //     {
+    //         next = curr.next;
+    //         curr.next = prev;
+    //         curr.prev = next;
+    //         prev = curr;
+    //         curr = next;
+    //     }
+
+    //     head = prev;
+    // }
+
+    // public Node getIntrsectionNode(Node head1, Node head2) {
+
+    //     Node tempA = head1;
+    //     Node tempB = head2;
+
+    //     while (tempA != tempB)
+    //     {
+    //         if (tempA == null)
+    //         {
+    //             tempA = head2;
+    //         }
+    //         else
+    //         {
+    //             tempA = tempA.next;
+    //         }
+    //         if (tempB == null)
+    //         {
+    //             tempB = head1;
+    //         }
+    //         else 
+    //         {
+    //             tempB = tempB.next;
+    //         }
+    //     }
+    //     return tempA;
+    // }
+
+    // /*------------------------------------------Stack--------------------------------------- */
+
+    // // ArrayList Implementation of Stack
+
+    // ArrayList<Object> list = new ArrayList<>();
+
+    // public boolean isEmpty() {
+
+    //     return list.size() == 0;
+    // }
+
+    // public void push(int data) {
+
+    //     list.add(data);
+    // }
+
+    // public int pop() {
+
+    //     int top = (int) list.get(list.size() - 1);
+    //     list.remove(list.size()-1);
+
+    //     return top;
+    // }
+
+    // public int peek() {
+
+    //     return (int) list.get(list.size() - 1);
+    // }
+
+    // // Linked List Implementation of Stack
+
+    // public boolean isempty() {
+
+    //     return head == null;
+    // }
+
+    // public void Poos(int data) {
+    //     Node newNode = new Node(data);
+
+    //     if (isempty())
+    //     {
+    //         head = newNode;
+    //         return;
+    //     }
+
+    //     newNode.next = head;
+    //     head = newNode;
+    // }
+
+    // public int Poop() {
+
+    //     if (isempty())
+    //     {
+    //         return -1;
+    //     }
+
+    //     int top = head.data;
+    //     head = head.next;
+    //     return top;
+    // }
+
+    // public int Peek() {
+    //     if (isempty()) 
+    //     {
+    //         return -1;
+    //     }
+
+    //     return head.data;
+    // }
 
     public void pushAtBottom(Stack<Integer> s, int data) {
 
@@ -1843,37 +1843,37 @@ class Structures {
         System.out.print("The maximum are for the given histogram is: "+maxArea+" unit");
     }
 
-    public boolean stackPalindromecheck(Node head) {
+    // public boolean stackPalindromecheck(Node head) {
 
-        Node slow = head;
-        boolean flag = true;
+    //     Node slow = head;
+    //     boolean flag = true;
 
-        Stack<Integer> s = new Stack<>();
+    //     Stack<Integer> s = new Stack<>();
 
-        while (slow != null)
-        {
-            s.push(slow.data);
-            slow = slow.next;
-        }
+    //     while (slow != null)
+    //     {
+    //         s.push(slow.data);
+    //         slow = slow.next;
+    //     }
 
-        while (head != null)
-        {
-            int check = s.pop();
+    //     while (head != null)
+    //     {
+    //         int check = s.pop();
 
-            if (head.data == check) 
-            {
-                flag = true;
-            }
-            else 
-            {
-                flag = false;
-                break;
-            }
-            head = head.next;
-        }
+    //         if (head.data == check) 
+    //         {
+    //             flag = true;
+    //         }
+    //         else 
+    //         {
+    //             flag = false;
+    //             break;
+    //         }
+    //         head = head.next;
+    //     }
 
-        return flag;
-    }
+    //     return flag;
+    // }
 
     public String SimplifyPath(String str) {
 
@@ -2174,74 +2174,58 @@ class Structures {
         }
         System.out.println();
     }
-}
 
-class Queue {
+    /*--------------------------------Binary Trees--------------------------------------- */
+    public static int idx = -1;
+    public Node BuildTree(int[] nodes) {
 
-    public int[] arr;
-    public int size;
-    public int rear;
-
-    public Queue(int n) {
-        arr = new int[n];
-        size = n;
-        rear = -1;
-    }
-
-    public boolean IsEmpty() {
-        return rear == -1;
-    }
-
-    public void add(int data) {
-        if (rear == size - 1)
+        idx++;
+       
+        if (nodes[idx] == -1)
         {
-            System.out.println("Queue is full");
+            return null;
+        }
+
+        Node newNode = new Node(nodes[idx]);
+        newNode.left = BuildTree(nodes);
+        newNode.right = BuildTree(nodes);
+
+        return newNode;
+    }
+
+    public void preOrder(Node root) {
+
+        if (root == null) {
             return;
         }
-
-        rear += 1;
-        arr[rear] = data;
+        System.out.print(root.data + " ");
+        preOrder(root.left);
+        preOrder(root.right);
     }
 
-    public int drop() {
-        if (IsEmpty())
+    public void InOrder(Node root) {
+        if (root == null)
         {
-            System.out.println("Queue is Empty");
-            return -1;
+            return;
         }
-
-        int front = arr[0];
-        for (int i = 0; i < rear; i++)
-        {
-            arr[i] = arr[i+1];
-        }
-        rear = rear - 1;
-        return front;
+        InOrder(root.left);
+        System.out.print(root.data + " ");
+        InOrder(root.right);
     }
 
-    public int peep() {
-        if (IsEmpty())
-        {
-            System.out.println("Queue is Empty");
-            return -1;
-        }
-
-        return arr[0];
-    }
-    
 }
 
 class Node {
 
     int data;
-    Node next;
-    Node prev;
+    Node left;
+    Node right;
 
     public Node(int data)
     {
         this.data = data;
-        this.next = null;
-        this.prev = null;
+        this.left = null;
+        this.right = null;
     }
 
 }
@@ -2252,11 +2236,12 @@ public class Codes {
     public static void main(String[] args) throws Exception{
         Structures ss = new Structures();
 
-        Integer[] sort = {1, 2, 5, 10, 20, 50, 100, 200, 500};
-        int amount = 226550;
+        int[] sort = {1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6, -1, -1};
+        
 
-        ss.IndianCoin(sort, amount);
+        Node root = ss.BuildTree(sort);
 
+        ss.InOrder(root);
         
     }
 }
