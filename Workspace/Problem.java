@@ -2527,8 +2527,8 @@ Explanation 2:
 
 
         Problem Constraints
-        1 <= N <= 105
-        1 <= Amax <= 106
+        1 <= N <= 10^5
+        1 <= Amax <= 10^6
         Sum of Amax over all test cases will not exceed 5 * 106
 
 
@@ -2572,6 +2572,215 @@ Explanation 2:
         Only 4 and 9 are the numbers less than or equal to 10 which do not have the required number of divisors.
 
     */
+
+
+    public boolean isPowerofTwo(int n) {
+        if ((n & (n-1)) == 0)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public void divisorCount(int value) {
+        
+        int count = 0;
+        int n = 1;
+        while (n <= value)
+        {
+            int firstCount = 0;
+            for (int i = 1; i <= n; i++)
+            {
+                if (n % i == 0)
+                {
+                    System.out.print(i+ " ");
+                    firstCount++;
+                }
+                
+            }
+            if ((firstCount & (firstCount - 1)) == 0)
+            {
+                count++;
+            }
+            n++;
+            System.out.println();
+        }
+        System.out.println(count);
+    }
+
+    // public int OptimalDivisorCount(int value) {
+        
+
+    //     for (int i = 1; i <= value; i++)
+    //     {
+    //         for (int j = i; j <= value; j += i)
+    //         {
+
+    //         }
+    //     }
+    // }
+
+    /*
+    Problem Description
+ 
+ 
+
+        Given an integer A, return the number of trailing zeroes in A!.
+
+        Note: Your solution should be in logarithmic time complexity.
+
+
+
+        Problem Constraints
+
+        0 <= A <= 10000000
+
+
+        Input Format
+
+        First and only argumment is integer A.
+
+
+        Output Format
+
+        Return an integer, the answer to the problem.
+
+
+        Example Input
+
+        Input 1:
+
+        A = 4
+
+        Input 2:
+
+        A = 5
+
+
+
+        Example Output
+
+        Output 1:
+
+        0
+
+        Output 2:
+
+        1
+
+
+
+        Example Explanation
+
+        Explanation 1:
+
+        4! = 24
+
+        Explanation 2:
+
+        5! = 120
+
+    */
+
+    public int Factorial(int n) {
+        if (n == 0) 
+        {
+            return 1;
+        }
+
+        return (n * Factorial(n-1));
+    }
+
+    public int ZeroCount(int n) {
+        int count = 0;
+
+        for (int i = 1; i <= n; i++)
+        {
+            int temp = i;
+
+            while (temp % 5 == 0)
+            {
+                count++;
+                temp /= 5;
+            }
+        }
+        
+        return count;
+    }
+
+    /*
+    Problem Description
+        
+        
+
+        Given a string A. Find the rank of the string amongst its permutations sorted lexicographically.
+
+        Assume that no characters are repeated.
+
+        Note: The answer might not fit in an integer, so return your answer % 1000003
+
+
+
+        Problem Constraints
+
+        1 <= |A| <= 1000
+
+
+        Input Format
+
+        First argument is a string A.
+
+
+        Output Format
+
+        Return an integer denoting the rank of the given string.
+
+
+        Example Input
+
+        Input 1:
+
+        A = "acb"
+
+        Input 2:
+
+        A = "a"
+
+
+
+        Example Output
+
+        Output 1:
+
+        2
+
+        Output 2:
+
+        1
+
+
+
+        Example Explanation
+
+        Explanation 1:
+
+        Given A = "acb".
+        The order permutations with letters 'a', 'c', and 'b' : 
+        abc
+        acb
+        bac
+        bca
+        cab
+        cba
+        So, the rank of A is 2.
+
+        Explanation 2:
+
+        Given A = "a".
+        Rank is clearly 1.
+
+
+    */
 }
 
 
@@ -2580,9 +2789,7 @@ public class Problem {
     public static void main(String[] args) {
         
         PrimeNumbers pl = new PrimeNumbers();
-        int[] elements = {0, 6};
-        int result = pl.divisible60(elements);
-
-        System.out.println(result);
+        
+        System.out.println(pl.ZeroCount(125));
     }
 }
