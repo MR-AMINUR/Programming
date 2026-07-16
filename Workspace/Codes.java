@@ -2213,6 +2213,58 @@ class Structures {
         InOrder(root.right);
     }
 
+    public void PostOrder(Node root) {
+        if (root == null)
+        {
+            return;
+        }
+
+        PostOrder(root.left);
+        PostOrder(root.right);
+        System.out.print(root.data + " ");
+    }
+
+    public void LevelOrder(Node root) {
+
+        if (root == null)
+        {
+            return;
+        }
+
+        Queue<Node> q = new LinkedList<>();
+        q.add(root);
+        q.add(null);
+
+        while (!q.isEmpty())
+        {
+            Node currNode = q.remove();
+            if (currNode == null)
+            {
+                System.out.println();
+                if (q.isEmpty())
+                {
+                    break;
+                }
+                else
+                {
+                    q.add(null);
+                }
+            }
+            else
+            {
+                System.out.print(currNode.data + " ");
+                if (currNode.left != null)
+                {
+                    q.add(currNode.left);
+                }
+                if(currNode.right != null) 
+                {
+                    q.add(currNode.right);
+                }
+            }
+        }
+    }
+
 }
 
 class Node {
@@ -2241,7 +2293,7 @@ public class Codes {
 
         Node root = ss.BuildTree(sort);
 
-        ss.InOrder(root);
+        ss.LevelOrder(root);
         
     }
 }
