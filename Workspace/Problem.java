@@ -2709,17 +2709,12 @@ Explanation 2:
     }
 
     /*
-    Problem Description
-        
-        
-
+        Problem Description                          
         Given a string A. Find the rank of the string amongst its permutations sorted lexicographically.
 
         Assume that no characters are repeated.
 
         Note: The answer might not fit in an integer, so return your answer % 1000003
-
-
 
         Problem Constraints
 
@@ -2781,6 +2776,50 @@ Explanation 2:
 
 
     */
+
+    public void printPermutation(String str, int f, int l) {
+
+        if (f == l)
+        {
+            System.out.println(str);
+        }
+
+        for (int i = f; i <= l; i++)
+        {
+            str = swapString(str, f, i);
+            printPermutation(str, f+1, l);
+            str = swapString(str, f, i);
+        }
+    }
+
+    public String swapString(String str, int i, int j) {
+        char[] array = str.toCharArray();
+
+        char temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+
+        return String.valueOf(array);
+    }
+
+    public int FindRank(String inp) {
+        int smallerCount = 0;
+        int rank = 1;
+
+        for (int i = 1; i <= inp.length()-1; i++)
+        {
+            if (inp.charAt(i-1) > inp.charAt(i))   // c > b > a
+            {
+                smallerCount++;
+            }
+
+            smallerCount = smallerCount * factorial(inp.length() - i - 1);
+        }
+
+        rank = rank + smallerCount;
+
+        return rank;
+    }
 }
 
 
@@ -2789,7 +2828,10 @@ public class Problem {
     public static void main(String[] args) {
         
         PrimeNumbers pl = new PrimeNumbers();
+        String str = "cba";
+
+        System.out.println(pl.FindRank(str));
         
-        System.out.println(pl.ZeroCount(125));
+        
     }
 }

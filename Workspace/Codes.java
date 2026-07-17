@@ -2288,12 +2288,7 @@ public class Codes {
     public static void main(String[] args) throws Exception{
         Structures ss = new Structures();
 
-        int[] sort = {1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6, -1, -1};
-        
-
-        Node root = ss.BuildTree(sort);
-
-        ss.LevelOrder(root);
+        ss.printPermutation("ab", "c");
         
     }
 }
