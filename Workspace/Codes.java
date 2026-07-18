@@ -2277,6 +2277,17 @@ class Structures {
         return (Math.max(left, right) + 1);
     }
 
+    public int treeNodes(Node root) {
+        if (root == null) {
+            return 0;
+        }
+
+        int leftNodes = treeNodes(root.left);
+        int rightNodes = treeNodes(root.right);
+
+        return leftNodes + rightNodes + 1;
+    }
+
 }
 
 class Node {
@@ -2303,7 +2314,7 @@ public class Codes {
         int[] tree = {1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6, -1, -1};
 
         Node root = ss.BuildTree(tree);
-        System.out.println(ss.treeHeight(root));
+        System.out.println(ss.treeNodes(root));
         
     }
 }
