@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.Queue;
 
 
 class Structures {
@@ -2265,6 +2266,17 @@ class Structures {
         }
     }
 
+    public int treeHeight(Node root) {
+        if (root == null) {
+            return 0;
+        }
+
+        int left = treeHeight(root.left);
+        int right = treeHeight(root.right);
+
+        return (Math.max(left, right) + 1);
+    }
+
 }
 
 class Node {
@@ -2288,7 +2300,10 @@ public class Codes {
     public static void main(String[] args) throws Exception{
         Structures ss = new Structures();
 
-        ss.printPermutation("ab", "c");
+        int[] tree = {1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6, -1, -1};
+
+        Node root = ss.BuildTree(tree);
+        System.out.println(ss.treeHeight(root));
         
     }
 }
