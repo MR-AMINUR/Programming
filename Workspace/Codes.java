@@ -2288,6 +2288,18 @@ class Structures {
         return leftNodes + rightNodes + 1;
     }
 
+    public int SumOfNodes(Node root) {
+        if (root == null)
+        {
+            return 0;
+        }
+
+        int leftSum = SumOfNodes(root.left);
+        int rightSum = SumOfNodes(root.right);
+        
+
+        return (leftSum + rightSum + root.data);
+    }
 }
 
 class Node {
@@ -2314,7 +2326,7 @@ public class Codes {
         int[] tree = {1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6, -1, -1};
 
         Node root = ss.BuildTree(tree);
-        System.out.println(ss.treeNodes(root));
+        System.out.println(ss.SumOfNodes(root));
         
     }
 }
