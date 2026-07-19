@@ -2783,12 +2783,17 @@ Explanation 2:
         
         int rank = 1;
 
-        for (int i = 1; i <= inp.length()-1; i++)
+        for (int i = 0; i <= inp.length()-1; i++)
         {
+            char s1 = inp.charAt(i);
             int smallerCount = 0;
-            if (inp.charAt(i-1) > inp.charAt(i))   // c > b > a
+            for (int j = i+1; j <= inp.length()-1; j++)
             {
-                smallerCount++;
+                char s2 = inp.charAt(j);
+                if (s1 > s2)
+                {
+                    smallerCount++;
+                }
             }
 
             smallerCount = smallerCount * factorial(inp.length() - i - 1);
@@ -2799,6 +2804,51 @@ Explanation 2:
 
         return rank;
     }
+
+    /*public int factorial(int i){
+        if(i==1){
+            return 1;
+        }
+        if(i==0){
+            return 1;
+        }
+        return (i*factorial(i-1))%1000003;
+    }
+    public int findRank(String A) {
+        int n=A.length();
+        int fact[]=new int[n];
+        int rank[]=new int[n];
+        int ans=0;
+        for(int i=0;i<n;i++){
+            int count=0;
+            for (int j=i+1;j<n;j++){
+                if(A.charAt(i)>A.charAt(j)){
+                    count++;
+                }
+            }
+            rank[i]=count;
+        }
+        for(int i=0;i<n;i++){
+             ans=ans +(rank[i]*factorial(n-1-i))%1000003;
+        }
+        return (ans+1)%1000003;
+       
+    } */
+
+    public int StringCheck() {
+        String str1 = "abc";
+        String str2 = "acb";
+
+        char ch1 = str1.charAt(1);
+        char ch2 = str2.charAt(1);
+
+        if (ch1 > ch2)
+        {
+            return 1;
+        }
+        
+        return -1;
+    }
 }
 
 
@@ -2807,11 +2857,9 @@ public class Problem {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         PrimeNumbers pl = new PrimeNumbers();
-        System.out.print("Enter your String to check its rank: ");
-
-        String str = sc.nextLine();
-
-        System.out.println(pl.FindRank(str));
+       
+        int result = pl.FindRank("cba");
+        System.out.println(result);
         
         sc.close();
     }
