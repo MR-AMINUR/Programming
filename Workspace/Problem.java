@@ -2878,6 +2878,23 @@ Explanation 2:
         Output Format
         Find the maximum valued integer X which satisfies the above properties.
     */
+
+    public int FindX (int a, int b) {
+
+        if (a % 1 == 0 && gcd (b, 1) == 1)
+        {
+            return 1;
+        }
+        
+        for (int i = 2; i <= a; i++) {
+            int x = i;
+            if (a % x == 0 && gcd(x, b) == 1) {
+                return x;
+            }
+        }
+
+        return -1;
+    }
 }
 
 
@@ -2887,7 +2904,7 @@ public class Problem {
         Scanner sc = new Scanner(System.in);
         PrimeNumbers pl = new PrimeNumbers();
        
-        int result = pl.FindRank("cba");
+        int result = pl.FindX(30, 12);
         System.out.println(result);
         
         sc.close();

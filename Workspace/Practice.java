@@ -419,7 +419,7 @@ class Revisit {
         return false;
     }
 
-    public void nextGreater(int[] arr) {
+    public boolean nextGreater1(int[] arr) {
 
         Stack<Integer> s = new Stack<>();
 
@@ -448,6 +448,7 @@ class Revisit {
             System.out.print(nextgtr[i]+ " ");
         }
         System.out.println();
+        return false;
     }
 
     public boolean isDuplicate(String str) {
@@ -670,15 +671,16 @@ class Revisit {
     }
     public int[] nextGreater(int[] arr) {
         int[] nextgtr = new int[arr.length];
+        Arrays.fill(nextgtr, -1);
 
         for (int i = 0; i < arr.length; i++)
         {
-            for (int j = i+1; j < arr.length; j++)
+            for (int j = i + 1; j < arr.length; j++)
             {
                 if (arr[j] > arr[i])
                 {
-                    nxtgtr[i]  = arr[j];
-                    continue;
+                    nextgtr[i] = arr[j];
+                    break;
                 }
             }
         }
@@ -699,7 +701,7 @@ public class Practice {
 
     int[] a = {6, 8, 0, 1, 3};
 
-    System.out.println(rv.nextGreater(a));
+    System.out.print(rv.nextGreater1(a));
 
     sc.close();
 

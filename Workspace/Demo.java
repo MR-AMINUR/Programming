@@ -68,7 +68,10 @@ public class Demo {
         Problem po = new Problem();
 
         
-        ArrayList<ArrayList<Integer>> A = [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12]];
+        ArrayList<ArrayList<Integer>> A = new ArrayList<>();
+        A.add(new ArrayList<>(Arrays.asList(1, 2, 3, 4)));
+        A.add(new ArrayList<>(Arrays.asList(5, 6, 7, 8)));
+        A.add(new ArrayList<>(Arrays.asList(9, 10, 11, 12)));
 
         ArrayList<ArrayList<Integer>> B = po.performOps(A);
 

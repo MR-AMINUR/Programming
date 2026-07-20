@@ -6,7 +6,7 @@ class MaxStack {
     private Stack<String> inStack = new Stack<>();
     private Stack<String> outStack = new Stack<>();
 
-    public boolean isEmpty() {
+    public boolean isEmpty1() {
 
         return inStack.isEmpty() && outStack.isEmpty();
     }
@@ -71,7 +71,7 @@ class MaxStack {
         }
     }
 
-    public int ArrayElement(Integer[] a, Integer[] b) {
+    public int ArrayElement1(Integer[] a, Integer[] b) {
 
         int size = a.length;
         int count = 0;
@@ -91,20 +91,19 @@ class MaxStack {
         return mainStack.isEmpty();
     }
 
-    private boolean less(@SuppressWarnings("rawtypes") Comparable v, @SuppressWarnings("rawtypes") Comparable w) {
+    private <T extends Comparable<? super T>> boolean less1(T v, T w) {
 
         return v.compareTo(w) < 0;
     }
 
-    private void exch(@SuppressWarnings("rawtypes") Comparable[] a, int i, int j) {
+    private <T extends Comparable<? super T>> void exch1(T[] a, int i, int j) {
 
-        @SuppressWarnings("rawtypes")
-        Comparable swap = a[i];
+        T swap = a[i];
         a[i] = a[j];
         a[j] = swap;
     }
 
-    public void sort(@SuppressWarnings("rawtypes") Comparable[] a) {
+    public <T extends Comparable<? super T>> void sort(T[] a) {
 
         int N = a.length;
 
@@ -113,9 +112,9 @@ class MaxStack {
             int min = i;
 
             for(int j = i+1; j < N; j++)
-                if(less(a[j], a[min]))
+                if(less1(a[j], a[min]))
                     min = j;
-            exch(a, i, min);
+            exch1(a, i, min);
            
         }
     }
@@ -137,28 +136,15 @@ class MaxStack {
         
     }  
 
-    private boolean less(@SuppressWarnings("rawtypes") Comparable v, @SuppressWarnings("rawtypes") Comparable w ) {
-
-        return v.compareTo(w) < 0;
-    }
-
-    private void exch(@SuppressWarnings("rawtypes") Comparable[] a, int i, int j) {
-
-        @SuppressWarnings("rawtypes")
-        Comparable swap = a[i];
-        a[i] = a[j];
-        a[j] = swap;
-    }
-
-    public void Insort(@SuppressWarnings("rawtypes") Comparable[] a) {
+    public <T extends Comparable<? super T>> void Insort(T[] a) {
 
         int size = a.length;
 
         for(int i = 0; i < size; i++)
         {
             for(int j = i; j > 0; j--)
-                if(less(a[j], a[j-1]))
-                    exch(a, j, j-1);
+                if(less1(a[j], a[j-1]))
+                    exch1(a, j, j-1);
                 else break;
         }
     }
@@ -183,7 +169,7 @@ class MaxStack {
 
 class ShellSort {
 
-    public void sSort(@SuppressWarnings("rawtypes") Comparable[] a) {
+    public <T extends Comparable<? super T>> void sSort(T[] a) {
 
         int size = a.length;
         int h = 1;
@@ -200,20 +186,18 @@ class ShellSort {
         }
     }
 
-    private boolean less(@SuppressWarnings("rawtypes") Comparable v, @SuppressWarnings("rawtypes") Comparable w) {
+    private <T extends Comparable<? super T>> boolean less(T v, T w) {
 
         return v.compareTo(w) < 0;
     }
 
-    private void exch(@SuppressWarnings("rawtypes") Comparable[] a, int i, int j) {
+    private <T extends Comparable<? super T>> void exch(T[] a, int i, int j) {
 
-        @SuppressWarnings("rawtypes")
-        Comparable swap = a[i];
+        T swap = a[i];
         a[i] = a[j];
         a[j] = swap;
     }
 
-    
 }
 
 class Permutation {
@@ -410,7 +394,7 @@ class ArrayPartition {
     }
 }
 
-{
+class ThreePartition {
 
     public int solve(int A, int[] B) {
 
