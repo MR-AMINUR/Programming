@@ -2800,7 +2800,7 @@ Explanation 2:
             rank = rank + smallerCount;
         }
 
-        
+        // This answer satisfies the required time complexity of the above descripted problem . Just add "%100003" to the return statements for both functions...
 
         return rank;
     }
@@ -2835,20 +2835,7 @@ Explanation 2:
        
     } */
 
-    public int StringCheck() {
-        String str1 = "abc";
-        String str2 = "acb";
-
-        char ch1 = str1.charAt(1);
-        char ch2 = str2.charAt(1);
-
-        if (ch1 > ch2)
-        {
-            return 1;
-        }
-        
-        return -1;
-    }
+    
 
     /*
     Problem Description
