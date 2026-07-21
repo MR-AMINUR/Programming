@@ -2315,6 +2315,31 @@ class Structures {
 
         return (Math.max(selfDiameter, Math.max(leftDiameter, rightDiameter)));
     }
+
+    public Info TreeDiameter(Node root) {
+
+        if (root == null) {
+            return new Info(0, 0);
+        }
+
+        Info leftInfo = TreeDiameter(root.left);
+        Info rightInfo = TreeDiameter(root.right);
+
+        int diameter = Math.max(Math.max(leftInfo.diameter, rightInfo.diameter), leftInfo.height + rightInfo.height + 1);
+        int height = Math.max(leftInfo.height, rightInfo.height) + 1;
+
+        return new Info(diameter, height);
+    }
+}
+
+class Info {
+    int diameter;
+    int height;
+
+    public Info(int diameter, int height) {
+        this.diameter = diameter;
+        this.height = height;
+    }
 }
 
 class Node {
@@ -2341,7 +2366,8 @@ public class Codes {
         int[] tree = {1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6, -1, -1};
 
         Node root = ss.BuildTree(tree);
-        System.out.println(ss.treeDiameter(root));
+        System.out.println(ss.TreeDiameter(root).diameter);
+        System.out.println(ss.TreeDiameter(root).height);
         
     }
 }
