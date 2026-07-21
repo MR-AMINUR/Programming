@@ -2300,6 +2300,21 @@ class Structures {
 
         return (leftSum + rightSum + root.data);
     }
+
+    public int treeDiameter(Node root) {
+        if (root == null) {
+            return 0;
+        }
+
+        int leftHeight = treeHeight(root.left);
+        int leftDiameter = treeDiameter(root.left);
+        int rightHeight = treeHeight(root.right);
+        int rightDiameter = treeDiameter(root.right);
+
+        int selfDiameter = (leftHeight + rightHeight + 1);
+
+        return (Math.max(selfDiameter, Math.max(leftDiameter, rightDiameter)));
+    }
 }
 
 class Node {
@@ -2326,7 +2341,7 @@ public class Codes {
         int[] tree = {1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6, -1, -1};
 
         Node root = ss.BuildTree(tree);
-        System.out.println(ss.SumOfNodes(root));
+        System.out.println(ss.treeDiameter(root));
         
     }
 }
