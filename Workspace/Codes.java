@@ -2330,6 +2330,37 @@ class Structures {
 
         return new Info(diameter, height);
     }
+
+    public boolean isIdentical(Node node , Node subRoot) {
+        if (node == null && subRoot == null) {
+            return true;
+        } else if (node == null || subRoot == null || node.data != subRoot.data) {
+            return false;
+        }
+
+        if (!isIdentical(node.left, subRoot.left)) {
+            return false;
+        }
+        if (!isIdentical(node.right, subRoot.right)) {
+            return false;
+        }
+
+        return true;
+    }
+
+    public boolean isSubTree(Node root, Node SubRoot) {
+        if (root == null) {
+            return false;
+        }
+
+        if (root.data == SubRoot.data) {
+            if (isIdentical(root, SubRoot)) {
+                return true;
+            }
+        }
+
+        return (isSubTree(root.left, SubRoot)) || (isSubTree(root.right, SubRoot));
+    }
 }
 
 class Info {
@@ -2363,11 +2394,20 @@ public class Codes {
     public static void main(String[] args) throws Exception{
         Structures ss = new Structures();
 
-        int[] tree = {1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6, -1, -1};
+        Node root = new Node(1);
+        root.left = new Node(2);
+        root.right = new Node(3);
+        root.left.left = new Node(4);
+        root.left.right = new Node(5);
+        root.right.left = new Node(6);
+        root.right.right = new Node(7);
 
-        Node root = ss.BuildTree(tree);
-        System.out.println(ss.TreeDiameter(root).diameter);
-        System.out.println(ss.TreeDiameter(root).height);
+        Node subRoot = new Node(2);
+        subRoot.left = new Node(4);
+        subRoot.right = new Node(5);
+
+        System.out.println(ss.isSubTree(root, subRoot));
+        
         
     }
 }
