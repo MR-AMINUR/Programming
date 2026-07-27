@@ -2787,6 +2787,7 @@ Explanation 2:
         {
             char s1 = inp.charAt(i);
             int smallerCount = 0;
+            
             for (int j = i+1; j <= inp.length()-1; j++)
             {
                 char s2 = inp.charAt(j);
@@ -2794,9 +2795,10 @@ Explanation 2:
                 {
                     smallerCount++;
                 }
+                
             }
 
-            smallerCount = smallerCount * factorial(inp.length() - i - 1);
+            smallerCount *= (factorial(inp.length() - i - 1));
             rank = rank + smallerCount;
         }
 
@@ -2961,7 +2963,7 @@ public class Problem {
         Scanner sc = new Scanner(System.in);
         PrimeNumbers pl = new PrimeNumbers();
        
-        int result = pl.FindX(36, 35);
+        int result = pl.FindRank("baa");
         System.out.println(result);
         
         sc.close();
