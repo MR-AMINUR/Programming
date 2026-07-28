@@ -2886,74 +2886,128 @@ Explanation 2:
  
  
 
-Given a string A, find the rank of the string amongst its permutations sorted lexicographically. Note that the characters might be repeated. If the characters are repeated, we need to look at the rank in unique permutations. Look at the example for more details.
+        Given a string A, find the rank of the string amongst its permutations sorted lexicographically. Note that the characters might be repeated. If the characters are repeated, we need to look at the rank in unique permutations. Look at the example for more details.
 
-NOTE: 
+        NOTE: 
 
-    The answer might not fit in an integer, so return your answer % 1000003 where 1000003 is a prime number.
-    String A can consist of both lowercase and uppercase letters. Characters with lesser ASCII values are considered smaller, i.e., 'a' > 'Z'.
-
-
-
-Problem Constraints
-
-1 <= len(A) <= 1000000 
-
-
-Input Format
-
-First argument is a string A.
-
-
-Output Format
-
-Return an integer denoting the rank.
-
-
-Example Input
-
-Input 1:
-
- A = "aba"
-
-Input 2:
-
- A = "bca"
+            The answer might not fit in an integer, so return your answer % 1000003 where 1000003 is a prime number.
+            String A can consist of both lowercase and uppercase letters. Characters with lesser ASCII values are considered smaller, i.e., 'a' > 'Z'.
 
 
 
-Example Output
+        Problem Constraints
 
-Output 1:
-
- 2
-
-Output 2:
-
- 4
+        1 <= len(A) <= 1000000 
 
 
+        Input Format
 
-Example Explanation
+        First argument is a string A.
 
-Explanation 1:
 
- The order permutations with letters 'a', 'a', and 'b' :
-    aab
-    aba 
-    baa
- So, the rank is 2.
+        Output Format
 
-Explanation 2:
+        Return an integer denoting the rank.
 
- The order permutations with letters 'a', 'b', and 'c' :
-    abc
-    acb 
-    bac
-    bca
-    cab
-    cba
- So, the rank is 4. */
+
+        Example Input
+
+        Input 1:
+
+        A = "aba"
+
+        Input 2:
+
+        A = "bca"
+
+
+
+        Example Output
+
+        Output 1:
+
+        2
+
+        Output 2:
+
+        4
+
+
+
+        Example Explanation
+
+        Explanation 1:
+
+        The order permutations with letters 'a', 'a', and 'b' :
+            aab
+            aba 
+            baa
+        So, the rank is 2.
+
+        Explanation 2:
+
+        The order permutations with letters 'a', 'b', and 'c' :
+            abc
+            acb 
+            bac
+            bca
+            cab
+            cba
+        So, the rank is 4. */
+    
+    /*Problem Description
+
+        You are given an integer A which represents the length of a permutation.
+        A permutation is an array of length A where all the elements occur exactly once and in any order.
+        For example, [3, 4, 1, 2], [1, 2, 3] are examples of valid permutations while [1, 2, 2], [2] are not.
+
+        You are also given an integer B.
+        If all the permutation of length A are sorted lexicographically, return the Bth permutation.
+
+        Problem Constraints
+        1 <= A <= 105
+        1 <= B <= min(1018, A!), where A! denotes the factorial of A.
+
+        Input Format
+        The first argument is the integer A.
+        The second argument is the long integer B.
+
+        Output Format
+        Return an array denoting the Bth permutation of length A.
+
+        Example Input
+        Input 1:
+
+        A = 3
+        B = 3
+
+        Input 2:
+
+        A = 1
+        B = 1
+
+        Example Output
+        Output 1:
+
+        [2, 1, 3]
+
+        Output 2:
+
+        [1]
+
+        Example Explanation
+        Explanation 1:
+
+        All the permutations of length 3 sorted in lexicographical order are:
+        [1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1].
+        Therefore, the third permutation is [2, 1, 3].
+
+        Explanation 2:
+
+        There is only one possible permutation -> [1].
+        */
+
+
 }
 
 

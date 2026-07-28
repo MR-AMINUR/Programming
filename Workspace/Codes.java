@@ -2361,6 +2361,41 @@ class Structures {
 
         return (isSubTree(root.left, SubRoot)) || (isSubTree(root.right, SubRoot));
     }
+
+    public void topView(Node root) {
+        Queue<treeInfo> q = new LinkedList<>();
+        HashMap<Integer, Node> map = new HashMap<>();
+        q.add(new treeInfo(root, 0));
+        q.add(null);
+        int min = 0, max = 0;
+        while (!q.isEmpty()) {
+            treeInfo curr = q.remove();
+            if (curr == null) {
+                if (q.isEmpty()) {
+                    break;
+                } else {
+                    q.add(null);
+                }
+            } else {
+                if (!map.containsKey(curr.hd)) {
+                    map.put(curr.hd, curr.node);
+                } 
+                if (curr.node.left != null) {
+                    q.add(new treeInfo(curr.node.left, curr.hd-1));
+                    min = Math.min(min, curr.hd-1);
+                }
+                if (curr.node.right != null) {
+                    q.add(new treeInfo(curr.node.right, curr.hd+1));
+                    max = Math.max(max, curr.hd+1);
+                }
+            }
+        }
+
+        for (int i = min; i <= max; i++) {
+            System.out.print(map.get(i).data + " ");
+        }
+        System.out.println();
+    }
 }
 
 class Info {
@@ -2370,6 +2405,16 @@ class Info {
     public Info(int diameter, int height) {
         this.diameter = diameter;
         this.height = height;
+    }
+}
+
+class treeInfo {
+    Node node;
+    int hd;     // Horizontal Distance
+
+    public treeInfo(Node node, int hd) {
+        this.node = node;
+        this.hd = hd;
     }
 }
 
@@ -2406,7 +2451,7 @@ public class Codes {
         subRoot.left = new Node(4);
         subRoot.right = new Node(5);
 
-        System.out.println(ss.isSubTree(root, subRoot));
+        ss.topView(root);
         
         
     }
