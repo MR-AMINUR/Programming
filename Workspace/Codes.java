@@ -2451,7 +2451,7 @@ public class Codes {
         subRoot.left = new Node(4);
         subRoot.right = new Node(5);
 
-        ss.topView(root);
+        ss.topView(subRoot);
         
         
     }

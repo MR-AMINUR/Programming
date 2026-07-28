@@ -129,7 +129,7 @@ class Queue {
     }
 }
 
-public class Revisit {
+public class Revisited {
     
     public static void main(String[] args) {
 
