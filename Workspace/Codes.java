@@ -2396,6 +2396,20 @@ class Structures {
         }
         System.out.println();
     }
+
+    public void recursiveKthLevel(Node root, int level, int k) {
+        if (root == null) {
+            return;
+        }
+
+        if (level == k) {
+            System.out.print(root.data+ " ");
+            return;
+        }
+
+        recursiveKthLevel(root.left, level+1, k);
+        recursiveKthLevel(root.right, level+1, k);
+    }
 }
 
 class Info {
@@ -2451,7 +2465,7 @@ public class Codes {
         subRoot.left = new Node(4);
         subRoot.right = new Node(5);
 
-        ss.topView(subRoot);
+        ss.recursiveKthLevel(root, 1, 3);
         
         
     }
