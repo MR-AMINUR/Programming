@@ -1993,6 +1993,25 @@ Explanation 2:
             cab
             cba
         So, the rank is 4. */
+
+    public void StringRank(String str) {
+
+        HashMap<Character, Integer> map = new HashMap<>();
+
+        for (int i = 0; i < str.length(); i++) {
+            char ch = str.charAt(i);
+
+            if (map.containsKey(ch)) {
+                map.put(ch, map.get(ch)+1);
+            } else {
+                map.put(ch, 1);
+            }
+        }
+
+        for (Character key : map.keySet()) {
+            System.out.println(key + "->" + map.get(key));
+        }
+    }
     
     /*Problem Description
 
@@ -2056,9 +2075,11 @@ public class Problem {
         Scanner sc = new Scanner(System.in);
         PrimeNumbers pl = new PrimeNumbers();
        
-        int result = pl.FindRank("baa");
-        System.out.println(result);
+         pl.StringRank("aaab");
+        
         
         sc.close();
+
+        
     }
 }
