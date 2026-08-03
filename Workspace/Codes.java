@@ -3466,6 +3466,33 @@ class Structures {
 
         return dist1+dist2;
     }
+
+    public int ancestor = -1;
+
+    public int KthAncestor(Node root, int n, int k) {
+
+        
+
+        if (root == null) {
+            return -1;
+        }
+        if (root.data == n) {
+            return 0;
+        }
+
+        int leftDist = KthAncestor(root.left, n, k);
+        int rightDist = KthAncestor(root.right, n, k);
+
+        if (leftDist == -1 && rightDist == -1) {
+            return -1;
+        }
+
+        int maxDist = Math.max(leftDist, rightDist);
+        if (maxDist+1 == k) {
+            ancestor = root.data;
+        }
+        return maxDist+1;
+    }
 }
 
 class Info {
@@ -3521,7 +3548,8 @@ public class Codes {
         subRoot.left = new Node(4);
         subRoot.right = new Node(5);
 
-        System.out.println(ss.minNodeDist(root, 4, 4));
+        ss.KthAncestor(root, 4, 2);
+        System.out.println(ss.ancestor);
         
         
     }
