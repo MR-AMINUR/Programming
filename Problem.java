@@ -2065,7 +2065,26 @@ Explanation 2:
         There is only one possible permutation -> [1].
         */
 
+    public void printPermutation(int[] arr, int index) {
 
+        if (index == arr.length-1) {
+            printArray(arr);
+            return;
+        }
+
+        for (int i = index; i < arr.length; i++) {
+            swap(arr, index, i);
+            printPermutation(arr, index+1);
+            swap(arr, index, i);
+        }
+    }
+
+    private void printArray(int[] arr) {
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(arr[i] + " ");
+        }
+        System.out.println();
+    }
 }
 
 
@@ -2074,9 +2093,9 @@ public class Problem {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         PrimeNumbers pl = new PrimeNumbers();
-       
-        System.out.println(pl.FindRank("abc"));
-        
+        int[] arr = {1, 2, 3};
+        //System.out.println(pl.FindRank("abc"));
+        pl.printPermutation(arr, 2);
         
         sc.close();
 
