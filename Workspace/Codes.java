@@ -3471,8 +3471,6 @@ class Structures {
 
     public int KthAncestor(Node root, int n, int k) {
 
-        
-
         if (root == null) {
             return -1;
         }
@@ -3492,6 +3490,24 @@ class Structures {
             ancestor = root.data;
         }
         return maxDist+1;
+    }
+
+    public int transformToSumTree(Node root) {
+        if (root == null) {
+            return 0;
+        }
+
+        int leftChild = transformToSumTree(root.left);
+        int rightChild = transformToSumTree(root.right);
+
+        int value = root.data;
+
+        int newLeft = root.left == null ? 0 : root.left.data;
+        int newRight = root.right == null ? 0 : root.right.data;
+
+        root.data = newLeft + leftChild + newRight + rightChild;
+
+        return value;
     }
 }
 
@@ -3543,14 +3559,9 @@ public class Codes {
         root.left.right = new Node(5);
         root.right.left = new Node(6);
         root.right.right = new Node(7);
-
-        Node subRoot = new Node(2);
-        subRoot.left = new Node(4);
-        subRoot.right = new Node(5);
-
-        ss.KthAncestor(root, 4, 2);
-        System.out.println(ss.ancestor);
         
+        ss.transformToSumTree(root);
+        ss.preOrder(root);
         
     }
 }
