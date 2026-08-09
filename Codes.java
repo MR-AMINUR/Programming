@@ -3520,11 +3520,21 @@ class Structures {
         Node leftChild = root.left;
         Node rightChild = root.right;
 
-        if (leftChild.data == rightChild.data || leftChild.data == root.data || rightChild.data == root.data) {
+        if (leftChild.data == rightChild.data && leftChild.data == root.data && rightChild.data == root.data) {
             return true;
         }
 
         return false;
+    }
+
+    public void mirrorTree(Node root) {
+        if (root == null) {
+            return;
+        }
+        System.out.print(root.data + " ");
+        mirrorTree(root.right);
+        mirrorTree(root.left);
+
     }
 }
 
@@ -3570,14 +3580,14 @@ public class Codes {
         Structures ss = new Structures();
 
         Node root = new Node(1);
-        root.left = new Node(1);
-        root.right = new Node(1);
-        // root.left.left = new Node(4);
-        // root.left.right = new Node(5);
-        // root.right.left = new Node(6);
-        // root.right.right = new Node(7);
+        root.left = new Node(2);
+        root.right = new Node(3);
+        root.left.left = new Node(4);
+        root.left.right = new Node(5);
+        root.right.left = new Node(6);
+        root.right.right = new Node(7);
 
-        System.out.println(ss.isUnique(root));
+        ss.mirrorTree(root);
         
     }
 }
