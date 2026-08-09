@@ -3536,6 +3536,14 @@ class Structures {
         mirrorTree(root.left);
 
     }
+
+    public boolean isMirror(Node root, Node tree) {
+        if (root == null || tree == null) {
+            return false;
+        }
+
+        return (root.data == tree.data && root.left.data == tree.right.data && root.right.data == tree.left.data);
+    }
 }
 
 class Info {
@@ -3582,13 +3590,15 @@ public class Codes {
         Node root = new Node(1);
         root.left = new Node(2);
         root.right = new Node(3);
-        root.left.left = new Node(4);
-        root.left.right = new Node(5);
-        root.right.left = new Node(6);
-        root.right.right = new Node(7);
-
-        ss.mirrorTree(root);
-        
+        // root.left.left = new Node(4);
+        // root.left.right = new Node(5);
+        // root.right.left = new Node(6);
+        // root.right.right = new Node(7);
+        Node tree = new Node(1);
+        tree.left = new Node(2);
+        tree.right = new Node(3);
+        //ss.mirrorTree(root);
+        System.out.println(ss.isMirror(root, tree));
     }
 }
  
