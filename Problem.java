@@ -2086,16 +2086,30 @@ Explanation 2:
         System.out.println();
     }
 
-    public void solveSolution(int A, int B) {
+    public ArrayList<Integer> solveSolution(int A, int B) {
         ArrayList<Integer> perm = new ArrayList<>();
-
+        int rank = 1;
         for (int i = 1; i <= A; i++) {
             perm.add(i);
         }
 
         for (int i = 0; i < perm.size(); i++) {
-            
+            int count = 0;
+
+            for (int j = i+1; j <= perm.size(); j++) {
+                if (perm.get(i) > perm.get(j)) {
+                    count++;
+                }
+            }
+
+            count *=  factorial(A - 1);
+            rank += count;
         }
+
+        if (rank == B) {
+            return perm;
+        }
+        return perm;
     }
     
 }
@@ -2105,18 +2119,16 @@ Explanation 2:
 public class Problem {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        
+        PrimeNumbers pl = new PrimeNumbers();
         System.out.print("Enter the value of A: ");
         int A = sc.nextInt();
+        System.out.print("Enter the value of B: ");
+        int B = sc.nextInt();
 
-        ArrayList<Integer> perm = new ArrayList<>();
-        for (int i = 1; i <= A; i++) {
-            perm.add(i);
-        }
+        System.out.print(pl.solveSolution(A, B));
 
-        for (int i = 0; i < perm.size(); i++) {
-            System.out.print(perm.get(i)+ " ");
-        }
+        
+        
         sc.close();
 
         
