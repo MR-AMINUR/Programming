@@ -3558,6 +3558,26 @@ class Structures {
 
         return root;
     }
+
+    public boolean isFoundKey(Node root, int key) {
+
+        if (root == null) {
+            return false;
+        }
+
+        if (root.data == key) {
+            return true;
+        }
+
+        if (root.data > key) {
+            return isFoundKey(root.left, key);
+        }
+
+        else {
+            return isFoundKey(root.right, key);
+        }
+        
+    }
 }
 
 class Info {
@@ -3608,7 +3628,7 @@ public class Codes {
             root = ss.insert(root, values[i]);
         }
 
-        ss.InOrder(root);
+        System.out.print(ss.isFoundKey(root, 9));
     }
 }
  
