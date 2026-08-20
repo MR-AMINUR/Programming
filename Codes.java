@@ -1,5 +1,4 @@
 import java.util.*;
-import java.util.Queue;
 
 /*
     
@@ -3544,6 +3543,21 @@ class Structures {
 
         return (root.data == tree.data && root.left.data == tree.right.data && root.right.data == tree.left.data);
     }
+
+    public Node insert(Node root, int val) {
+        if (root == null) {
+            return new Node(val);
+        }
+
+        if (root.data > val) {
+            
+            root.left = insert(root.left, val);
+        } else {
+            root.right = insert(root.right, val);
+        }
+
+        return root;
+    }
 }
 
 class Info {
@@ -3587,18 +3601,14 @@ public class Codes {
     public static void main(String[] args) throws Exception{
         Structures ss = new Structures();
 
-        Node root = new Node(1);
-        root.left = new Node(2);
-        root.right = new Node(3);
-        root.left.left = new Node(4);
-        root.left.right = new Node(5);
-        root.right.left = new Node(6);
-        root.right.right = new Node(7);
-        Node tree = new Node(1);
-        tree.left = new Node(2);
-        tree.right = new Node(3);
-        //ss.mirrorTree(root);
-        System.out.println(ss.isMirror(root, tree));
+        int[] values = {5, 1, 3, 4, 2, 7};
+        Node root = null;
+
+        for (int i = 0; i < values.length; i++) {
+            root = ss.insert(root, values[i]);
+        }
+
+        ss.InOrder(root);
     }
 }
  

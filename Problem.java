@@ -1469,14 +1469,15 @@ Explanation 2:
 
     */
     
-    public void swap(int[] arr, int a, int b) {
+    public void swap(ArrayList<Integer> arr, int a, int b) {
         
-        int temp = arr[a];
-        arr[a] = arr[b];
-        arr[b] = temp;
+        Integer temp = arr.get(a);
+        arr.set(a, arr.get(b));
+        arr.set(b, temp);
+        
     }
 
-    public int convertArrayToNumber(int[] arr) {
+    public int convertArrayToNumber(ArrayList<Integer> arr) {
         int num = 0;
         for (int digit : arr) {
             num = (num * 10) + digit;
@@ -1485,11 +1486,11 @@ Explanation 2:
         return num;
     }
 
-    public void sortCombination(int[] arr, int start, ArrayList<Integer> result) {
+    public void sortCombination(ArrayList<Integer> arr, int start, ArrayList<Integer> result) {
 
-        if (start == arr.length)
+        if (start == arr.size())
         {
-            if (arr[0] == 0)
+            if (arr.get(0) == 0)
             {
                 return;
             }
@@ -1497,7 +1498,7 @@ Explanation 2:
             result.add(convertArrayToNumber(arr));
             return;
         }
-        for (int i = start; i < arr.length; i++)
+        for (int i = start; i < arr.size(); i++)
         {
             swap(arr, start, i);
             sortCombination(arr, start+1, result);
@@ -2065,52 +2066,28 @@ Explanation 2:
         There is only one possible permutation -> [1].
         */
 
-    public void printPermutation(int[] arr, int index) {
+    public void printPermutation(ArrayList<Integer> arr, int index) {
 
-        if (index == arr.length-1) {
+        if (index == arr.size()-1) {
             printArray(arr);
             return;
         }
 
-        for (int i = index; i < arr.length; i++) {
+        for (int i = index; i < arr.size(); i++) {
             swap(arr, index, i);
             printPermutation(arr, index+1);
             swap(arr, index, i);
         }
     }
 
-    private void printArray(int[] arr) {
-        for (int i = 0; i < arr.length; i++) {
-            System.out.print(arr[i] + " ");
+    private void printArray(ArrayList<Integer> arr) {
+        for (int i = 0; i < arr.size(); i++) {
+            System.out.print(arr.get(i) + " ");
         }
         System.out.println();
     }
 
-    public ArrayList<Integer> solveSolution(int A, int B) {
-        ArrayList<Integer> perm = new ArrayList<>();
-        int rank = 1;
-        for (int i = 1; i <= A; i++) {
-            perm.add(i);
-        }
-
-        for (int i = 0; i < perm.size(); i++) {
-            int count = 0;
-
-            for (int j = i+1; j <= perm.size(); j++) {
-                if (perm.get(i) > perm.get(j)) {
-                    count++;
-                }
-            }
-
-            count *=  factorial(A - 1);
-            rank += count;
-        }
-
-        if (rank == B) {
-            return perm;
-        }
-        return perm;
-    }
+    
     
 }
 
@@ -2120,12 +2097,11 @@ public class Problem {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         PrimeNumbers pl = new PrimeNumbers();
-        System.out.print("Enter the value of A: ");
-        int A = sc.nextInt();
-        System.out.print("Enter the value of B: ");
-        int B = sc.nextInt();
-
-        System.out.print(pl.solveSolution(A, B));
+        ArrayList<Integer> arr = new ArrayList<>();
+        arr.add(1);
+        arr.add(2);
+        arr.add(3);
+        pl.printPermutation(arr, 0);
 
         
         
