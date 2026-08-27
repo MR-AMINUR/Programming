@@ -2066,25 +2066,29 @@ Explanation 2:
         There is only one possible permutation -> [1].
         */
 
-    public void printPermutation(ArrayList<Integer> arr, int index) {
+    public ArrayList<Integer> BthPermutation(int a, int b) {
+        ArrayList<Integer> list = new ArrayList<>();
+        ArrayList<Integer> result  = new ArrayList<>();
 
-        if (index == arr.size()-1) {
-            printArray(arr);
-            return;
+        for (int i = 1; i <= a; i++) {
+            list.add(i);
         }
 
-        for (int i = index; i < arr.size(); i++) {
-            swap(arr, index, i);
-            printPermutation(arr, index+1);
-            swap(arr, index, i);
-        }
-    }
+        int rank = b - 1;
 
-    private void printArray(ArrayList<Integer> arr) {
-        for (int i = 0; i < arr.size(); i++) {
-            System.out.print(arr.get(i) + " ");
+        for (int i = a; i >= 1; i--) {
+            int factorial = factorial(i-1);
+            int index = rank / factorial;
+            int selected = list.get(index);
+
+            result.add(selected);
+
+            list.remove(index);
+
+            rank %= factorial;
         }
-        System.out.println();
+
+        return result;
     }
 
     
@@ -2097,12 +2101,8 @@ public class Problem {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         PrimeNumbers pl = new PrimeNumbers();
-        ArrayList<Integer> arr = new ArrayList<>();
-        arr.add(1);
-        arr.add(2);
-        arr.add(3);
-        pl.printPermutation(arr, 0);
-
+        
+        System.out.print(pl.BthPermutation(3, 3));
         
         
         sc.close();

@@ -3578,6 +3578,80 @@ class Structures {
         }
         
     }
+
+    public Node findInOrderSuccessor(Node root) {
+        while (root.left != null) {
+            root = root.left;
+        }
+
+        return root;
+    }
+
+    public Node deleteNodes(Node root, int value) {
+        // Case 1 : No Child (leaf Node)
+
+        if (root.left == null && root.right == null) {
+            return null;
+        }
+
+        // case 2: One Child 
+
+        if (root.left == null) {
+            return root.right;
+        }   else if (root.right == null) {
+            return root.left;
+        }
+
+        // case 3: Two Children
+
+        Node is = findInOrderSuccessor(root.right);
+        root.data = is.data;
+        root.right = deleteNodes(root.right, is.data);
+
+        return root;
+    }
+
+    public void printInRange(Node root, int k1, int k2) {
+        if (root == null) {
+            return;
+        }
+
+        if (root.data >= k1 && root.data <= k2) {
+            printInRange(root.left, k1, k2);
+            System.out.print(root.data + " ");
+            printInRange(root.right, k1, k2);
+        }
+        else if (root.data < k1) {
+            printInRange(root.left, k1, k2);
+        } else {
+            printInRange(root.right, k1, k2);
+        }
+    }
+
+    public void printPath(ArrayList<Integer> path) {
+        for (int p : path) {
+            System.out.print(p+" -> ");
+        }
+        System.out.println("N");
+    }
+
+    public void printTreePath(Node root, ArrayList<Integer> path) {
+        if (root == null) {
+            return;
+        }
+
+        path.add(root.data);
+
+        if (root.left == null && root.right ==  null) {
+            printPath(path);
+        }
+
+        printTreePath(root.left, path);
+        printTreePath(root.right, path);
+
+        path.remove(path.size() - 1);
+    }
+
 }
 
 class Info {
@@ -3627,8 +3701,11 @@ public class Codes {
         for (int i = 0; i < values.length; i++) {
             root = ss.insert(root, values[i]);
         }
-
-        System.out.print(ss.isFoundKey(root, 9));
+        
+        ss.InOrder(root);
+        System.out.println();
+        
+        ss.printTreePath(root, new ArrayList<>());
     }
 }
  
