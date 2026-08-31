@@ -3652,6 +3652,69 @@ class Structures {
         path.remove(path.size() - 1);
     }
 
+    public boolean isValidBST(Node value, Node min, Node max) {
+        if (value == null) {
+            return true;
+        } 
+
+        if (min != null && value.data <= min.data) {
+            return false;
+        }   else if (max != null && value.data >= max.data) {
+            return false;
+        }
+
+        return ((isValidBST(value.left, min, value)) && (isValidBST(value.right, value, max)));
+    }
+
+    public Node mirrorBST(Node root) {
+        if (root == null) {
+            return null;
+        }
+
+        Node leftSmirror = mirrorBST(root.left);
+        Node rightSmirror = mirrorBST(root.right);
+
+        root.left = rightSmirror;
+        root.right = leftSmirror;
+
+        return root;
+    }
+
+    public void getInOrder(Node root, ArrayList<Integer> list) {
+        if (root == null) {
+            return;
+        }
+
+        getInOrder(root.left, list);
+        list.add(root.data);
+        getInOrder(root.right, list);
+
+    }
+
+    public Node createBST(ArrayList<Integer> list, int st, int en) {
+        if (st > en) {
+            return null;
+        }
+
+        int mid = (st + en)/2;
+
+        
+        Node root = new Node(list.get(mid));
+
+        root.left = createBST(list, st, mid-1);
+        root.right = createBST(list, mid+1, en);
+
+        return root;
+    }
+
+    public Node balanceBST(Node root) {
+        ArrayList<Integer> list = new ArrayList<>();
+
+        getInOrder(root, list);
+
+        return createBST(list, 0, list.size()-1);
+    }
+
 }
 
 class Info {
@@ -3694,18 +3757,20 @@ class Node {
 public class Codes {
     public static void main(String[] args) throws Exception{
         Structures ss = new Structures();
-
-        int[] values = {5, 1, 3, 4, 2, 7};
-        Node root = null;
-
-        for (int i = 0; i < values.length; i++) {
-            root = ss.insert(root, values[i]);
-        }
         
-        ss.InOrder(root);
-        System.out.println();
+
+        Node root = new Node(8);
+        root.left = new Node(6);
+        root.left.left = new Node(5);
+        root.left.left.left = new Node(4);
+
+        root.right = new Node(10);
+        root.right.right = new Node(11);
+        root.right.right.right = new Node(12);
+
+        root = ss.balanceBST(root);
+        ss.preOrder(root);
         
-        ss.printTreePath(root, new ArrayList<>());
     }
 }
  
