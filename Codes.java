@@ -3742,6 +3742,40 @@ class Structures {
         return new BSTInfo(false, size, min, max);
     }
 
+    public Node mergeBST(Node root, Node stem) {
+
+        ArrayList<Integer> list1 = new ArrayList<>();
+        getInOrder(root, list1);
+
+        ArrayList<Integer> list2 = new ArrayList<>();
+        getInOrder(stem, list2);
+
+        int i = 0, j = 0;
+        ArrayList<Integer> List = new ArrayList<>();
+        while (i < list1.size() && j < list2.size()) {
+            if (list1.get(i).compareTo(list2.get(j)) < 0) {
+                List.add(list1.get(i));
+                i++;
+            } else {
+                List.add(list2.get(j));
+                j++;
+            }
+        }
+
+        while (i < list1.size()) {
+            List.add(list1.get(i));
+            i++;
+        }
+        while (j < list2.size()) {
+            List.add(list2.get(j));
+            j++;
+        }
+
+        Node tree = createBST(List, 0, List.size()-1);
+
+        return tree;
+    }
+
 }
 
 class Info {
@@ -3798,19 +3832,17 @@ public class Codes {
         Structures ss = new Structures();
         
 
-        Node root = new Node(50);
-        root.left = new Node(30);
-        root.left.left = new Node(5);
-        root.left.right = new Node(20);
+        Node root = new Node(2);
+        root.left = new Node(1);
+        root.right = new Node(4);
 
-        root.right = new Node(60);
-        root.right.left = new Node(45);
-        root.right.right = new Node(70);
-        root.right.right.left = new Node(65);
-        root.right.right.right = new Node(80);
+        Node stem = new Node(9);
+        stem.left = new Node(3);
+        stem.right = new Node(12);
+        
 
-        BSTInfo Info = ss.largestBST(root);
-        System.out.println(ss.maxBST);
+        Node tree = ss.mergeBST(root, stem);
+        ss.InOrder(tree);
         
     }
 }
