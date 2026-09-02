@@ -2155,7 +2155,112 @@ Explanation 2:
 
         return (factorial(city.size())) ;//% 10^9+7;
     }
+
+    /*
+        A robot is located at the top-left corner of an A x B grid (marked ‘Start’ in the diagram below).
+
+        Path Sum: Example 1
+
+        The robot can only move either down or right at any point in time. The robot is trying to reach the bottom-right corner of the grid (marked ‘Finish’ in the diagram below).
+
+        How many possible unique paths are there?
+
+        Note: A and B will be such that the resulting answer fits in a 32 bit signed integer.
+
+        Example :
+
+        Input : A = 2, B = 2
+        Output : 2
+
+        2 possible routes : (0, 0) -> (0, 1) -> (1, 1) 
+                    OR  : (0, 0) -> (1, 0) -> (1, 1)
+
+    */
+
+    private int grid(int A, int B, int i, int j) {
+        if (i >= A || j >= B) {
+            return 0;
+        }
+        if (i == A-1 && j == B-1) {
+            return 1;
+        }
+
+        return grid(A, B, i+1, j) + grid(A, B, i, j+1);
+    }
     
+    public int gridWays(int A, int B) {
+        
+        return grid(A, B, 0, 0);
+    }    
+
+    /*
+    Problem Description
+ 
+ 
+Given a set of digits (A) in sorted order, find how many numbers can be formed using these digits such that its length is B and whose value is less than the number C.
+
+NOTE: All numbers can only have digits from the given set. 
+
+
+Problem Constraints
+0 <= |A| <= 10
+1 <= B <= 9
+0 <= C <= 1e9
+0 <= A[i] <= 9
+
+
+Input Format
+The first argument is an integer array A.
+The second argument is an integer B.
+The third argument is an integer C.
+
+
+Output Format
+Return an integer.
+
+
+Example Input
+Input 1:
+
+A = [0, 1, 5]
+B = 1
+C = 2
+
+Input 2:
+
+A = [0, 1, 2, 5]
+B = 2
+C = 21
+
+
+
+Example Output
+Output 1:
+
+2
+
+Output 2:
+
+5
+
+
+
+Example Explanation
+Explanation 1:
+
+0 and 1 are possible 
+
+Explanation 2:
+
+10, 11, 12, 15, 20 are possible
+
+
+public class Solution {
+    public int solve(ArrayList<Integer> A, int B, int C) {
+    }
+}
+
+    */
 }
 
 
@@ -2174,7 +2279,7 @@ public class Problem {
         // }
         // System.out.println();
 
-        System.out.print(pl.visitCity(3, b));
+        System.out.print(pl.gridWays(15, 9));
         
         sc.close();
 
