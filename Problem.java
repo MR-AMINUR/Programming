@@ -2197,70 +2197,191 @@ Explanation 2:
     Problem Description
  
  
-Given a set of digits (A) in sorted order, find how many numbers can be formed using these digits such that its length is B and whose value is less than the number C.
+        Given a set of digits (A) in sorted order, find how many numbers can be formed using these digits such that its length is B and whose value is less than the number C.
 
-NOTE: All numbers can only have digits from the given set. 
+        NOTE: All numbers can only have digits from the given set. 
+        Problem Constraints
+        0 <= |A| <= 10
+        1 <= B <= 9
+        0 <= C <= 1e9
+        0 <= A[i] <= 9
+        Input Format
+        The first argument is an integer array A.
+        The second argument is an integer B.
+        The third argument is an integer C.
+        Output Format
+        Return an integer.
+        Example Input
+        Input 1:
 
+        A = [0, 1, 5]
+        B = 1
+        C = 2
 
-Problem Constraints
-0 <= |A| <= 10
-1 <= B <= 9
-0 <= C <= 1e9
-0 <= A[i] <= 9
+        Input 2:
 
+        A = [0, 1, 2, 5]
+        B = 2
+        C = 21
+        Example Output
+        Output 1:
 
-Input Format
-The first argument is an integer array A.
-The second argument is an integer B.
-The third argument is an integer C.
+        2
 
+        Output 2:
+        5
+        Example Explanation
+        Explanation 1:
 
-Output Format
-Return an integer.
+        0 and 1 are possible 
 
+        Explanation 2:
 
-Example Input
-Input 1:
-
-A = [0, 1, 5]
-B = 1
-C = 2
-
-Input 2:
-
-A = [0, 1, 2, 5]
-B = 2
-C = 21
-
-
-
-Example Output
-Output 1:
-
-2
-
-Output 2:
-
-5
+        10, 11, 12, 15, 20 are possible
 
 
+        public class Solution {
+            public int solve(ArrayList<Integer> A, int B, int C) {
+            }
+        }
 
-Example Explanation
-Explanation 1:
+        Set<Integer> number = new HashSet<>();
 
-0 and 1 are possible 
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).equals(0)) {
+                continue;
+            }
 
-Explanation 2:
+            for (int j = 0; j < list.size(); j++) {
+                if (i == j) {
+                    continue;
+                }
 
-10, 11, 12, 15, 20 are possible
-
-
-public class Solution {
-    public int solve(ArrayList<Integer> A, int B, int C) {
-    }
-}
+                int digit = list.get(i) * 10 + list.get(j);
+                number.add(digit);
+            }
+        }
+        return number;
 
     */
+
+    public String listTonumber(ArrayList<Integer> list) { 
+        StringBuilder sb = new StringBuilder("");
+        for (int i = 0; i < list.size(); i++) {
+            sb.append(list.get(i));
+        }
+        
+
+        return sb.toString();
+    }
+
+    /*
+        Problem Description
+ 
+            Given a matrix of integers A of size N x M and an integer B. Write an efficient algorithm that searches for integer B in matrix A. 
+
+            This matrix A has the following properties:
+
+                Integers in each row are sorted from left to right.
+                The first integer of each row is greater than or equal to the last integer of the previous row.
+
+            Return 1 if B is present in A, else return 0.
+
+            NOTE: Rows are numbered from top to bottom, and columns are from left to right.
+
+
+            Problem Constraints
+
+            1 <= N, M <= 1000
+
+            1 <= A[i][j], B <= 106
+
+            Input Format
+
+            The first argument given is the integer matrix A.
+
+            The second argument given is the integer B.
+
+            Output Format
+
+            Return 1 if B is present in A else, return 0.
+
+            Example Input
+
+            Input 1: 
+
+            A = [ 
+                [1,   3,  5,  7]
+                [10, 11, 16, 20]
+                [23, 30, 34, 50]
+
+                ]
+            B = 3
+
+            Input 2:
+
+            A = [
+
+                [5, 17, 100, 111]
+                [119, 120, 127, 131]
+
+                ]
+            B = 3
+
+            Example Output
+
+            Output 1: 
+
+            1
+
+            Output 2:
+
+            0
+
+            Example Explanation
+
+            Explanation 1: 
+
+            3 is present in the matrix at A[0][1] position so return 1.
+
+            Explanation 2:
+
+            3 is not present in the matrix so return 0.
+
+    */
+
+    public ArrayList<Integer> matrixToArray(ArrayList<ArrayList<Integer>> list) {
+        ArrayList<Integer> List = new ArrayList<>();
+        for (ArrayList<Integer> row : list) {
+            List.addAll(row);
+        }
+
+        return List;
+    }
+
+    public int binarySearch(ArrayList<ArrayList<Integer>> List, int target) {
+        
+        ArrayList<Integer> list = matrixToArray(List);
+
+        int st = 0;
+        int en = (list.size()-1);
+
+        while (st <= en) {
+            int mid = (st + ((en - st)/2));
+
+            if (list.get(mid) == (target)) {
+                return 1;
+            }  else if (list.get(mid) < target) {
+                st = mid+1;
+            } else {
+                en = mid - 1;
+            }
+        }
+
+        return 0;
+        
+    }
+    
 }
 
 
@@ -2270,16 +2391,14 @@ public class Problem {
         Scanner sc = new Scanner(System.in);
         PrimeNumbers pl = new PrimeNumbers();
         
-        ArrayList<Integer> b = new ArrayList<>();
-        b.add(2);
-        //b.add(5);
-
-        // for (int i = 0; i <= b.size()-1; i++) {
-        //     System.out.print(b.get(i)+ " ");
-        // }
-        // System.out.println();
-
-        System.out.print(pl.gridWays(15, 9));
+        ArrayList<ArrayList<Integer>> matrix = new ArrayList<>(java.util.Arrays.asList(
+            new ArrayList<>(java.util.Arrays.asList(1, 2, 3)),
+            new ArrayList<>(java.util.Arrays.asList(4, 5, 6)),
+            new ArrayList<>(java.util.Arrays.asList(7, 8, 9))));
+        
+        
+        System.out.println(pl.binarySearch(matrix, 8));
+        
         
         sc.close();
 

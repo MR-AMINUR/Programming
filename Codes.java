@@ -3776,6 +3776,8 @@ class Structures {
         return tree;
     }
 
+
+
 }
 
 class Info {
@@ -3831,18 +3833,12 @@ public class Codes {
     public static void main(String[] args) throws Exception{
         Structures ss = new Structures();
         
+        HashMap<String, Integer> map = new HashMap<>();
+        map.put("Aminur", 15);
+        map.put("Darling", 20);
+        map.put("Bhaluka", 03);
 
-        Node root = new Node(2);
-        root.left = new Node(1);
-        root.right = new Node(4);
-
-        Node stem = new Node(9);
-        stem.left = new Node(3);
-        stem.right = new Node(12);
-        
-
-        Node tree = ss.mergeBST(root, stem);
-        ss.InOrder(tree);
+        System.out.println(map);
         
     }
 }
