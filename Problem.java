@@ -2381,7 +2381,156 @@ Explanation 2:
         return 0;
         
     }
-    
+
+    /*
+    Problem Description
+ 
+ 
+
+            Given a sorted array of integers A(0 based index) of size N, find the starting and the ending position of a given integer B in array A.
+
+            Your algorithm's runtime complexity must be in the order of O(log n).
+
+            Return an array of size 2, such that the first element = starting position of B in A and the second element = ending position of B in A, if B is not found in A return [-1, -1].
+
+            Problem Constraints
+
+            1 <= N <= 106
+
+            1 <= A[i], B <= 109
+
+            Input Format
+
+            The first argument given is the integer array A.
+
+            The second argument given is the integer B.
+
+
+            Output Format
+
+            Return an array of size 2, such that the first element = starting position of B in A and the second element = the ending position of B in A if B is not found in A return [-1, -1].
+
+
+            Example Input
+
+            Input 1:
+
+            A = [5, 7, 7, 8, 8, 10]
+            B = 8
+
+            Input 2:
+
+            A = [5, 17, 100, 111]
+            B = 3
+
+            Example Output
+
+            Output 1:
+
+            [3, 4]
+
+            Output 2:
+
+            [-1, -1]
+
+            Example Explanation
+
+            Explanation 1:
+
+            The first occurence of 8 in A is at index 3.
+            The second occurence of 8 in A is at index 4.
+            ans = [3, 4]
+
+            Explanation 2:
+
+            There is no occurence of 3 in the array.
+    */
+
+    public ArrayList<Integer> arraySearch(ArrayList<Integer> list, int target) {
+        ArrayList<Integer> range = new ArrayList<>();
+        range.add(BinarySearch(list, target, true));
+        range.add(BinarySearch(list, target, false));
+
+        return range;
+    }
+
+    public int BinarySearch(ArrayList<Integer> list, int target, boolean value) {
+        int st = 0; 
+        int en = list.size()-1;
+        int ans = -1;
+        while (st <= en) {
+            int mid = st + (en - st)/2;
+            if (list.get(mid) < target) {
+                st = mid+1;
+            } else if (list.get(mid) > target) {
+                en = mid-1;
+            } else {
+                ans = mid;
+
+                if (value) {
+                    en = mid-1;
+                } else {
+                    st = mid+1;
+                }
+            }
+            
+        }
+
+        return ans;
+    }
+
+    /*
+        Problem Description
+
+        Given a sorted array A and a target value B, return the index if the target is found. If not, return the index where it would be if it were inserted in order.
+
+        You may assume no duplicates in the array.
+
+        Problem Constraints
+
+        1 <= |A| <= 100000
+
+        1 <= B <= 109
+
+        Input Format
+
+        First argument is array A.
+
+        Second argument is integer B.
+        Output Format
+
+        Return an integer, the answer to the problem.
+
+        Example Input
+
+        Input 1:
+
+        A = [1, 3, 5, 6]
+        B = 5
+
+        Input 2:
+
+        A = [1, 3, 5, 6]
+        B = 2
+
+        Example Output
+
+        Output 1:
+        2
+        Output 2:
+        1
+
+        Example Explanation
+
+        Explanation 1:
+
+        5 is found at index 2.
+
+        Explanation 2:
+
+        2 will be inserted ar index 1.
+
+    */
 }
 
 
@@ -2391,15 +2540,17 @@ public class Problem {
         Scanner sc = new Scanner(System.in);
         PrimeNumbers pl = new PrimeNumbers();
         
-        ArrayList<ArrayList<Integer>> matrix = new ArrayList<>(java.util.Arrays.asList(
-            new ArrayList<>(java.util.Arrays.asList(1, 2, 3)),
-            new ArrayList<>(java.util.Arrays.asList(4, 5, 6)),
-            new ArrayList<>(java.util.Arrays.asList(7, 8, 9))));
+        ArrayList<Integer> list = new ArrayList<>();
+
+        list.add(5);
+        list.add(7);
+        list.add(7);
+        list.add(8);
+        list.add(8);
+        list.add(10);
         
-        
-        System.out.println(pl.binarySearch(matrix, 8));
-        
-        
+        System.out.println(pl.arraySearch(list, 5));
+
         sc.close();
 
         

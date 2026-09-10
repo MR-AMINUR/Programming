@@ -3831,7 +3831,7 @@ class BSTInfo {
 
 public class Codes {
     public static void main(String[] args) throws Exception{
-        Structures ss = new Structures();
+        
         
         HashMap<String, Integer> map = new HashMap<>();
         map.put("Aminur", 15);
