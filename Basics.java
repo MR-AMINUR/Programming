@@ -3,11 +3,11 @@ import java.util.*;
 class JavaBasics {
     /*
         //Reverse an array in-place.
-        Find the second largest element without sorting.
+        //Find the second largest element without sorting.
         //Move all zeroes to the end of an array.
-        Find the missing number from 1...N.
+        //Find the missing number from 1...N.
         //Solve the Two Sum problem.
-        Find the maximum subarray sum.
+        //Find the maximum subarray sum.
     */
 
     public ArrayList<Integer> moveZeros(ArrayList<Integer> list) {
@@ -81,6 +81,37 @@ class JavaBasics {
 
         return secondHighest;
     }
+
+    public int missingInteger(ArrayList<Integer> list, int n) {
+        int expectedSum = n * (n+1)/2;
+
+        int actualSum = 0;
+
+        for (int li : list) {
+            actualSum += li;
+        }
+
+
+        return (expectedSum-actualSum);
+    }
+
+    public int subArraySum(ArrayList<Integer> list) {
+
+        int currSum = 0; 
+        int maxSum = Integer.MIN_VALUE;
+
+        for (int li : list) {
+            currSum += li;
+        }
+
+        maxSum = Math.max(maxSum, currSum);
+
+        if (currSum < 0) {
+            currSum = 0;
+        }
+
+        return maxSum;
+    }
 }
 
 public class Basics {
@@ -92,11 +123,11 @@ public class Basics {
 
         ArrayList<Integer> list = new ArrayList<>();
         
-        list.add(9);
+        list.add(1);
         list.add(2);
         list.add(3);
         
-        System.out.println(jb.secondLargest(list));
+        System.out.println(jb.subArraySum(list));
         
     }
 }
