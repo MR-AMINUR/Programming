@@ -112,6 +112,107 @@ class JavaBasics {
 
         return maxSum;
     }
+
+    /*
+        //Check whether a string is a palindrome.
+        //Count the frequency of each character.
+        //Check whether two strings are anagrams.
+        //Find the first non-repeating character.
+        //Check whether one string is a rotation of another.
+    */
+
+    public boolean isPalindrome(String str) {
+        int i = 0;
+        int j = str.length()-1;
+
+        while (i < j) {
+            if (str.charAt(i) != str.charAt(j)) {
+                return false;
+            }
+
+            i++;
+            j--;
+        }
+
+        return true;
+    }
+
+    public HashMap<Character, Integer> trackFrequency(String str) {
+        HashMap<Character, Integer> map = new HashMap<>();
+
+        for (int i = 0; i < str.length()-1; i++) {
+            map.put(str.charAt(i), i);
+        }
+
+        return map;
+    }
+
+    public boolean isAnagram(String str1, String str2) {
+        if (str1.length() != str2.length()) {
+            return false;
+        }
+
+        char[] char1 = str1.toCharArray();
+        char[] char2 = str2.toCharArray();
+
+        Arrays.sort(char1);
+        Arrays.sort(char2);
+
+        return Arrays.equals(char1, char2);
+    }
+
+    public Character findCharacter(String str) {
+        HashMap<Character, Integer> map = new HashMap<>();
+
+        for (int i = 0; i < str.length(); i++) {
+            char ch = str.charAt(i);
+            map.put(ch, map.getOrDefault(ch, 0) + 1);
+        }
+
+        for (int i = 0; i < str.length(); i++) {
+            char ch = str.charAt(i);
+            if (map.get(ch) == 1) {
+                return ch;
+            }
+        }
+
+        return null;
+    }
+
+    public boolean isRotational(String str1, String str2) {
+        if (str1.length() != str2.length()) {
+            return false;
+        }
+
+        String combined = str1+str1;
+
+        return combined.contains(str2);
+    }
+
+    /*
+        // Hashmap
+        Solve Two Sum using HashMap.
+        Find the first non-repeating element.
+        Find the longest subarray with a given sum.
+    */
+    public ArrayList<Integer> twoSum(ArrayList<Integer> list, int target) {
+        HashMap<Integer, Integer> map = new HashMap<>();
+
+        for (int i = 0; i < list.size()-1; i++) {
+            map.put(i, list.get(i));
+        }
+
+        ArrayList<Integer> sum = new ArrayList<>();
+        sum.add(map.get(target));
+
+        return sum;
+    }
+    /*
+        // Two pointers
+        Two Sum in a sorted array.
+        Check palindrome using two pointers.
+        Find the maximum area/container problem.
+    */
 }
 
 public class Basics {
@@ -120,14 +221,11 @@ public class Basics {
     public static void main(String[] args) {
         
         JavaBasics jb = new JavaBasics();
-
         ArrayList<Integer> list = new ArrayList<>();
-        
-        list.add(1);
         list.add(2);
         list.add(3);
-        
-        System.out.println(jb.subArraySum(list));
+        list.add(4);
+        System.out.println(jb.twoSum(list, 6));
         
     }
 }
