@@ -2531,6 +2531,27 @@ Explanation 2:
         2 will be inserted ar index 1.
 
     */
+    
+    public int insertTarget(ArrayList<Integer> list, int target) {
+        int st = 0;
+        int en = list.size()-1;
+
+        while (st <= en) {
+            int mid = st + (en-st)/2;
+
+            if (list.get(mid).equals(target)) {
+                return mid;
+            }   else if (list.get(mid) < target) {
+                st = mid+1;
+            }   else {
+                en = mid -1;
+            }
+        }
+
+        return st;
+    }
+
+    
 }
 
 
@@ -2542,15 +2563,15 @@ public class Problem {
         
         ArrayList<Integer> list = new ArrayList<>();
 
+        list.add(1);
+        list.add(3);
         list.add(5);
-        list.add(7);
-        list.add(7);
-        list.add(8);
-        list.add(8);
-        list.add(10);
+        //list.add(8);
+        list.add(6);
         
-        System.out.println(pl.arraySearch(list, 5));
 
+        System.out.println(pl.insertTarget(list, 8));
+        
         sc.close();
 
         
