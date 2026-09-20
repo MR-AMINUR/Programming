@@ -2551,7 +2551,241 @@ Explanation 2:
         return st;
     }
 
-    
+    /*
+        Problem Description
+
+        A conveyor belt has packages that must be shipped from one port to another within B days.
+
+        The ith package on the conveyor belt has a weight of A[i]. Each day, we load the ship with packages on the conveyor belt (in the order given by weights). We may not load more weight than the maximum weight capacity of the ship.
+
+        Return the least weight capacity of the ship that will result in all the packages on the conveyor belt being shipped within B days.
+
+        Problem Constraints
+        1 <= B <= |A| <= 5 * 105
+        1 <= A[i] <= 105
+
+        Input Format
+
+        First argument is array of integers A denoting the weights.
+
+        Second argument is the integer B denoting the number of days. 
+
+        Output Format
+        Return the least weight capacity of the ship.
+
+
+        Example Input
+        Input 1:
+
+        A = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+        B = 5
+
+        Input 2:
+
+        A = [3, 2, 2, 4, 1, 4]
+        B = 3
+
+        Example Output
+        Ouput 1:
+
+        15
+
+        Ouput 2:
+
+        6
+
+        Example Explanation
+        Explanation 1:
+
+        A ship capacity of 15 is the minimum to ship all the packages in 5 days like this:
+        1st day: 1, 2, 3, 4, 5
+        2nd day: 6, 7
+        3rd day: 8
+        4th day: 9
+        5th day: 10
+        Note that the cargo must be shipped in the order given, so using a ship of capacity 14 and 
+        splitting the packages into parts like (2, 3, 4, 5), (1, 6, 7), (8), (9), (10) is not allowed.
+
+        Explanation 2:
+
+        A ship capacity of 6 is the minimum to ship all the packages in 3 days like this:
+        1st day: 3, 2
+        2nd day: 2, 4
+        3rd day: 1, 4
+    */
+
+    /*
+        Minimum possible capacity
+        maximum possible capacity
+        Try a capacity
+        count required days
+        if days <= B -> capacity works
+        otherwise increase capacity
+    */
+
+    public boolean packageCapacity(ArrayList<Integer> list, int days, int capacity) {
+        int currentWeight = 0;
+        int requiredDays = 1;
+
+        for (int li : list) {
+            if (currentWeight + li > capacity) {
+                requiredDays++;
+                currentWeight = li;
+
+                if (requiredDays > days) {
+                return false;
+                }
+            }   else {
+
+                currentWeight += li;
+            }
+        }
+
+        return true;
+    }
+
+    public int binarySack(ArrayList<Integer> list, int days) {
+        int st = Integer.MIN_VALUE;
+        int en = 0;
+
+        for (int li : list) {
+            st = Math.max(st, li);
+            en += li;
+        }
+
+        while (st < en) {
+            int mid = st + (en-st)/2;
+
+            if (packageCapacity(list, days, mid)) {
+                en = mid;
+            } else {
+                st = mid+1;
+            }
+        }
+
+        return st;
+    }
+
+    /*
+        Problem Description
+ 
+        Given a matrix of integers A of size N x M in which each row is sorted.
+
+        Find and return the overall median of matrix A.
+
+        NOTE: No extra memory is allowed.
+
+        NOTE: Rows are numbered from top to bottom and columns are numbered from left to right.
+
+
+        Problem Constraints
+
+        1 <= N, M <= 10^5
+
+        1 <= N*M <= 10^6
+
+        1 <= A[i] <= 10^9
+
+        N*M is odd
+
+
+        Input Format
+
+        The first and only argument given is the integer matrix A.
+
+
+        Output Format
+
+        Return the overall median of matrix A.
+
+
+        Example Input
+
+        Input 1: 
+
+        A = [   [1, 3, 5],
+                [2, 6, 9],
+                [3, 6, 9]   ] 
+
+        Input 2: 
+
+        A = [   [5, 17, 100]    ]
+
+        Example Output
+
+        Output 1: 
+
+        5 
+
+        Output 2: 
+
+        17
+
+        Example Explanation
+
+        Explanation 1: 
+
+        A = [1, 2, 3, 3, 5, 6, 6, 9, 9]
+        Median is 5. So, we return 5. 
+
+        Explanation 2:
+
+        Median is 17.
+    */
+
+    public int matrixMedian(ArrayList<ArrayList<Integer>> list) {
+        int n = list.size();
+        int m = list.get(0).size();
+
+        int st = Integer.MAX_VALUE;
+        int en = Integer.MIN_VALUE;
+
+        for (int i = 0; i < n; i++) {
+            st = Math.min(st, list.get(i).get(0));
+            en = Math.max(en, list.get(i).get(m-1));
+        }
+
+        int desiredCount = (n*m)/2;
+
+        while (st <= en) {
+            int mid = st + (en-st)/2;
+
+            int count = 0;
+            for (int i = 0; i < n; i++) {
+                count += upperBound(list.get(i), mid);
+            }
+
+            if (count <= desiredCount) {
+                st = mid+1;
+            } else {
+                en = mid-1;
+            }
+        }
+        // for each mid value count how many numbers in the entire matrix are less than or equal to mid
+
+        // Adjust search range based on whether that count is less than or greater than than the required median position.
+
+        return st;
+    }
+
+    private int upperBound(ArrayList<Integer> list, int target) {
+        int st = 0;
+        int en = list.size()-1;
+        int ans = list.size();
+
+        while (st <= en) {
+            int mid = st + (en-st)/2;
+
+            if (list.get(mid) > target) {
+                ans = mid;
+                en = mid-1;
+            } else {
+                st = mid+1;
+            }
+        }
+
+        return ans;
+    }
 }
 
 
@@ -2561,16 +2795,16 @@ public class Problem {
         Scanner sc = new Scanner(System.in);
         PrimeNumbers pl = new PrimeNumbers();
         
-        ArrayList<Integer> list = new ArrayList<>();
-
-        list.add(1);
-        list.add(3);
-        list.add(5);
-        //list.add(8);
-        list.add(6);
         
+        ArrayList<ArrayList<Integer>> A = new ArrayList<>(List.of(
+            new ArrayList<>(List.of(1, 3, 5)),
+            new ArrayList<>(List.of(2, 6, 9)),
+            new ArrayList<>(List.of(3, 6, 9))
+        ));
 
-        System.out.println(pl.insertTarget(list, 8));
+        System.out.println(Integer.MAX_VALUE);
+        System.out.println(Integer.MIN_VALUE);
+        
         
         sc.close();
 
