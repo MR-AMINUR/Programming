@@ -222,10 +222,11 @@ public class Basics {
         
         JavaBasics jb = new JavaBasics();
         ArrayList<Integer> list = new ArrayList<>();
-        list.add(2);
-        list.add(3);
-        list.add(4);
-        System.out.println(jb.twoSum(list, 6));
+        list.add(12);
+        list.add(34);
+        list.add(67);
+        list.add(90);
+        System.out.println(jb.subArraySum(list));
         
     }
 }
