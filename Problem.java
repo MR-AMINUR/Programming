@@ -3012,85 +3012,140 @@ Explanation 2:
  
  
 
-Given 2 integers A and B and an array of integers C of size N. Element C[i] represents the length of ith board.
- You have to paint all N boards [C0, C1, C2, C3 … CN-1]. There are A painters available and each of them takes B units of time to paint 1 unit of the board.
-Calculate and return the minimum time required to paint all boards under the constraints that any painter will only paint contiguous sections of the board.
+        Given 2 integers A and B and an array of integers C of size N. Element C[i] represents the length of ith board.
+        You have to paint all N boards [C0, C1, C2, C3 … CN-1]. There are A painters available and each of them takes B units of time to paint 1 unit of the board.
+        Calculate and return the minimum time required to paint all boards under the constraints that any painter will only paint contiguous sections of the board.
 
- NOTE: 
- 1. 2 painters cannot share a board to paint. That is to say, a board cannot be painted partially by one painter, and partially by another.
- 2. A painter will only paint contiguous boards. This means a configuration where painter 1 paints boards 1 and 3 but not 2 is invalid.
+        NOTE: 
+        1. 2 painters cannot share a board to paint. That is to say, a board cannot be painted partially by one painter, and partially by another.
+        2. A painter will only paint contiguous boards. This means a configuration where painter 1 paints boards 1 and 3 but not 2 is invalid.
 
- Return the ans % 10000003.
-
-
-Problem Constraints
-
-1 <= A <= 1000
-
-1 <= B <= 106
-
-1 <= N <= 105
-
-1 <= C[i] <= 106
+        Return the ans % 10000003.
 
 
-Input Format
+        Problem Constraints
 
-The first argument given is the integer A.
+        1 <= A <= 1000
 
-The second argument given is the integer B.
+        1 <= B <= 106
 
-The third argument given is the integer array C.
+        1 <= N <= 105
 
-
-Output Format
-
-Return minimum time required to paint all boards under the constraints that any painter will only paint contiguous sections of board % 10000003.
+        1 <= C[i] <= 106
 
 
-Example Input
+        Input Format
 
-Input 1:
+        The first argument given is the integer A.
 
- A = 2
- B = 5
- C = [1, 10]
+        The second argument given is the integer B.
 
-Input 2:
-
- A = 10
- B = 1
- C = [1, 8, 11, 3]
+        The third argument given is the integer array C.
 
 
+        Output Format
 
-Example Output
+        Return minimum time required to paint all boards under the constraints that any painter will only paint contiguous sections of board % 10000003.
 
-Output 1:
 
- 50
+        Example Input
 
-Output 2:
+        Input 1:
 
- 11
+        A = 2
+        B = 5
+        C = [1, 10]
+
+        Input 2:
+
+        A = 10
+        B = 1
+        C = [1, 8, 11, 3]
 
 
 
-Example Explanation
+        Example Output
 
-Explanation 1:
+        Output 1:
 
- Possibility 1:- One painter paints both blocks, time taken = 55 units.
- Possibility 2:- Painter 1 paints block 1, painter 2 paints block 2, time take = max(5, 50) = 50
- There are no other distinct ways to paint boards.
- ans = 50 % 10000003
+        50
 
-Explanation 2:
+        Output 2:
 
- Each block is painted by a painter so, Painter 1 paints block 1, painter 2 paints block 2, painter 3 paints block 3 
- and painter 4 paints block 4, time taken = max(1, 8, 11, 3) = 11
- ans = 11 % 10000003
+        11
+
+
+
+        Example Explanation
+
+        Explanation 1:
+
+        Possibility 1:- One painter paints both blocks, time taken = 55 units.
+        Possibility 2:- Painter 1 paints block 1, painter 2 paints block 2, time take = max(5, 50) = 50
+        There are no other distinct ways to paint boards.
+        ans = 50 % 10000003
+
+        Explanation 2:
+
+        Each block is painted by a painter so, Painter 1 paints block 1, painter 2 paints block 2, painter 3 paints block 3 
+        and painter 4 paints block 4, time taken = max(1, 8, 11, 3) = 11
+        ans = 11 % 10000003
     */
+
+    public boolean isPaint(ArrayList<Integer> list, int painters, int B, long maxTime) {
+
+        int painterCount = 1;
+        long currTime = 0;
+
+        for (int li : list) {
+            long boardTime = (long) li * B;
+
+            if (boardTime > maxTime) {
+                return false;
+            }
+            if (currTime + boardTime <= maxTime) {
+                currTime += boardTime;
+            } else {
+                painterCount++;
+                currTime = boardTime;
+
+                if (painterCount > painters) {
+                    return false;
+                }
+            }
+        }
+
+        
+
+
+        return true;
+    }
+    
+    public long paintBoard(int A, int B, ArrayList<Integer> list) {
+        long st = 0;
+        long en = 0;
+        long minTime = Integer.MAX_VALUE;
+        for (int li : list) {
+            long time = (long) li * B;
+
+            st = Math.max(st, time);
+
+            en += time;
+        }
+
+        while (st <= en) {
+            long mid = st + (en-st)/2;
+
+            if (isPaint(list, A, B, mid)) {
+                minTime = Math.min(minTime, mid);
+                en = mid-1;
+            } else {
+                st = mid+1;
+            }
+        }
+
+        return minTime;
+    }
 }
 
 
@@ -3101,12 +3156,12 @@ public class Problem {
         PrimeNumbers pl = new PrimeNumbers();
         
         ArrayList<Integer> list = new ArrayList<>();
-        list.add(31);
-        list.add(14);
-        list.add(19);
-        list.add(75);
+        list.add(1);
+        list.add(8);
+        list.add(11);
+        list.add(3);
         
-        System.out.println(pl.bookDistribution(list, 12));
+        System.out.println(pl.paintBoard(10, 1, list));
         
         sc.close();
 
