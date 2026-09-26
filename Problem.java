@@ -3225,7 +3225,7 @@ Explanation 2:
         
         Implement pow(x, n) % d.
         In other words, given x, n and d,
-        Find (xn % d)
+        Find (x^n % d)
         Note that remainders on division cannot be negative. In other words, make sure the answer you return is non-negative integer.
 
 
@@ -3271,6 +3271,28 @@ Explanation 2:
         52 % 6 = 25 % 6 = 1.
     
     */
+
+    public int binaryPower(int x, int n, int d) {
+        if (d == 1) { return 0;}
+
+        long ans = 1;
+        long base = x % d;
+
+        if (base < 0) {
+            base = (base+d)%d;
+        }
+
+        while (n > 0) {
+            if (n % 2 == 1) {
+                ans = (ans * base) % d;
+            }
+
+            base = (base * base) % d;
+            n /= 2;
+        }
+
+        return (int) ans;
+    }
 }
 
 
@@ -3280,7 +3302,7 @@ public class Problem {
         Scanner sc = new Scanner(System.in);
         PrimeNumbers pl = new PrimeNumbers();
         
-        System.out.println((int)(Math.pow(2,3))%3);
+        System.out.println(pl.binaryPower(-1, 1, 20));
         
         sc.close();
 
