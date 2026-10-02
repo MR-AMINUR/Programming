@@ -213,6 +213,19 @@ class JavaBasics {
         Check palindrome using two pointers.
         Find the maximum area/container problem.
     */
+
+    public void printSubArray(int[] list) {
+
+        
+        for (int i = 0; i < list.length; i++) {
+            for (int j = i; j < list.length; j++) {
+                int[] arr = Arrays.copyOfRange(list, i, j+1);
+                System.out.println(Arrays.toString(arr));
+            }
+        }
+
+        
+    }
 }
 
 public class Basics {
@@ -221,12 +234,8 @@ public class Basics {
     public static void main(String[] args) {
         
         JavaBasics jb = new JavaBasics();
-        ArrayList<Integer> list = new ArrayList<>();
-        list.add(12);
-        list.add(34);
-        list.add(67);
-        list.add(90);
-        System.out.println(jb.subArraySum(list));
+        int[] arr = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
+        jb.printSubArray(arr);
         
     }
 }
