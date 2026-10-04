@@ -3293,6 +3293,163 @@ Explanation 2:
 
         return (int) ans;
     }
+
+    /*
+        Problem Description
+        
+        You are given an array A having N integers.
+
+        You have to perform the following steps in a given order.
+
+        1) generate all subarrays of A.
+
+        2) take the maximum element from each subarray of A and insert it into a new array G.
+
+        3) replace every element of G with the product of their divisors mod 1e9 + 7.
+
+        4) sort G in descending order
+
+        You now need to perform Q queries
+
+        In each query, you are given an integer K, where you have to find the Kth element in G.
+
+        NOTE : Your solution will run on multiple test cases so do clear global variables after using them.
+
+
+
+        Problem Constraints
+
+        1 <= N <= 1e5
+
+        1 <= A[i] <= 1e5
+
+        1 <= Q <= 1e5
+
+        1 <= k <= (N * (N + 1))/2 
+
+
+
+        Input Format
+
+        The first argument given is an Array A, having N integers.
+
+        The second argument given is an Array B, where B[i] is the ith query.
+
+
+
+        Output Format
+
+        Return an Array X, where X[i] will have the answer for the ith query.
+
+
+        Example Input
+
+        Input 1:
+
+        A = [1, 2, 4]
+        B = [1, 2, 3, 4, 5, 6]
+
+        Input 2:
+
+        A = [1, 3]
+        B = [1]
+
+
+
+        Example Output
+
+        Output 1:
+
+        [8, 8, 8, 2, 2, 1]
+
+        Output 2:
+
+        [3]
+
+
+
+        Example Explanation
+
+        Explanation 1:
+
+        subarrays of A    maximum element
+
+            [1] 1
+            [1, 2] 2
+            [1, 2, 4] 4
+            [2] 2
+            [2, 4] 4
+            [4] 4
+
+        original
+        G = [1, 2, 4, 2, 4, 4]
+
+        after changing every element of G with product of their divisors
+        G = [1, 2, 8, 2, 8, 8]
+
+        after sorting G in descending order
+        G = [8, 8, 8, 2, 2, 1]
+
+
+        Explanation 2:
+
+        Just perform given query.
+
+    */
+
+    /*
+    Problem Description
+ 
+ 
+            There are two sorted arrays A and B of size m and n respectively.
+
+            Find the median of the two sorted arrays ( The median of the array formed by merging both arrays ).
+
+            The overall run time complexity should be O(log (m+n)).
+
+            NOTE: If the number of elements in the merged array is even, then the median is the average of n / 2 th and n/2 + 1th element. For example, if the array is [1 2 3 4], the median is (2 + 3) / 2.0 = 2.5 
+
+
+            Problem Constraints
+            0 <= |A| <= 106
+            0 <= |B| <= 106
+            1 <= |A| + |B| <= 2 * 106
+
+
+            Input Format
+            The first argument is an integer array A.
+            The second argument is an integer array B.
+
+
+            Output Format
+            Return a double value equal to the median.
+
+
+            Example Input
+            A : [1 4 5]
+            B : [2 3]
+
+
+            Example Output
+            3
+
+
+            Example Explanation
+            Merged A and B will be : [1, 2, 3, 4, 5]
+            Its median will be 3
+    */
+    
+    public int solveQuery(ArrayList<Integer> l1, ArrayList<Integer> l2) {
+        // Trivial case runtime exception
+        l1.addAll(l2);
+
+        Collections.sort(l1);
+
+        int st = 0;
+        int en = l1.size()-1;
+
+        return l1.get(st + (en-st)/2);
+    }
 }
 
 
@@ -3302,7 +3459,18 @@ public class Problem {
         Scanner sc = new Scanner(System.in);
         PrimeNumbers pl = new PrimeNumbers();
         
-        System.out.println(pl.binaryPower(-1, 1, 20));
+        ArrayList<Integer> l1 = new ArrayList<>();
+        l1.add(1);
+        l1.add(4);
+        l1.add(5);
+        ArrayList<Integer> l2 = new ArrayList<>();
+        l2.add(2);
+        l2.add(3);
+        
+
+        System.out.println(pl.solveQuery(l1, l2));
+
+        
         
         sc.close();
 
