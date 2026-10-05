@@ -3438,18 +3438,83 @@ Explanation 2:
             Merged A and B will be : [1, 2, 3, 4, 5]
             Its median will be 3
     */
+
+    public int findMid(ArrayList<Integer> list, int st, int en) {
+        
+        if (st > en) {
+            return -1;
+        }
+        return list.get(st + (en-st)/2);
+    }
     
     public int solveQuery(ArrayList<Integer> l1, ArrayList<Integer> l2) {
-        // Trivial case runtime exception
-        l1.addAll(l2);
-
-        Collections.sort(l1);
-
-        int st = 0;
-        int en = l1.size()-1;
-
-        return l1.get(st + (en-st)/2);
+        
+        if (!l1.isEmpty() && !l2.isEmpty()) {
+            l1.addAll(l2);
+            Collections.sort(l1);
+            
+            return findMid(l1, 0, (l1.size()-1));
+        } else if (l2.isEmpty()) {
+            return findMid(l1, 0, l1.size()-1);
+        } else {
+            return findMid(l2, 0, l2.size()-1);
+        }
+        
     }
+
+    /*-----------------------------------Binary Numbers--------------------------------- */
+
+    /*
+        Problem Description
+
+        Reverse the bits of an 32 bit unsigned integer A.
+
+
+
+        Problem Constraints
+        0 <= A <= 232
+
+
+
+        Input Format
+        First and only argument of input contains an integer A.
+
+
+
+        Output Format
+        Return a single unsigned integer denoting the decimal value of reversed bits.
+
+
+
+        Example Input
+        Input 1:
+
+        0
+        Input 2:
+
+        3
+
+
+        Example Output
+        Output 1:
+
+        0
+        Output 2:
+
+        3221225472
+
+
+        Example Explanation
+        Explanation 1:
+
+                00000000000000000000000000000000
+
+        =>      00000000000000000000000000000000
+        Explanation 2:
+
+                00000000000000000000000000000011    
+        =>      11000000000000000000000000000000
+    */
 }
 
 
@@ -3459,16 +3524,10 @@ public class Problem {
         Scanner sc = new Scanner(System.in);
         PrimeNumbers pl = new PrimeNumbers();
         
-        ArrayList<Integer> l1 = new ArrayList<>();
-        l1.add(1);
-        l1.add(4);
-        l1.add(5);
-        ArrayList<Integer> l2 = new ArrayList<>();
-        l2.add(2);
-        l2.add(3);
+        
         
 
-        System.out.println(pl.solveQuery(l1, l2));
+        System.out.println(Integer.reverse(3));
 
         
         
