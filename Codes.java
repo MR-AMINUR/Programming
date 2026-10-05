@@ -3778,6 +3778,20 @@ class Structures {
 
     /*---------------------------------------HashMap Implementation--------------------------------------- */
 
+    public void findMajority(ArrayList<Integer> list) {
+        HashMap<Integer, Integer> hm = new HashMap<>();
+
+        for (int i = 0; i < list.size(); i++) {
+            hm.put(list.get(i), hm.getOrDefault(list.get(i),0) + 1);
+        }
+
+        
+        for (Integer key : hm.keySet()) {
+            if (hm.get(key) > list.size()/3) {
+                System.out.println(key);
+            }
+        }
+    }
     
 
 }
@@ -3834,13 +3848,21 @@ class BSTInfo {
 public class Codes {
     public static void main(String[] args) throws Exception{
         
-        
-        HashMap<String, Integer> map = new HashMap<>();
-        map.put("Aminur", 15);
-        map.put("Darling", 20);
-        map.put("Bhaluka", 03);
+        Structures st = new Structures();
 
-        System.out.println(map);
+
+        ArrayList<Integer> list = new ArrayList<>();
+        list.add(1);
+        list.add(3);
+        list.add(2);
+        list.add(5);
+        list.add(1);
+        list.add(3);
+        list.add(1);
+        list.add(5);
+        list.add(1);
+
+        st.findMajority(list);
         
     }
 }

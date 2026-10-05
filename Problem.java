@@ -3522,14 +3522,6 @@ Explanation 2:
 public class Problem {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        PrimeNumbers pl = new PrimeNumbers();
-        
-        
-        
-
-        System.out.println(Integer.reverse(3));
-
-        
         
         sc.close();
 
