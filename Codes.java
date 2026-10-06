@@ -3793,7 +3793,31 @@ class Structures {
         }
     }
     
+    public boolean isAnagram(String s, String t) {
+        HashMap<Character, Integer> map = new HashMap<>();
 
+        for (int i = 0; i < s.length(); i++) {
+            char ch = s.charAt(i);
+
+            map.put(ch, map.getOrDefault(ch, 0) + 1);
+        }
+
+        for (int i = 0; i < t.length(); i++) {
+            char th = t.charAt(i);
+
+            if (map.get(th) != null) {
+                if (map.get(th) == 1) {
+                    map.remove(th);
+                } else {
+                    map.put(th, map.getOrDefault(th, 0) - 1);
+                }
+            } else {
+                return false;
+            }
+        }
+
+        return map.isEmpty();
+    }
 }
 
 class Info {
@@ -3850,20 +3874,10 @@ public class Codes {
         
         Structures st = new Structures();
 
+        String s = "str";
+        String t = "tris";
 
-        ArrayList<Integer> list = new ArrayList<>();
-        list.add(1);
-        list.add(3);
-        list.add(2);
-        list.add(5);
-        list.add(1);
-        list.add(3);
-        list.add(1);
-        list.add(5);
-        list.add(1);
-
-        st.findMajority(list);
-        
+        System.out.println(st.isAnagram(s, t));
     }
 }
  
