@@ -3469,22 +3469,14 @@ Explanation 2:
 
         Reverse the bits of an 32 bit unsigned integer A.
 
-
-
         Problem Constraints
         0 <= A <= 232
-
-
 
         Input Format
         First and only argument of input contains an integer A.
 
-
-
         Output Format
         Return a single unsigned integer denoting the decimal value of reversed bits.
-
-
 
         Example Input
         Input 1:
@@ -3494,7 +3486,6 @@ Explanation 2:
 
         3
 
-
         Example Output
         Output 1:
 
@@ -3502,7 +3493,6 @@ Explanation 2:
         Output 2:
 
         3221225472
-
 
         Example Explanation
         Explanation 1:
@@ -3515,6 +3505,19 @@ Explanation 2:
                 00000000000000000000000000000011    
         =>      11000000000000000000000000000000
     */
+
+    public long reverseBit(long n) {
+        long bit = 0; 
+        for (int i = 0; i < 32; i++) {
+            bit <<= 1;
+            bit |= (n&1);
+            n >>= 1;
+        }
+
+        return bit;
+    }
+
+    
 }
 
 
@@ -3522,6 +3525,10 @@ Explanation 2:
 public class Problem {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        PrimeNumbers ps = new PrimeNumbers();
+
+        System.out.println(ps.reverseBit(3));
+
         
         sc.close();
 
