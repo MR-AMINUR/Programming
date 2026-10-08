@@ -3818,6 +3818,37 @@ class Structures {
 
         return map.isEmpty();
     }
+
+    public void unionAndintersection(ArrayList<Integer> l1, ArrayList<Integer> l2) {
+
+        Set<Integer> set = new HashSet<>();
+
+        for (int i = 0; i < l1.size()-1; i++) {
+            set.add(l1.get(i));
+        }
+
+        for (int i = 0; i < l2.size()-1; i++) {
+            set.add(l2.get(i));
+        }
+
+        System.out.println("union size : " + set.size());
+
+        set.clear();
+
+        for (int i = 0; i < l1.size()-1; i++) {
+            set.add(l1.get(i));
+        }
+
+        int count = 0;
+        for (int i = 0; i < l2.size()-1; i++) {
+            if (set.contains(l2.get(i))) {
+                count++;
+                set.remove(l2.get(i));
+            }
+        }
+
+        System.out.println("intersection size : " + count);
+    }
 }
 
 class Info {
@@ -3874,10 +3905,20 @@ public class Codes {
         
         Structures st = new Structures();
 
-        String s = "str";
-        String t = "tris";
+        ArrayList<Integer> l1 = new ArrayList<>();
+        ArrayList<Integer> l2 = new ArrayList<>();
 
-        System.out.println(st.isAnagram(s, t));
+        l1.add(3);
+        l1.add(9);
+        l1.add(6);
+        l2.add(2);
+        l2.add(4);
+        l2.add(3);
+        l2.add(6);
+        l2.add(9);
+        l2.add(9);
+
+        st.unionAndintersection(l1, l2);
     }
 }
  
