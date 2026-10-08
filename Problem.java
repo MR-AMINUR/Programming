@@ -3555,6 +3555,35 @@ Explanation 2:
         A = 5, B = 2, therefore A / B = 5 / 2 = 2.5
         Taking the floor value of 2.5 is 2
     */
+
+    public int bitDivison(int a, int b) {
+        if (b == 0) {
+            return Integer.MAX_VALUE;
+        }
+        if (a == Integer.MIN_VALUE && b == -1) {
+            return Integer.MAX_VALUE;
+        } 
+        if (a == 0) {
+            return 0;
+        }
+
+        long A = Math.abs((long) a);
+        long B = Math.abs((long) b);
+
+        long z = b;
+        long count = 0;
+
+        while (z <= a) {
+            z += b;
+            count++;
+        }
+
+        if ((A < 0) ^ (B < 0)) {
+            count -= count;
+        }
+
+        return (int) count;
+    }
     
 }
 
@@ -3565,7 +3594,7 @@ public class Problem {
         Scanner sc = new Scanner(System.in);
         PrimeNumbers ps = new PrimeNumbers();
 
-        System.out.println(Integer.divideUnsigned(-2147483648, -1));
+        System.out.println(ps.bitDivison(5, 2));
 
         
         sc.close();
