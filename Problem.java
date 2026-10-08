@@ -3584,6 +3584,95 @@ Explanation 2:
 
         return (int) count;
     }
+
+    /*
+        Problem Description
+ 
+        We define f(X, Y) as the number of different corresponding bits in the binary representation of X and Y. 
+        For example, f(2, 7) = 2, since the binary representation of 2 and 7 are 010 and 111, respectively. The first and the third bit differ, so f(2, 7) = 2.
+
+        You are given an array of N positive integers, A1, A2,..., AN. Find sum of f(Ai, Aj) for all pairs (i, j) such that 1 ≤ i, j ≤ N. Return the answer modulo 109+7.
+
+        Problem Constraints
+
+        1 <= N <= 105
+
+        1 <= A[i] <= 231 - 1
+
+        Input Format
+
+        The first and only argument of input contains a single integer array A.
+
+        Output Format
+
+        Return a single integer denoting the sum.
+
+        Example Input
+
+        Input 1:
+
+        A = [1, 3, 5]
+
+        Input 2:
+
+        A = [2, 3]
+
+        Example Output
+
+        Ouptut 1:
+
+        8
+
+        Output 2:
+
+        2
+
+        Example Explanation
+
+        Explanation 1: 
+
+        f(1, 1) + f(1, 3) + f(1, 5) + f(3, 1) + f(3, 3) + f(3, 5) + f(5, 1) + f(5, 3) + f(5, 5) 
+        = 0 + 1 + 1 + 1 + 0 + 2 + 1 + 2 + 0 = 8
+
+        Explanation 2:
+
+        f(2, 2) + f(2, 3) + f(3, 2) + f(3, 3) = 0 + 1 + 1 + 0 = 2
+    */
+
+    public int sumofOddBits(ArrayList<Integer> list) {
+        int total = 0;
+
+        for (int bit = 0; bit < 31; bit++) {
+            int zero = 0, one = 0;
+
+            for (int i = 0; i < list.size(); i++) {
+                if (((1 << i) & list.get(i)) != 0) {
+                    zero++;
+                } else {
+                    one++;
+                }
+            }
+
+            total = total + zero + one;
+        }
+
+        return total;
+    }
+
+    public int compareString(String str1, String str2) {
+        int maxLength = Math.max(str1.length(), str2.length());
+        str1 = String.format("%" + maxLength + "s", str1).replace(' ', '0');
+        str2 = String.format("%" + maxLength + "s", str2).replace(' ', '0');
+
+        int sum = 0;
+        for (int i = 0; i < maxLength; i++) {
+            if (str1.charAt(i) != str2.charAt(i)) {
+                sum++;
+            }
+        }
+
+        return sum;
+    }
     
 }
 
@@ -3593,9 +3682,16 @@ public class Problem {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         PrimeNumbers ps = new PrimeNumbers();
+        
+        ArrayList<Integer> list = new ArrayList<>();
+        list.add(1);
+        list.add(3);
+        list.add(5);
+        
+        
 
-        System.out.println(ps.bitDivison(5, 2));
-
+        System.out.println(ps.sumofOddBits(list));
+        
         
         sc.close();
 
