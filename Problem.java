@@ -3641,19 +3641,21 @@ Explanation 2:
 
     public int sumofOddBits(ArrayList<Integer> list) {
         int total = 0;
-
+        
         for (int bit = 0; bit < 31; bit++) {
             int zero = 0, one = 0;
+            int bitmask = 1 << bit;
 
             for (int i = 0; i < list.size(); i++) {
-                if (((1 << i) & list.get(i)) != 0) {
+                
+                if ((list.get(i) & bitmask) == 0) {
                     zero++;
                 } else {
                     one++;
                 }
             }
 
-            total = total + zero + one;
+            total = (total + (2 * zero * one));
         }
 
         return total;
@@ -3684,11 +3686,13 @@ public class Problem {
         PrimeNumbers ps = new PrimeNumbers();
         
         ArrayList<Integer> list = new ArrayList<>();
-        list.add(1);
-        list.add(3);
-        list.add(5);
+        list.add(81);
+        list.add(13);
+        list.add(2);
+        list.add(7);
+        list.add(96);
         
-        
+        //81, 13, 2, 7, 96
 
         System.out.println(ps.sumofOddBits(list));
         
