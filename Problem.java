@@ -3675,6 +3675,56 @@ Explanation 2:
 
         return sum;
     }
+
+    /*
+        Given an integer array A of N integers, find the pair of integers in the array which have minimum XOR value. Report the minimum XOR value.
+
+        Input Format:
+
+            First and only argument of input contains an integer array A
+
+        Output Format:
+
+            return a single integer denoting minimum xor value
+
+        Constraints:
+
+        2 <= N <= 100 000  
+        0 <= A[i] <= 1 000 000 000
+
+        For Examples :
+
+        Example Input 1:
+            A = [0, 2, 5, 7]
+        Example Output 1:
+            2
+        Explanation:
+            0 xor 2 = 2
+        Example Input 2:
+            A = [0, 4, 7, 9]
+        Example Output 2:
+            3
+    */
+
+    public int minXORvalue(ArrayList<Integer> list) {
+        
+        int xor = Integer.MAX_VALUE;
+
+        for (int i = 0; i < list.size()-1; i++) {
+            xor = Math.min(xor, (list.get(i) ^ list.get(i+1)));
+        }
+
+        return xor;
+    }
+
+    public int setBit(int n) {
+        int sum = 0; 
+        for (int i = 1; i <= n; i++) {
+            sum += Integer.bitCount(i);
+        }
+
+        return sum;
+    }
     
 }
 
@@ -3686,15 +3736,16 @@ public class Problem {
         PrimeNumbers ps = new PrimeNumbers();
         
         ArrayList<Integer> list = new ArrayList<>();
-        list.add(81);
-        list.add(13);
+        list.add(0);
         list.add(2);
+        list.add(5);
         list.add(7);
-        list.add(96);
+        //list.add(96);
         
         //81, 13, 2, 7, 96
 
-        System.out.println(ps.sumofOddBits(list));
+        
+        System.out.println(ps.setBit(20));
         
         
         sc.close();

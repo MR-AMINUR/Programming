@@ -3849,6 +3849,22 @@ class Structures {
 
         System.out.println("intersection size : " + count);
     }
+
+    public String itineraryTickets(HashMap<String, String> tickets) {
+        HashMap<String, String> revMap = new HashMap<>();
+
+        for (String key : tickets.keySet()) {
+            revMap.put(tickets.get(key), key);
+        }
+
+        for (String key : tickets.keySet()) {
+            if (!revMap.containsKey(key)) {
+                return key;
+            }
+        }
+
+        return null;
+    }
 }
 
 class Info {
@@ -3905,20 +3921,20 @@ public class Codes {
         
         Structures st = new Structures();
 
-        ArrayList<Integer> l1 = new ArrayList<>();
-        ArrayList<Integer> l2 = new ArrayList<>();
+        HashMap<String, String> tickets = new HashMap<>();
+        tickets.put("Chennai", "Bengaluru");
+        tickets.put("Mumbai", "Delhi");
+        tickets.put("Goa", "Chennai");
+        tickets.put("Delhi", "Goa");
 
-        l1.add(3);
-        l1.add(9);
-        l1.add(6);
-        l2.add(2);
-        l2.add(4);
-        l2.add(3);
-        l2.add(6);
-        l2.add(9);
-        l2.add(9);
+        String start = st.itineraryTickets(tickets);
 
-        st.unionAndintersection(l1, l2);
+        System.out.print(start);
+        for (String key : tickets.keySet()) {
+            System.out.print(" -> " + tickets.get(start));
+            start = tickets.get(start);
+        }
+        System.out.println();
     }
 }
  
