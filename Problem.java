@@ -3725,7 +3725,195 @@ Explanation 2:
 
         return sum;
     }
+
+    /*
+    Problem Description
+
+        Given an integer A find the Ath number whose binary representation is a palindrome.
+
+        NOTE:
+
+            Consider the 1st number whose binary representation is palindrome as 1, instead of 0
+            Do not consider the leading zeros, while considering the binary representation.
+
+        Problem Constraints
+
+        1 <= A <= 2104
+
+        Input Format
+
+        First and only argument is an integer A.
+
+        Output Format
+
+        Return an integer denoting the Ath number whose binary representation is a palindrome.
+
+        Example Input
+
+        Input 1:
+
+        A = 1
+
+        Input 1:
+
+        A = 9
+
+        Example Output
+
+        Output 1:
+
+        1
+
+        Output 2:
+
+        27
+
+        Example Explanation*
+
+        Explanation 1:
+
+        1st Number whose binary representation is palindrome is 1
+
+        Explanation 2
+
+        9th Number whose binary representation is palindrome is 27 (11011)
+
+
+        public class Solution {
+            public int solve(int A) {
+                List<Long> palindromes = new ArrayList<>();
+                
+                // Generate binary palindromes by length (from length 1 to 25)
+                for (int len = 1; len <= 25; len++) {
+                    int halfLen = (len + 1) / 2;
+                    int start = 1 << (halfLen - 1);
+                    int end = 1 << halfLen;
+                    
+                    for (int i = start; i < end; i++) {
+                        String firstHalf = Integer.toBinaryString(i);
+                        StringBuilder sb = new StringBuilder(firstHalf);
+                        
+                        // If length is odd, drop the last character when mirroring
+                        String secondHalf = new StringBuilder(firstHalf.substring(0, len / 2)).reverse().toString();
+                        String fullBin = firstHalf + secondHalf;
+                        
+                        palindromes.add(Long.parseLong(fullBin, 2));
+                    }
+                }
+                
+                // Sort the generated palindromes in increasing order of their numerical value
+                Collections.sort(palindromes);
+                
+                // Return the A-th number (1-indexed, so A - 1)
+                return palindromes.get(A - 1).intValue();
+            }
+        }
+
+    */
+
+    public boolean isPalindrome(String str) {
+        int n = str.length();
+
+        for (int i = 0; i < n; i++) {
+            if (str.charAt(i) != str.charAt(n-1-i)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
     
+    public int palindromeBit(int n) {
+        
+        ArrayList<Integer> list = new ArrayList<>();
+
+        for (int i = 0; i <= 1107169; i++) {
+            String s = Integer.toBinaryString(i);
+            if (isPalindrome(s)) {
+                list.add(i);
+            }
+        }
+
+        
+        return list.get(n);
+    }
+    
+
+    /*
+        Problem Description
+
+        Given an integer array A of size N.
+
+        You need to find the value obtained by XOR-ing the contiguous subarrays, followed by XOR-ing the values thus obtained. Determine and return this value.
+
+        For example, if A = [3, 4, 5] :
+
+        Subarray    Operation   Result
+        3           None            3
+        4           None            4
+        5           None            5
+        3,4         3 XOR 4         7
+        4,5         4 XOR 5         1
+        3,4,5       3 XOR 4 XOR 5   2
+
+        Now we take the resultant values and XOR them together:
+
+        3 ⊕ 4 ⊕ 5 ⊕ 7 ⊕ 1⊕ 2 = 6 we will return 6.
+
+
+
+        Problem Constraints
+
+        1 <= N <= 105
+
+        1 <= A[i] <= 108
+
+
+        Input Format
+
+        First and only argument is an integer array A.
+
+
+        Output Format
+
+        Return a single integer denoting the value as described above.
+
+
+        Example Input
+
+        Input 1:
+
+        A = [1, 2, 3]
+
+        Input 2:
+
+        A = [4, 5, 7, 5]
+
+
+
+        Example Output
+
+        Output 1:
+
+        2
+
+        Output 2:
+
+        0
+
+
+
+        Example Explanation
+
+        Explanation 1:
+
+        1 ⊕ 2 ⊕ 3 ⊕  (1 ⊕ 2 ) ⊕ (2 ⊕ 3) ⊕ (1 ⊕ 2 ⊕ 3) = 2
+
+        Explanation 2:
+
+        4 ⊕ 5 ⊕ 7 ⊕ 5 ⊕ (4 ⊕ 5) ⊕ (5 ⊕ 7) ⊕ (7 ⊕ 5) ⊕ (4 ⊕ 5 ⊕ 7) ⊕ (5 ⊕ 7 ⊕ 5) ⊕ (4 ⊕ 5 ⊕ 7 ⊕ 5) = 0
+
+    */
 }
 
 
@@ -3735,18 +3923,8 @@ public class Problem {
         Scanner sc = new Scanner(System.in);
         PrimeNumbers ps = new PrimeNumbers();
         
-        ArrayList<Integer> list = new ArrayList<>();
-        list.add(0);
-        list.add(2);
-        list.add(5);
-        list.add(7);
-        //list.add(96);
-        
-        //81, 13, 2, 7, 96
+        System.out.println(ps.palindromeBit(14));
 
-        
-        System.out.println(ps.setBit(20));
-        
         
         sc.close();
 
