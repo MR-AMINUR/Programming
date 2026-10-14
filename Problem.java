@@ -3914,6 +3914,43 @@ Explanation 2:
         4 ⊕ 5 ⊕ 7 ⊕ 5 ⊕ (4 ⊕ 5) ⊕ (5 ⊕ 7) ⊕ (7 ⊕ 5) ⊕ (4 ⊕ 5 ⊕ 7) ⊕ (5 ⊕ 7 ⊕ 5) ⊕ (4 ⊕ 5 ⊕ 7 ⊕ 5) = 0
 
     */
+
+    public int XORing(ArrayList<Integer> list) {
+        if (list == null || list.isEmpty()) {
+            return 0;
+        }
+
+        int result = 0;
+        int n = list.size();
+
+        for (int i = 0; i < n; i++) {
+            int count = (i + 1) * (n - i);
+            if ((count & 1) == 1) {
+                result ^= list.get(i);
+            }
+        }
+
+        return result;
+    }
+
+    public int singleAppear(ArrayList<Integer> list) {
+
+        Map<Integer, Integer> map = new HashMap<>();
+
+        for (int i = 0; i < list.size(); i++) {
+            map.put(list.get(i), map.getOrDefault(list.get(i), 0)+1);
+        }
+
+        for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
+            if (entry.getValue() == 1) {
+                return entry.getKey();
+            }
+        }
+
+        return -1;
+
+    }
+    
 }
 
 
@@ -3923,8 +3960,14 @@ public class Problem {
         Scanner sc = new Scanner(System.in);
         PrimeNumbers ps = new PrimeNumbers();
         
-        System.out.println(ps.palindromeBit(14));
+        ArrayList<Integer> list = new ArrayList<>();
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        list.add(2);
+        list.add(1);
 
+        System.out.println(ps.singleAppear(list));
         
         sc.close();
 
