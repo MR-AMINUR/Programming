@@ -3865,6 +3865,23 @@ class Structures {
 
         return null;
     }
+
+    public int largestSubArray0Sum(ArrayList<Integer> list) {
+        int sum = 0, len = 0;
+        
+        HashMap<Integer, Integer> map = new HashMap<>();
+
+        for (int i = 0; i < list.size(); i++) {
+            sum += list.get(i);
+            if (map.containsKey(sum)) {
+                len = Math.max(len, i - map.get(sum));
+            } else {
+                map.put(sum, i);
+            }
+        }
+
+        return len;
+    }
 }
 
 class Info {
@@ -3920,21 +3937,19 @@ public class Codes {
     public static void main(String[] args) throws Exception{
         
         Structures st = new Structures();
+        ArrayList<Integer> list = new ArrayList<>();
 
-        HashMap<String, String> tickets = new HashMap<>();
-        tickets.put("Chennai", "Bengaluru");
-        tickets.put("Mumbai", "Delhi");
-        tickets.put("Goa", "Chennai");
-        tickets.put("Delhi", "Goa");
+        list.add(15);
+        list.add(-2);
+        list.add(2);
+        list.add(-8);
+        list.add(1);
+        list.add(7);
+        list.add(10);
+        list.add(23);
 
-        String start = st.itineraryTickets(tickets);
-
-        System.out.print(start);
-        for (String key : tickets.keySet()) {
-            System.out.print(" -> " + tickets.get(start));
-            start = tickets.get(start);
-        }
-        System.out.println();
+        System.out.println(st.largestSubArray0Sum(list));
+        
     }
 }
  
