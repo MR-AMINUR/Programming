@@ -3882,6 +3882,24 @@ class Structures {
 
         return len;
     }
+
+    public int subArraySumequalsK(ArrayList<Integer> list, int k) {
+        HashMap<Integer, Integer> map = new HashMap<>();
+        map.put(0, 1);
+
+        int sum = 0, ans = 0;
+
+        for (int i = 0; i < list.size(); i++) {
+            sum += list.get(i);
+
+            if (map.containsKey(sum-k)) {
+                ans += map.get(sum-k);
+            }
+            map.put(sum, map.getOrDefault(sum, 0)+1);
+        }
+
+        return ans;
+    }
 }
 
 class Info {
@@ -3939,16 +3957,14 @@ public class Codes {
         Structures st = new Structures();
         ArrayList<Integer> list = new ArrayList<>();
 
-        list.add(15);
-        list.add(-2);
-        list.add(2);
-        list.add(-8);
-        list.add(1);
-        list.add(7);
         list.add(10);
-        list.add(23);
+        list.add(2);
+        list.add(-2);
+        list.add(-20);
+        list.add(10);
+        
 
-        System.out.println(st.largestSubArray0Sum(list));
+        System.out.println(st.subArraySumequalsK(list, -10));
         
     }
 }
